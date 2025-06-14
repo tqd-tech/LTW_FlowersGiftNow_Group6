@@ -1,0 +1,64 @@
+# ==== NodeJS + React ====
+
+# Node modules (React hoặc Node backend nếu có)
+node_modules/
+
+# Build output (React)
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Editor settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# ==== PHP + Laravel (nếu dùng Laravel) ====
+
+# PHP vendor (Composer)
+vendor/
+
+# Laravel specific folders
+/storage/*
+/bootstrap/cache/*
+
+# Laravel environment file
+.env
+
+# Log files
+*.log
+
+# Database export files (nếu có)
+*.sql
+*.sql.gz
+
+# ==== General ====
+
+# Upload folder (nếu project có thư mục lưu file upload tạm)
+uploads/
+storage/uploads/
+
+# OS generated files
+*.swp
+*.swo
+
+# PHPStorm specific
+.phpstorm.meta.php
