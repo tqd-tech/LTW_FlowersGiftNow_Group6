@@ -90,22 +90,14 @@
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Nhận thông tin mới nhất
+					<h4 class="stext-301 cl0 text-center">
+						Xem thêm về đội ngũ nhóm 6
 					</h4>
-
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
+					<div class="p-t-18">
+							<a href="https://tqd-tech.github.io/group6-porfolio" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								Xem ngay
+							</a>
 						</div>
-
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Đăng kí
-							</button>
-						</div>
-					</form>
 				</div>
 			</div>
 
@@ -143,10 +135,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="assets/vendor/animsition/assets/js/animsition.min.js"></script>
+	<script src="assets/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="assets/vendor/bootstrap/assets/js/popper.js"></script>
-	<script src="assets/vendor/bootstrap/assets/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="assets/vendor/select2/select2.min.js"></script>
 	<script>
@@ -241,11 +233,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 		$('.js-show-filter').on('click', function(){
     $(this).toggleClass('show-filter');
-    $('.panel-filter').slideToggle(400);
+    // $('.panel-filter').slideToggle(400);
 
     if($('.js-show-search').hasClass('show-search')) {
         $('.js-show-search').removeClass('show-search');
-        $('.panel-search').slideUp(400);
+        // $('.panel-search').slideUp(400);
     }
 });
 

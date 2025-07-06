@@ -588,6 +588,9 @@ font-family: "Roboto", sans-serif;  font-size: 50px;
   .wrap-search-header {
     height: 80px;
   }
+  .hidden-mobile {
+    display: none;
+  }
 }
 
 

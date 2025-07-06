@@ -23,7 +23,7 @@
 		
 
 	<!-- Slider -->
-	<section class="section-slide">
+	<section class="section-slide hidden-mobile">
 		<div class="wrap-slick1">
 			<div class="slick1">
 				<div class="item-slick1" style="background-image: url(assets/images/flowers/slide1.png);">
@@ -109,7 +109,7 @@
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
-					Sản phẩm của chúng tôi
+					Sản phẩm mới nhất
 				</h3>
 			</div>
 
