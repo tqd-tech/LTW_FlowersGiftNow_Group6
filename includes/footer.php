@@ -1,4 +1,7 @@
-    <footer class="bg3 p-t-75 p-b-32">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/main.js"></script> <!-- hoặc script chứa đoạn vừa gửi -->
+
+	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
@@ -40,7 +43,7 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="track_order.php" class="stext-107 cl7 hov-cl1 trans-04">
 								Theo dõi đơn hàng
 							</a>
 						</li>
@@ -133,7 +136,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</footer>
-    <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="assets/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -232,19 +234,114 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 
 		$('.js-show-filter').on('click', function(){
-    $(this).toggleClass('show-filter');
-    // $('.panel-filter').slideToggle(400);
+	$(this).toggleClass('show-filter');
+	$('.panel-filter').slideToggle(400);
 
-    if($('.js-show-search').hasClass('show-search')) {
-        $('.js-show-search').removeClass('show-search');
-        // $('.panel-search').slideUp(400);
-    }
+	if($('.js-show-search').hasClass('show-search')) {
+		$('.js-show-search').removeClass('show-search');
+		$('.panel-search').slideUp(400);
+	}
 });
+
 
 	</script>
 
 	
 <!--===============================================================================================-->
-	<script src="assets/js/main.js"></script>
+
+
+<!-- Animsition -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animsition.js/1.0.0/js/animsition.min.js"></script>
+
+<!-- Popper & Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+<script>
+	$(".js-select2").each(function(){
+		$(this).select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $(this).next('.dropDownSelect2')
+		});
+	});
+</script>
+
+<!-- Daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<!-- Slick -->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="assets/js/slick-custom.js"></script>
+
+<!-- Parallax -->
+<script src="https://cdn.jsdelivr.net/npm/parallax-js@3.1.0/dist/parallax.min.js"></script>
+<script>
+	$('.parallax100').parallax100?.(); // Check tồn tại để tránh lỗi
+</script>
+
+<!-- Magnific Popup -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script>
+	$('.gallery-lb').each(function() {
+		$(this).magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			gallery: { enabled: true },
+			mainClass: 'mfp-fade'
+		});
+	});
+</script>
+
+<!-- Isotope -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+	$('.js-addwish-b2').on('click', function(e){ e.preventDefault(); });
+
+	$('.js-addwish-b2').each(function(){
+		var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+		$(this).on('click', function(){
+			Swal.fire(nameProduct, "Đã thêm vào yêu thích!", "success");
+			$(this).addClass('js-addedwish-b2').off('click');
+		});
+	});
+
+	$('.js-addcart-detail').each(function(){
+		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+		$(this).on('click', function(){
+			Swal.fire(nameProduct, "Đã thêm vào giỏ hàng!", "success");
+		});
+	});
+</script>
+
+<!-- Perfect Scrollbar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
+<script>
+	$('.js-pscroll').each(function(){
+		$(this).css('position','relative').css('overflow','hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed: 1,
+			scrollingThreshold: 1000,
+			wheelPropagation: false,
+		});
+		$(window).on('resize', function(){ ps.update(); });
+	});
+
+	$('.js-show-filter').on('click', function(){
+		$(this).toggleClass('show-filter');
+		if($('.js-show-search').hasClass('show-search')) {
+			$('.js-show-search').removeClass('show-search');
+		}
+	});
+</script>
+
+<!-- Main JS -->
+<script src="assets/js/main.js"></script>
+
 </body>
 </html>

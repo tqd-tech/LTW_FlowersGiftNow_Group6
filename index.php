@@ -115,17 +115,17 @@
 
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						Hoa tươi
-					</button>
+					<a href="index.php" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 <?= !isset($_GET['category']) ? 'how-active1' : '' ?>">
+						Tất cả
+					</a>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+					<a href="index.php?category=gift" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 <?= isset($_GET['category']) && $_GET['category'] === 'gift' ? 'how-active1' : '' ?>">
 						Quà tặng
-					</button>
+					</a>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+					<a href="index.php?category=other" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 <?= isset($_GET['category']) && $_GET['category'] === 'other' ? 'how-active1' : '' ?>">
 						Khác
-					</button>
+					</a>
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -149,204 +149,150 @@
 							<i class="zmdi zmdi-search"></i>
 						</button>
 
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search" placeholder="Search">
 					</div>	
 				</div>
 
 				<!-- Filter -->
 				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Sort By
-							</div>
+    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+        
+        <!-- Sắp xếp -->
+        <div class="filter-col1 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Sắp xếp</div>
+            <ul>
+                <li class="p-b-6"><a href="<?= buildQuery(['sort' => '']) ?>" class="filter-link">Mặc định</a></li>
+                <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'price_asc']) ?>" class="filter-link">Giá tăng dần</a></li>
+                <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'price_desc']) ?>" class="filter-link">Giá giảm dần</a></li>
+                <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'newest']) ?>" class="filter-link">Mới nhất</a></li>
+            </ul>
+        </div>
 
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Default
-									</a>
-								</li>
+        <!-- Khoảng giá -->
+        <div class="filter-col2 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Khoảng giá</div>
+            <ul>
+                <li class="p-b-6"><a href="<?= buildQuery(['price' => '0-200']) ?>" class="filter-link">200k</a></li>
+                <li class="p-b-6"><a href="<?= buildQuery(['price' => '200-400']) ?>" class="filter-link">Từ 200k - 400k</a></li>
+                <li class="p-b-6"><a href="<?= buildQuery(['price' => '500+']) ?>" class="filter-link">Trên 500k</a></li>
+            </ul>
+        </div>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Popularity
-									</a>
-								</li>
+        <!-- Danh mục -->
+        <div class="filter-col3 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Danh mục</div>
+            <ul>
+                <li class="p-b-6"><a href="<?= buildQuery(['category' => 'flowers']) ?>" class="filter-link">Hoa</a></li>
+                <li class="p-b-6"><a href="<?= buildQuery(['category' => 'gifts']) ?>" class="filter-link">Quà tặng</a></li>
+            </ul>
+        </div>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Average rating
-									</a>
-								</li>
+        <!-- Tags -->
+        <div class="filter-col4 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Chủ đề</div>
+            <div class="flex-w p-t-4 m-r--5">
+                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Mẹ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Hoa Tặng Mẹ</a>
+                <a href="<?= buildQuery(['tag' => 'Hoa Tiền']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Hoa Tiền</a>
+                <a href="<?= buildQuery(['tag' => 'Set Quà Tặng 8/3']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Set Quà 8/3</a>
+                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Vợ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Hoa Tặng Vợ</a>
+                <a href="<?= buildQuery(['tag' => 'Tình Yêu']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Tình Yêu</a>
+				<a href="<?= buildQuery(['tag' => 'Quà Tặng']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Quà Tặng</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										Newness
-									</a>
-								</li>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: Low to High
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: High to Low
-									</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Price
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$0.00 - $50.00
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$50.00 - $100.00
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$100.00 - $150.00
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$150.00 - $200.00
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$200.00+
-									</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Black
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										Blue
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Grey
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Green
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Red
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										White
-									</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Tags
-							</div>
-
-							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<div class="row">
 <?php
-$stmt = $pdo->query("SELECT * FROM products ORDER BY created_at ASC");
+$categoryMap = [
+    'flowers' => 1,
+    'gifts' => 2
+];
+function buildQuery($overrides = []) {
+    $query = $_GET;
+    foreach ($overrides as $key => $value) {
+        $query[$key] = $value;
+    }
+    return '?' . http_build_query($query);
+}
+
+$search = $_GET['search'] ?? '';
+$category = $_GET['category'] ?? '';
+$tag = $_GET['tag'] ?? '';
+$price = $_GET['price'] ?? '';
+$sort = $_GET['sort'] ?? '';
+
+$where = [];
+$params = [];
+
+// Lọc theo tên sản phẩm
+if ($search !== '') {
+    $where[] = 'name LIKE ?';
+    $params[] = "%$search%";
+}
+
+// Lọc theo danh mục (flowers/gifts)
+if ($category !== '' && isset($categoryMap[$category])) {
+    $where[] = 'category_id = ?';
+    $params[] = $categoryMap[$category];
+}
+
+
+// Lọc theo tag (trong chuỗi tag của DB)
+if ($tag !== '') {
+    $where[] = 'tags LIKE ?';
+    $params[] = "%$tag%";
+}
+
+// Lọc theo khoảng giá
+if ($price !== '') {
+    if (preg_match('/^(\d+)-(\d+)$/', $price, $matches)) {
+        $min = (int)$matches[1] * 1000;
+        $max = (int)$matches[2] * 1000;
+        $where[] = 'price BETWEEN ? AND ?';
+        $params[] = $min;
+        $params[] = $max;
+    } elseif ($price === '500+') {
+        $where[] = 'price >= ?';
+        $params[] = 500000;
+    }
+}
+
+// Base SQL
+$sql = "SELECT * FROM products";
+
+// Thêm WHERE nếu có điều kiện
+if (!empty($where)) {
+    $sql .= ' WHERE ' . implode(' AND ', $where);
+}
+
+// Sắp xếp
+switch ($sort) {
+    case 'price_asc':
+        $sql .= " ORDER BY price ASC";
+        break;
+    case 'price_desc':
+        $sql .= " ORDER BY price DESC";
+        break;
+    case 'newest':
+        $sql .= " ORDER BY created_at DESC";
+        break;
+    default:
+        $sql .= " ORDER BY id DESC";
+        break;
+}
+
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
 $products = $stmt->fetchAll();
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$products = $stmt->fetchAll();
+
 
 if ($products):
     foreach ($products as $product): ?>
@@ -354,9 +300,9 @@ if ($products):
             <div class="card h-100 shadow-sm border-0">
                 <div class="position-relative text-center">
                     <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>" style="height: 350px; object-fit: cover;">
-                    <a href="product.php?id=<?php echo $product['id']; ?>" class="btn btn-primary position-absolute top-50 start-50 translate-middle px-3 py-2 my-2">
-                        Mua ngay
-                    </a>
+                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn btn-primary position-absolute top-50 start-50 translate-middle px-3 py-2 my-2">
+    					Mua ngay
+					</a>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-truncate" title="<?php echo htmlspecialchars($product['name']); ?>">
