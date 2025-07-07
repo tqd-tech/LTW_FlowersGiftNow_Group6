@@ -9,27 +9,27 @@
 						Danh mục
 					</h4>
 
-					<ul>
+					<ul class="p-0">
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								Hoa tươi
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								Quà tặng
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								Hoa sự kiện
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								Quà lưu niệm
 							</a>
 						</li>
@@ -41,27 +41,27 @@
 						Trợ giúp
 					</h4>
 
-					<ul>
+					<ul class="p-0">
 						<li class="p-b-10">
-							<a href="track_order.php" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="track_order.php" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								Theo dõi đơn hàng
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								Trả hàng 
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								Vận chuyển
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
 								FAQs
 							</a>
 						</li>
@@ -78,15 +78,15 @@
 					</p>
 
 					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16 text-decoration-none">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16 text-decoration-none">
 							<i class="fa fa-instagram"></i>
 						</a>
 
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16 text-decoration-none" >
 							<i class="fa fa-pinterest-p"></i>
 						</a>
 					</div>
@@ -97,7 +97,7 @@
 						Xem thêm về đội ngũ nhóm 6
 					</h4>
 					<div class="p-t-18">
-							<a href="https://tqd-tech.github.io/group6-porfolio" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+							<a href="https://tqd-tech.github.io/group6-porfolio" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04 text-decoration-none">
 								Xem ngay
 							</a>
 						</div>
@@ -129,7 +129,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" class="text-decoration-none" target="_blank">Group 6</a> &amp; distributed by <a href="" class="text-decoration-none" target="_blank">UTH</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
@@ -235,11 +235,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 		$('.js-show-filter').on('click', function(){
 	$(this).toggleClass('show-filter');
-	$('.panel-filter').slideToggle(400);
+	// $('.panel-filter').slideToggle(400);
 
 	if($('.js-show-search').hasClass('show-search')) {
 		$('.js-show-search').removeClass('show-search');
-		$('.panel-search').slideUp(400);
+		// $('.panel-search').slideUp(400);
 	}
 });
 

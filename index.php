@@ -42,7 +42,7 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 text-decoration-none">
 									Mua ngay
 								</a>
 							</div>
@@ -66,7 +66,7 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 text-decoration-none">
 									Mua ngay
 								</a>
 							</div>
@@ -90,7 +90,7 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 text-decoration-none">
 									Mua ngay
 								</a>
 							</div>
@@ -115,15 +115,15 @@
 
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<a href="index.php" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 <?= !isset($_GET['category']) ? 'how-active1' : '' ?>">
+					<a href="index.php" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 text-decoration-none <?= !isset($_GET['category']) ? 'how-active1' : '' ?>">
 						Tất cả
 					</a>
 
-					<a href="index.php?category=gift" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 <?= isset($_GET['category']) && $_GET['category'] === 'gift' ? 'how-active1' : '' ?>">
+					<a href="index.php?category=gift" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 text-decoration-none <?= isset($_GET['category']) && $_GET['category'] === 'gift' ? 'how-active1' : '' ?>">
 						Quà tặng
 					</a>
 
-					<a href="index.php?category=other" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 <?= isset($_GET['category']) && $_GET['category'] === 'other' ? 'how-active1' : '' ?>">
+					<a href="index.php?category=other" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 text-decoration-none <?= isset($_GET['category']) && $_GET['category'] === 'other' ? 'how-active1' : '' ?>">
 						Khác
 					</a>
 				</div>
@@ -160,8 +160,8 @@
         <!-- Sắp xếp -->
         <div class="filter-col1 p-r-15 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Sắp xếp</div>
-            <ul>
-                <li class="p-b-6"><a href="<?= buildQuery(['sort' => '']) ?>" class="filter-link">Mặc định</a></li>
+             <ul class="p-0">
+                <li class="p-b-6"><a href="index.php" class="filter-link" style="color: blue; font-weight: bold;">Mặc định</a></li>
                 <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'price_asc']) ?>" class="filter-link">Giá tăng dần</a></li>
                 <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'price_desc']) ?>" class="filter-link">Giá giảm dần</a></li>
                 <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'newest']) ?>" class="filter-link">Mới nhất</a></li>
@@ -171,7 +171,7 @@
         <!-- Khoảng giá -->
         <div class="filter-col2 p-r-15 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Khoảng giá</div>
-            <ul>
+             <ul class="p-0">
                 <li class="p-b-6"><a href="<?= buildQuery(['price' => '0-200']) ?>" class="filter-link">200k</a></li>
                 <li class="p-b-6"><a href="<?= buildQuery(['price' => '200-400']) ?>" class="filter-link">Từ 200k - 400k</a></li>
                 <li class="p-b-6"><a href="<?= buildQuery(['price' => '500+']) ?>" class="filter-link">Trên 500k</a></li>
@@ -181,7 +181,7 @@
         <!-- Danh mục -->
         <div class="filter-col3 p-r-15 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Danh mục</div>
-            <ul>
+             <ul class="p-0">
                 <li class="p-b-6"><a href="<?= buildQuery(['category' => 'flowers']) ?>" class="filter-link">Hoa</a></li>
                 <li class="p-b-6"><a href="<?= buildQuery(['category' => 'gifts']) ?>" class="filter-link">Quà tặng</a></li>
             </ul>
@@ -191,12 +191,12 @@
         <div class="filter-col4 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Chủ đề</div>
             <div class="flex-w p-t-4 m-r--5">
-                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Mẹ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Hoa Tặng Mẹ</a>
-                <a href="<?= buildQuery(['tag' => 'Hoa Tiền']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Hoa Tiền</a>
-                <a href="<?= buildQuery(['tag' => 'Set Quà Tặng 8/3']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Set Quà 8/3</a>
-                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Vợ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Hoa Tặng Vợ</a>
-                <a href="<?= buildQuery(['tag' => 'Tình Yêu']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Tình Yêu</a>
-				<a href="<?= buildQuery(['tag' => 'Quà Tặng']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">Quà Tặng</a>
+                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Mẹ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Hoa Tặng Mẹ</a>
+                <a href="<?= buildQuery(['tag' => 'Hoa Tiền']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Hoa Tiền</a>
+                <a href="<?= buildQuery(['tag' => 'Set Quà Tặng 8/3']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Set Quà 8/3</a>
+                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Vợ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Hoa Tặng Vợ</a>
+                <a href="<?= buildQuery(['tag' => 'Tình Yêu']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Tình Yêu</a>
+				<a href="<?= buildQuery(['tag' => 'Quà Tặng']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Quà Tặng</a>
             </div>
         </div>
     </div>
@@ -325,7 +325,6 @@ endif;
 ?>
 </div>
 
-			<!-- Hiển thị giao diện hoa và quà tặng ở đâu gồm 4 sản phẩm trên 1 hàng gồm có ảnh(image), tên sản phẩm(name), mô tả(description), giá(price), ngày đăng (created_at chuyển đúng định dạng) -->
 
 		</div>
 	</section>

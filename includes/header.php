@@ -76,20 +76,20 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						<a href="#" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
 							Trợ giúp & FAQs
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						<a href="#" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
 							Tài khoản của tôi
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
+						
+						<a href="track_order.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
+							Theo dõi đơn hàng
 						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
+						<a href="#" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
+							EN
 						</a>
 					</div>
 				</div>
@@ -107,27 +107,27 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="index.html">Trang chủ</a>
+								<a href="index.php" class="text-decoration-none" >Trang chủ</a>
 								<ul class="sub-menu">
-									<li><a href="index.html">Hoa tươi</a></li>
-									<li><a href="home-02.html">Quà tặng</a></li>
+									<li><a href="index.html" class="text-decoration-none">Hoa tươi</a></li>
+									<li><a href="home-02.html" class="text-decoration-none">Quà tặng</a></li>
 								</ul>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Giảm giá</a>
+								<a href="l" class="text-decoration-none">Giảm giá</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="" class="text-decoration-none	">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">Về chúng tôi</a>
+								<a href="" class="text-decoration-none">Về chúng tôi</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Liên hệ</a>
+								<a href="" class="text-decoration-none">Liên hệ</a>
 							</li>
 						</ul>
 					</div>	
@@ -205,17 +205,17 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 						</a>
 
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							My Account
+							Tài khoản của tôi
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
-					</div>
+						
+						<a href="track_order.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
+								Theo dõi đơn hàng
+							</a>
+							<a href="#" class="flex-c-m p-lr-10 trans-04">
+								EN
+							</a>
+						</div>
 				</li>
 			</ul>
 
