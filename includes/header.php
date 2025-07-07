@@ -85,8 +85,8 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 						</a>
 
 						
-						<a href="track_order.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
-							Theo dõi đơn hàng
+						<a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
+							Đơn hàng của bạn
 						</a>
 						<a href="#" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
 							EN
