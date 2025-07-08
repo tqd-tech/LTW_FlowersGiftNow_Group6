@@ -184,7 +184,7 @@ $products = $stmt->fetchAll();
             <!-- FORM NHẬP MÃ GIẢM GIÁ -->
 <h5 class="text-center mt-4">🔖 Mã giảm giá</h5>
 <form method="post" action="checkout.php" class="coupon-form mt-2 mb-4">
-  <div class="input-group w-50 mx-auto">
+  <div class="input-group w-fit mx-auto">
     <input 
       type="text" 
       name="coupon_code" 
