@@ -108,14 +108,10 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="index.php" class="text-decoration-none" >Trang chủ</a>
-								<ul class="sub-menu">
-									<li><a href="index.html" class="text-decoration-none">Hoa tươi</a></li>
-									<li><a href="home-02.html" class="text-decoration-none">Quà tặng</a></li>
-								</ul>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="l" class="text-decoration-none">Giảm giá</a>
+								<a href="" class="text-decoration-none">Giảm giá</a>
 							</li>
 
 							<li>

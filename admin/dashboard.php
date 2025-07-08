@@ -2,7 +2,7 @@
 // dashboard.php
 // Trang tổng quan Admin cho Flower Shop
 
-require_once 'config.php'; // Khởi tạo $pdo
+require_once '../includes/db.php';
 
 // Lấy dữ liệu tổng quan
 $summary = $pdo->query(

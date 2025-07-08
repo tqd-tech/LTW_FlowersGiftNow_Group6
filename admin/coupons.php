@@ -2,7 +2,7 @@
 // coupons.php
 // Quản lý mã khuyến mãi (hiển thị danh sách, cho sửa/xóa)
 
-require_once 'config.php';
+require_once '../includes/db.php';
 
 // Lấy danh sách mã khuyến mãi
 $coupons = $pdo->query("SELECT * FROM coupons ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);

@@ -2,7 +2,8 @@
 // products.php
 // Quản lý sản phẩm (hiển thị danh sách, cho sửa/xóa)
 
-require_once 'config.php';
+require_once '../includes/db.php';
+
 
 // Lấy danh sách sản phẩm
 $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEFT JOIN categories c ON p.category_id = c.id ORDER BY p.id DESC")->fetchAll(PDO::FETCH_ASSOC);

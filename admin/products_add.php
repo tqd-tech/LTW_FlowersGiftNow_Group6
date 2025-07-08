@@ -2,7 +2,7 @@
 // add_product.php
 // Thêm sản phẩm mới cho trang admin
 
-require_once 'config.php'; // $pdo = new PDO(...)
+require_once '../includes/db.php';
 
 // Lấy danh mục để hiển thị trong select
 $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);

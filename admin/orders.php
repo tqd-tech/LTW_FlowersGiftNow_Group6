@@ -2,7 +2,7 @@
 // orders.php
 // Quản lý đơn hàng cho trang admin: hiển thị và cập nhật trạng thái
 
-require_once 'config.php'; // $pdo = new PDO(...)
+require_once '../includes/db.php';
 
 // Xử lý cập nhật trạng thái đơn hàng
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {

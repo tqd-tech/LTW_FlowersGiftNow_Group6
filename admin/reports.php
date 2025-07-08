@@ -2,7 +2,7 @@
 // report.php
 // Báo cáo tổng quan cho admin
 
-require_once 'config.php';
+require_once '../includes/db.php';
 
 // Tổng doanh thu và đơn hàng
 $summary = $pdo->query("SELECT COUNT(*) AS total_orders, SUM(total_price) AS total_revenue FROM orders")->fetch(PDO::FETCH_ASSOC);
