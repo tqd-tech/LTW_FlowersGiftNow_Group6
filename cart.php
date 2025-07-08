@@ -121,18 +121,43 @@ $products = $stmt->fetchAll();
                     </tr>
                 </tfoot>
             </table>
-        </div>
 
-        <div class="text-end mt-4">
-    <a href="index.php" class="btn btn-outline-secondary me-2">
-        <i class="fas fa-arrow-left me-1"></i> Tiếp tục mua sắm
-    </a>
-    <a href="checkout.php" class="btn btn-success">
-        <i class="fas fa-credit-card me-1"></i> Thanh toán
-    </a>
+            <!-- FORM NHẬP MÃ GIẢM GIÁ -->
+<h5 class="text-center mt-4">🔖 Mã giảm giá</h5>
+<form method="post" action="checkout.php" class="coupon-form mt-2 mb-4">
+  <div class="input-group w-50 mx-auto">
+    <input 
+      type="text" 
+      name="coupon_code" 
+      class="form-control" 
+      placeholder="Nhập mã giảm giá" 
+      required>
+    <button 
+      class="btn btn-primary" 
+      type="submit" 
+      name="apply_coupon">
+      Áp dụng và thanh toán
+    </button>
+  </div>
+</form>
+
+
+<?php if (!empty($_SESSION['coupon_message'])): ?>
+  <div class="alert alert-<?= $_SESSION['coupon_success'] ? 'success' : 'danger' ?> text-center">
+    <?= $_SESSION['coupon_message'] ?>
+  </div>
+  <?php unset($_SESSION['coupon_message'], $_SESSION['coupon_success']); ?>
+<?php endif; ?>
+
+
+<div class="text-end mt-4">
+  <a href="index.php" class="btn btn-outline-secondary me-2">
+    <i class="fas fa-arrow-left me-1"></i> Tiếp tục mua sắm
+  </a>
+  <a href="checkout.php" class="btn btn-success">
+    <i class="fas fa-credit-card me-1"></i> Thanh toán
+  </a>
 </div>
-
-    </div>
 </div>
 
 <script>

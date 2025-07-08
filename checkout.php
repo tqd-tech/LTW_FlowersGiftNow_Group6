@@ -1,6 +1,32 @@
 <?php
 session_start();
 require 'includes/db.php';
+// Kiểm tra mã giảm giá nếu có từ POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['coupon_code'])) {
+    $code = trim($_POST['coupon_code']);
+
+    $stmt = $pdo->prepare("SELECT id, code, discount_percent, start_date, end_date FROM coupons WHERE code = ? LIMIT 1");
+    $stmt->execute([$code]);
+    $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($coupon) {
+        $today = new DateTime();
+        $start = new DateTime($coupon['start_date']);
+        $end = new DateTime($coupon['end_date']);
+
+        if ($today >= $start && $today <= $end) {
+            $_SESSION['coupon'] = [
+                'id' => $coupon['id'],
+                'code' => $coupon['code'],
+                'discount' => $coupon['discount_percent']
+            ];
+        } else {
+            $_SESSION['coupon'] = null;
+        }
+    } else {
+        $_SESSION['coupon'] = null;
+    }
+}
 
 $cart = $_SESSION['cart'] ?? [];
 if (!$cart) {
@@ -21,8 +47,17 @@ foreach ($products as $p) {
 }
 
 $shipping = ($subtotal >= 500000) ? 0 : 30000;
-$total = $subtotal + $shipping;
 
+// Áp dụng mã giảm giá nếu có
+$coupon_discount = 0;
+if (!empty($_SESSION['coupon']['discount'])) {
+    $coupon_discount = round($subtotal * ($_SESSION['coupon']['discount'] / 100));
+    $coupon_code = $_SESSION['coupon']['code'];
+} else {
+    $coupon_code = null;
+}
+
+$total = $subtotal + $shipping - $coupon_discount;
 // Xử lý đặt hàng
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
@@ -88,21 +123,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endforeach; ?>
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <td colspan="3" class="text-end">Tạm tính:</td>
-                        <td><?= number_format($subtotal, 0, ',', '.') ?> VND</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="text-end">Phí vận chuyển:</td>
-                        <td>
-                            <?= $shipping == 0 ? '<span class="text-success">Miễn phí</span>' : number_format($shipping, 0, ',', '.') . ' VND' ?>
-                        </td>
-                    </tr>
-                    <tr class="table-info">
-                        <td colspan="3" class="text-end fw-bold">Tổng cộng:</td>
-                        <td class="text-danger fw-bold"><?= number_format($total, 0, ',', '.') ?> VND</td>
-                    </tr>
-                </tfoot>
+    <tr>
+        <td colspan="3" class="text-end">Tạm tính:</td>
+        <td><?= number_format($subtotal, 0, ',', '.') ?> VND</td>
+    </tr>
+    <?php if ($coupon_discount > 0): ?>
+    <tr>
+        <td colspan="3" class="text-end">Mã giảm giá (<?= htmlspecialchars($coupon_code) ?>):</td>
+        <td class="text-success">–<?= number_format($coupon_discount, 0, ',', '.') ?> VND</td>
+    </tr>
+    <?php endif; ?>
+    <tr>
+        <td colspan="3" class="text-end">Phí vận chuyển:</td>
+        <td>
+            <?= $shipping == 0 ? '<span class="text-success">Miễn phí</span>' : number_format($shipping, 0, ',', '.') . ' VND' ?>
+        </td>
+    </tr>
+    <tr class="table-info">
+        <td colspan="3" class="text-end fw-bold">Tổng cộng:</td>
+        <td class="text-danger fw-bold"><?= number_format($total, 0, ',', '.') ?> VND</td>
+    </tr>
+</tfoot>
+
+
             </table>
         </div>
 
