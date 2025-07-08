@@ -300,7 +300,7 @@ if ($products):
             <div class="card h-100 shadow-sm border-0">
                 <div class="position-relative text-center">
                     <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>" style="height: 350px; object-fit: cover;">
-                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn btn-primary position-absolute top-50 start-50 translate-middle px-3 py-2 my-2">
+                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn bg-primary position-absolute top-50 start-50 translate-middle px-3 py-2 my-2">
     					Mua ngay
 					</a>
                 </div>

@@ -1,0 +1,92 @@
+<?php
+require '../includes/db.php';
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name'] ?? '');
+    $username = trim($_POST['username'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $confirm = $_POST['confirm'] ?? '';
+
+    if (!$name || !$username || !$email || !$phone || !$password || !$confirm) {
+        $error = 'Vui lòng điền đầy đủ thông tin.';
+    } elseif (!preg_match('/^[a-zA-Z0-9_]{4,20}$/', $username)) {
+        $error = 'Tên người dùng chỉ được chứa chữ, số, dấu gạch dưới và từ 4-20 ký tự.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = 'Email không hợp lệ.';
+    } elseif ($password !== $confirm) {
+        $error = 'Mật khẩu xác nhận không khớp.';
+    } else {
+        // Kiểm tra email hoặc username đã tồn tại chưa
+        $stmt = $pdo->prepare('SELECT id FROM users WHERE email = ? OR username = ?');
+        $stmt->execute([$email, $username]);
+        if ($stmt->fetch()) {
+            $error = 'Email hoặc tên người dùng đã được đăng ký.';
+        } else {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare('INSERT INTO users (name, username, email, phone, password) VALUES (?, ?, ?, ?, ?)');
+            $stmt->execute([$name, $username, $email, $phone, $hash]);
+            header('Location: login.php?registered=1');
+            exit;
+        }
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký tài khoản</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Đăng ký tài khoản</h4>
+                </div>
+                <div class="card-body">
+                    <?php if ($error): ?>
+                        <div class="alert alert-danger"><?= $error ?></div>
+                    <?php endif; ?>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Tên người dùng</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm" class="form-label">Nhập lại mật khẩu</label>
+                            <input type="password" class="form-control" id="confirm" name="confirm" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Đăng ký</button>
+                    </form>
+                    <div class="mt-3 text-center">
+                        Đã có tài khoản? <a href="login.php">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

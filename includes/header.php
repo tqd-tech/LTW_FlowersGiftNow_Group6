@@ -18,6 +18,9 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 	<!-- Font Awesome -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -76,21 +79,29 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
-							Trợ giúp & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
-							Tài khoản của tôi
-						</a>
-
-						
-						<a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
-							Đơn hàng của bạn
-						</a>
-						<a href="#" class="flex-c-m trans-04 p-lr-25 text-decoration-none">
-							EN
-						</a>
+						<?php if (isset($_SESSION['user_id'])): ?>
+    <span class="flex-c-m trans-04 p-lr-25 text-success">Xin chào, <b><?= htmlspecialchars($_SESSION['user_name']) ?></b></span>
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+        <div class="dropdown d-inline-block">
+            <a class="flex-c-m trans-04 p-lr-25 text-white text-decoration-none dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Quản trị hệ thống
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                <li><a class="dropdown-item text-primary" href="admin/dashboard.php">Dashboard quản trị</a></li>
+                <li><a class="dropdown-item text-primary" href="admin/products.php">Quản lý sản phẩm</a></li>
+                <li><a class="dropdown-item text-primary" href="admin/orders.php">Quản lý đơn hàng</a></li>
+                <li><a class="dropdown-item text-primary" href="admin/coupons.php">Quản lý giảm giá</a></li>
+                <li><a class="dropdown-item text-primary" href="admin/reports.php">Báo cáo thống kê</a></li>
+            </ul>
+        </div>
+    <?php else: ?>
+        <a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đơn hàng</a>
+    <?php endif; ?>
+    <a href="user/logout.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng xuất</a>
+<?php else: ?>
+    <a href="user/login.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng nhập</a>
+    <a href="user/register.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng ký</a>
+<?php endif; ?>
 					</div>
 				</div>
 			</div>
