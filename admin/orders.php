@@ -33,7 +33,10 @@ foreach ($items_stmt as $item) {
 </head>
 <body>
 <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
     <h1 class="mb-4">Danh sách đơn hàng</h1>
+        <button class="btn btn-secondary mb-3" onclick="window.location.href='../index.php'">Về trang chủ</button>
+</div>
     <table class="table table-hover table-bordered">
         <thead class="table-light">
             <tr>
@@ -63,7 +66,7 @@ foreach ($items_stmt as $item) {
                                 <option value="<?= $st ?>" <?= $order['status']===$st?'selected':'' ?>><?= ucfirst($st) ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <button type="submit" name="update_status" class="btn btn-sm btn-primary">Cập nhật</button>
+                        <button type="submit" name="update_status" class="btn btn-sm btn-primary w-100">Cập nhật</button>
                     </form>
                 </td>
                 <td><?= $order['coupon_code'] ?? '---' ?></td>
@@ -80,16 +83,22 @@ foreach ($items_stmt as $item) {
                 </td>
                 <td><?= number_format($order['total_price'], 0, ',', '.') ?> Đ</td>
                 <td>
+                    <?php if ($order['status'] !== 'cancelled' && $order['status'] !== 'completed'): ?>
                     <form method="post" onsubmit="return confirm('Xác nhận hủy đơn?');">
                         <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
                         <input type="hidden" name="status" value="cancelled">
                         <button type="submit" name="update_status" class="btn btn-sm btn-danger">Hủy</button>
                     </form>
+                    <?php else: ?>
+                        <span class="text-muted">Không thể hủy</span>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>
         </tbody>
     </table>
+
+    
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

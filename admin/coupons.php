@@ -17,7 +17,10 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY id DESC")->fetchAll(PDO::
 <body>
 <div class="container mt-4">
     <h1 class="mb-4">Danh sách mã khuyến mãi</h1>
+    <div>
     <a href="add_coupon.php" class="btn btn-success mb-3">Thêm mã khuyến mãi</a>
+            <button class="btn btn-secondary mb-3" onclick="window.location.href='../index.php'">Về trang chủ</button>
+</div>
     <table class="table table-striped table-bordered">
         <thead class="table-light">
             <tr>

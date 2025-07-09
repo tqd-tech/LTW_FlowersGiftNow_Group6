@@ -18,7 +18,11 @@ $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEF
 <body>
 <div class="container mt-4">
     <h1 class="mb-4">Danh sách sản phẩm</h1>
+    <div>
     <a href="add_product.php" class="btn btn-success mb-3">Thêm sản phẩm mới</a>
+        <button class="btn btn-secondary mb-3" onclick="window.location.href='../index.php'">Về trang chủ</button>
+
+    </div>
     <table class="table table-striped table-bordered">
         <thead class="table-light">
             <tr>

@@ -1,5 +1,13 @@
 <?php
 session_start();
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('Location: ../user/login.php');
+    exit;
+}
+require_once '../includes/db.php';
+// ...existing code...
 require '../includes/db.php';
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$email || !$password) {
         $error = 'Vui lòng nhập đầy đủ thông tin.';
     } else {
-        $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');
-        $stmt->execute([$email]);
+        $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ? OR username = ?');
+        $stmt->execute([$email, $email]);
         $user = $stmt->fetch();
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
@@ -18,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: ../index.php');
             exit;
         } else {
-            $error = 'Email hoặc mật khẩu không đúng.';
+            $error = 'Email/Tên đăng nhập hoặc mật khẩu không đúng.';
         }
     }
 }
@@ -47,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endif; ?>
                     <form method="post">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <label for="email" class="form-label">Email hoặc tên đăng nhập</label>
+                            <input type="text" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Mật khẩu</label>
