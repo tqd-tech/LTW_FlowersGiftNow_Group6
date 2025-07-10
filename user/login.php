@@ -1,14 +1,6 @@
 <?php
 session_start();
-<?php
-session_start();
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header('Location: ../user/login.php');
-    exit;
-}
 require_once '../includes/db.php';
-// ...existing code...
-require '../includes/db.php';
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');

@@ -1,11 +1,42 @@
 <?php
 session_start();
 require 'includes/db.php';
-// Kiểm tra mã giảm giá nếu có từ POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['coupon_code'])) {
-    $code = trim($_POST['coupon_code']);
 
-    $stmt = $pdo->prepare("SELECT id, code, discount_percent, start_date, end_date FROM coupons WHERE code = ? LIMIT 1");
+$cart = $_SESSION['cart'] ?? [];
+if (!$cart) {
+    echo "<div class='container mt-5 text-center'><h3>🛒 Giỏ hàng trống!</h3><a href='index.php' class='btn btn-primary mt-3'>Quay lại mua hàng</a></div>";
+    exit;
+}
+
+// Lấy sản phẩm trong giỏ
+$placeholders = implode(',', array_fill(0, count($cart), '?'));
+$stmt = $pdo->prepare("SELECT * FROM products WHERE id IN ($placeholders)");
+$stmt->execute(array_keys($cart));
+$products = $stmt->fetchAll();
+
+// Tính tổng
+$subtotal = 0;
+foreach ($products as $p) {
+    $subtotal += $p['price'] * $cart[$p['id']];
+}
+$shipping = ($subtotal >= 500000) ? 0 : 30000;
+
+// Áp dụng mã giảm giá nếu có trong session
+$coupon_discount = 0;
+$coupon_code = null;
+$coupon_id = null;
+if (!empty($_SESSION['coupon']['discount'])) {
+    $coupon_discount = round($subtotal * ($_SESSION['coupon']['discount'] / 100));
+    $coupon_code = $_SESSION['coupon']['code'];
+    $coupon_id = $_SESSION['coupon']['id'];
+}
+
+$total = $subtotal + $shipping - $coupon_discount;
+
+// Nếu người dùng submit mã giảm giá
+if (isset($_POST['apply_coupon'])) {
+    $code = trim($_POST['coupon_code']);
+    $stmt = $pdo->prepare("SELECT * FROM coupons WHERE code = ?");
     $stmt->execute([$code]);
     $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -26,13 +57,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['coupon_code'])) {
     } else {
         $_SESSION['coupon'] = null;
     }
-}
 
-$cart = $_SESSION['cart'] ?? [];
-if (!$cart) {
-    echo "<div class='container mt-5 text-center'><h3>🛒 Giỏ hàng trống!</h3><a href='index.php' class='btn btn-primary mt-3'>Quay lại mua hàng</a></div>";
+    header("Location: checkout.php"); // Reload lại trang sau khi áp mã
     exit;
 }
+
+// Nếu người dùng submit đặt hàng
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $address = $_POST['address'] ?? '';
+    $user_id = $_SESSION['user_id'] ?? null;
+
+    if ($name && $phone && $address) {
+        $stmt = $pdo->prepare("
+            INSERT INTO orders (user_id, customer_name, customer_phone, customer_address, total_price, status, coupon_id) 
+            VALUES (?, ?, ?, ?, ?, 'pending', ?)
+        ");
+        $stmt->execute([$user_id, $name, $phone, $address, $total, $coupon_id]);
+
+        $order_id = $pdo->lastInsertId();
+
+        $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
+        foreach ($products as $p) {
+            $stmt->execute([$order_id, $p['id'], $cart[$p['id']], $p['price']]);
+        }
+
+        // Clear cart & redirect
+        $_SESSION['cart'] = [];
+        $_SESSION['last_order_id'] = $order_id;
+        $_SESSION['coupon'] = null;
+        header("Location: track.php");
+        exit;
+    } else {
+        $error = "Vui lòng điền đầy đủ thông tin.";
+    }
+}
+
 
 // Lấy sản phẩm trong giỏ
 $placeholders = implode(',', array_fill(0, count($cart), '?'));

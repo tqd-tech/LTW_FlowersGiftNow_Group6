@@ -1,8 +1,8 @@
 <?php
-$host = '127.0.0.1';
-$db   = 'flower_shop';
-$user = 'root';
-$pass = ''; // Nếu XAMPP mặc định
+$host = 'sql305.infinityfree.com';
+$db   = 'if0_39416227_flower_shop';
+$user = 'if0_39416227';
+$pass = 'le0GhQVuTo7vpvR'; // Nếu XAMPP mặc định
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
