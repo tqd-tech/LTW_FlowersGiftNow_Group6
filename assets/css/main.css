@@ -44,6 +44,12 @@ font-family: "Roboto", sans-serif;}
 }
 
 
+@media (max-width: 1034px) {
+  .hidden_tablet {
+    display: none !important;
+  }
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
 

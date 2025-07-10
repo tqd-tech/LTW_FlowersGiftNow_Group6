@@ -4,11 +4,11 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
+	<title>FLOWERGIFTNOW | SHOP HOA VÀ QUÀ CHẤT LƯỢNG</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="assets/images/icons/flower.png"/>
 
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,6 +99,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
     <?php endif; ?>
     <a href="user/logout.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng xuất</a>
 <?php else: ?>
+    <a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Tra cứu đơn hàng</a>
     <a href="user/login.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng nhập</a>
     <a href="user/register.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng ký</a>
 <?php endif; ?>
@@ -227,6 +228,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
     <?php endif; ?>
     <a href="user/logout.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng xuất</a>
 <?php else: ?>
+    <a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Tra cứu đơn hàng</a>
     <a href="user/login.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng nhập</a>
     <a href="user/register.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng ký</a>
 <?php endif; ?>

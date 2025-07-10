@@ -2,9 +2,27 @@
 session_start();
 require '../includes/db.php';
 
+// Xử lý xoá đơn hàng (chỉ cho phép user xoá đơn của mình, chưa completed/cancelled)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_order'])) {
+    $order_id = (int)$_POST['order_id'];
+    $user_id = $_SESSION['user_id'] ?? null;
+    if ($user_id && $order_id) {
+        // Kiểm tra quyền xoá
+        $stmt = $pdo->prepare('SELECT * FROM orders WHERE id = ? AND user_id = ? AND status NOT IN ("completed","cancelled")');
+        $stmt->execute([$order_id, $user_id]);
+        if ($stmt->fetch()) {
+            // Xoá order_items trước
+            $pdo->prepare('DELETE FROM order_items WHERE order_id = ?')->execute([$order_id]);
+            // Xoá order
+            $pdo->prepare('DELETE FROM orders WHERE id = ?')->execute([$order_id]);
+        }
+    }
+    header('Location: orders.php');
+    exit;
+}
+
 // Nếu có đăng nhập, lấy user_id từ session
 $user_id = $_SESSION['user_id'] ?? null;
-
 // Nếu chưa đăng nhập, cho phép tra cứu bằng số điện thoại
 $phone = $_GET['phone'] ?? '';
 
@@ -42,7 +60,9 @@ function getOrderItems($pdo, $order_id) {
 </head>
 <body class="bg-light">
 <div class="container py-5">
-    <h2 class="mb-4 text-primary text-center">🧾 Đơn hàng đã mua</h2>
+    <h2 class="mb-4 text-primary text-center">
+        <?php if (!$user_id): ?>Tra cứu đơn hàng<?php else: ?>🧾 Đơn hàng đã mua<?php endif; ?>
+    </h2>
     <?php if (!$user_id): ?>
     <form class="mb-4" method="get">
         <div class="row g-2 justify-content-center">
@@ -56,7 +76,7 @@ function getOrderItems($pdo, $order_id) {
     </form>
     <?php endif; ?>
 
-    <?php if ($orders): ?>
+    <?php if (($user_id || $phone) && $orders): ?>
         <?php foreach ($orders as $order): ?>
             <div class="card mb-4 shadow-sm">
                 <div class="card-header bg-info text-white">
@@ -94,10 +114,19 @@ function getOrderItems($pdo, $order_id) {
                         </table>
                     </div>
                     <div class="text-end fw-bold">Tổng cộng: <span class="text-danger"><?= number_format($order['total_price'], 0, ',', '.') ?> VND</span></div>
+                    <?php if ($user_id && $order['user_id'] == $user_id && !in_array($order['status'], ['completed','cancelled'])): ?>
+                        <div class="mt-3 d-flex gap-2 justify-content-end">
+                            <a href="edit_order.php?id=<?= $order['id'] ?>" class="btn btn-warning btn-sm">Sửa</a>
+                            <form method="post" onsubmit="return confirm('Xác nhận xoá đơn hàng?');">
+                                <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                                <button type="submit" name="delete_order" class="btn btn-danger btn-sm">Xoá</button>
+                            </form>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
-    <?php else: ?>
+    <?php elseif (($user_id || $phone) && !$orders): ?>
         <div class="alert alert-info text-center">Không tìm thấy đơn hàng nào.</div>
     <?php endif; ?>
     <div class="text-center mt-4">

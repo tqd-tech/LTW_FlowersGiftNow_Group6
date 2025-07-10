@@ -23,7 +23,7 @@
 		
 
 	<!-- Slider -->
-	<section class="section-slide hidden-mobile">
+	<section class="section-slide hidden-mobile hidden_tablet">
 		<div class="wrap-slick1">
 			<div class="slick1">
 				<div class="item-slick1" style="background-image: url(assets/images/flowers/slide1.png);">
