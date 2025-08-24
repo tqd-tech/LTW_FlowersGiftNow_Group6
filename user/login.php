@@ -29,16 +29,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+            min-height: 100vh;
+        }
+        .shadow-2xl {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-body {
+            background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+        }
+    </style>
 </head>
-<body class="bg-light">
-<div class="container py-5">
-    <div class="row justify-content-center">
+<body>
+<div class="container py-5" style="height: 100vh;">
+    <div class="d-flex justify-content-center align-items-center h-100"  >
         <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4>Đăng nhập</h4>
+            <div class="card shadow-2xl rounded-4 ">
+                <div class="card-header bg-primary text-white text-center fw-bold d-flex justify-content-center align-items-center gap-2 rounded-4 rounded-bottom-0">
+                    <img src="../assets/images/icons/flower.png" alt="Logo" style="height: 40px; margin-bottom: 10px;">
+                    <h4 class="fw-bold">Đăng nhập</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body rounded-4 rounded-top-0">
                     <?php if (isset($_GET['registered'])): ?>
                         <div class="alert alert-success">Đăng ký thành công! Vui lòng đăng nhập.</div>
                     <?php endif; ?>
@@ -54,10 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="password" class="form-label">Mật khẩu</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Đăng nhập</button>
+                        <button type="submit" class="btn btn-success w-100 shadow-2xl">Đăng nhập</button>
                     </form>
                     <div class="mt-3 text-center">
-                        Chưa có tài khoản? <a href="register.php">Đăng ký</a>
+                        Chưa có tài khoản? <a href="register.php" class="fw-bold">Đăng ký</a>
                     </div>
                 </div>
             </div>
