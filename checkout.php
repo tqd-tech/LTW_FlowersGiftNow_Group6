@@ -33,36 +33,7 @@ if (!empty($_SESSION['coupon']['discount'])) {
 
 $total = $subtotal + $shipping - $coupon_discount;
 
-// Nếu người dùng submit mã giảm giá
-if (isset($_POST['apply_coupon'])) {
-    $code = trim($_POST['coupon_code']);
-    $stmt = $pdo->prepare("SELECT * FROM coupons WHERE code = ?");
-    $stmt->execute([$code]);
-    $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($coupon) {
-        $today = new DateTime();
-        $start = new DateTime($coupon['start_date']);
-        $end = new DateTime($coupon['end_date']);
-
-        if ($today >= $start && $today <= $end) {
-            $_SESSION['coupon'] = [
-                'id' => $coupon['id'],
-                'code' => $coupon['code'],
-                'discount' => $coupon['discount_percent']
-            ];
-        } else {
-            $_SESSION['coupon'] = null;
-        }
-    } else {
-        $_SESSION['coupon'] = null;
-    }
-
-    header("Location: checkout.php"); // Reload lại trang sau khi áp mã
-    exit;
-}
-
-// Nếu người dùng submit đặt hàng
+// Xử lý đặt hàng
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $phone = $_POST['phone'] ?? '';
@@ -86,61 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Clear cart & redirect
         $_SESSION['cart'] = [];
         $_SESSION['last_order_id'] = $order_id;
-        $_SESSION['coupon'] = null;
-        header("Location: track.php");
-        exit;
-    } else {
-        $error = "Vui lòng điền đầy đủ thông tin.";
-    }
-}
-
-
-// Lấy sản phẩm trong giỏ
-$placeholders = implode(',', array_fill(0, count($cart), '?'));
-$stmt = $pdo->prepare("SELECT * FROM products WHERE id IN ($placeholders)");
-$stmt->execute(array_keys($cart));
-$products = $stmt->fetchAll();
-
-// Tính tổng
-$subtotal = 0;
-foreach ($products as $p) {
-    $subtotal += $p['price'] * $cart[$p['id']];
-}
-
-$shipping = ($subtotal >= 500000) ? 0 : 30000;
-
-// Áp dụng mã giảm giá nếu có
-$coupon_discount = 0;
-if (!empty($_SESSION['coupon']['discount'])) {
-    $coupon_discount = round($subtotal * ($_SESSION['coupon']['discount'] / 100));
-    $coupon_code = $_SESSION['coupon']['code'];
-} else {
-    $coupon_code = null;
-}
-
-$total = $subtotal + $shipping - $coupon_discount;
-// Xử lý đặt hàng
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'] ?? '';
-    $phone = $_POST['phone'] ?? '';
-    $address = $_POST['address'] ?? '';
-
-    if ($name && $phone && $address) {
-        // Lưu đơn hàng
-        $pdo->prepare("
-            INSERT INTO orders (user_id, customer_name, customer_phone, customer_address, total_price, status) 
-            VALUES (NULL, ?, ?, ?, ?, 'pending')
-        ")->execute([$name, $phone, $address, $total]);
-
-        $order_id = $pdo->lastInsertId();
-
-        $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
-        foreach ($products as $p) {
-            $stmt->execute([$order_id, $p['id'], $cart[$p['id']], $p['price']]);
-        }
-
-        $_SESSION['cart'] = [];
-        $_SESSION['last_order_id'] = $order_id;
+        unset($_SESSION['coupon']); // Xóa coupon sau khi đặt hàng thành công
         header("Location: track.php");
         exit;
     } else {

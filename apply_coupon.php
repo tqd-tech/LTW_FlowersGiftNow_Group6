@@ -7,12 +7,21 @@ require 'includes/db.php';  // trong file này phải khởi tạo $pdo (PDO con
 // Xóa thông báo cũ
 unset($_SESSION['coupon_message'], $_SESSION['coupon_success']);
 
+// Xử lý hủy mã giảm giá
+if (isset($_POST['remove_coupon'])) {
+    unset($_SESSION['coupon']);
+    $_SESSION['coupon_message'] = "Đã hủy mã giảm giá.";
+    $_SESSION['coupon_success'] = true;
+    header('Location: cart.php');
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['coupon_code'])) {
     $code = trim($_POST['coupon_code']);
 
     // Chuẩn bị query kiểm tra coupon
     $stmt = $pdo->prepare("
-        SELECT id, discount_percent, start_date, end_date
+        SELECT id, code, discount_percent, start_date, end_date
         FROM coupons
         WHERE code = :code
         LIMIT 1

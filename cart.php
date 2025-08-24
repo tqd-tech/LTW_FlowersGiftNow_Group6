@@ -168,6 +168,16 @@ $products = $stmt->fetchAll();
                         <td id="subtotal-cell"><?= number_format(array_sum(array_map(fn($p) => $p['price'] * $cart[$p['id']], $products)), 0, ',', '.') ?> VND</td>
                         <td></td>
                     </tr>
+                    <?php if (!empty($_SESSION['coupon'])): 
+                        $subtotal_amount = array_sum(array_map(fn($p) => $p['price'] * $cart[$p['id']], $products));
+                        $coupon_discount = round($subtotal_amount * ($_SESSION['coupon']['discount'] / 100));
+                    ?>
+                    <tr>
+                        <td colspan="3" class="text-end">Giảm giá (<?= htmlspecialchars($_SESSION['coupon']['code']) ?>):</td>
+                        <td class="text-success" id="coupon-discount-cell">-<?= number_format($coupon_discount, 0, ',', '.') ?> VND</td>
+                        <td></td>
+                    </tr>
+                    <?php endif; ?>
                     <tr>
                         <td colspan="3" class="text-end">Phí vận chuyển:</td>
                         <td id="shipping-cell"></td>
@@ -183,7 +193,17 @@ $products = $stmt->fetchAll();
 
             <!-- FORM NHẬP MÃ GIẢM GIÁ -->
 <h5 class="text-center mt-4">🔖 Mã giảm giá</h5>
-<form method="post" action="checkout.php" class="coupon-form mt-2 mb-4">
+<?php if (!empty($_SESSION['coupon'])): ?>
+<div class="alert alert-success text-center">
+    <strong>✅ Đã áp dụng mã: <?= htmlspecialchars($_SESSION['coupon']['code']) ?></strong><br>
+    Giảm <?= $_SESSION['coupon']['discount'] ?>% trên tổng đơn hàng
+    <form method="post" action="apply_coupon.php" class="d-inline ms-2">
+        <input type="hidden" name="remove_coupon" value="1">
+        <button type="submit" class="btn btn-sm btn-outline-danger">Hủy mã</button>
+    </form>
+</div>
+<?php else: ?>
+<form method="post" action="apply_coupon.php" class="coupon-form mt-2 mb-4">
   <div class="input-group w-fit mx-auto">
     <input 
       type="text" 
@@ -193,12 +213,12 @@ $products = $stmt->fetchAll();
       required>
     <button 
       class="btn btn-primary" 
-      type="submit" 
-      name="apply_coupon">
-      Áp dụng và thanh toán
+      type="submit">
+      Áp dụng
     </button>
   </div>
 </form>
+<?php endif; ?>
 
 
 <?php if (!empty($_SESSION['coupon_message'])): ?>
@@ -237,12 +257,23 @@ function updateTotals() {
     // Cập nhật DOM
     document.getElementById('subtotal-cell').textContent = total.toLocaleString('vi-VN') + ' VND';
 
+    // Tính giảm giá nếu có coupon
+    let coupon_discount = 0;
+    const couponDiscountCell = document.getElementById('coupon-discount-cell');
+    if (couponDiscountCell) {
+        // Lấy phần trăm giảm từ PHP session (được render sẵn)
+        <?php if (!empty($_SESSION['coupon']['discount'])): ?>
+        coupon_discount = Math.round(total * (<?= $_SESSION['coupon']['discount'] ?> / 100));
+        couponDiscountCell.textContent = '-' + coupon_discount.toLocaleString('vi-VN') + ' VND';
+        <?php endif; ?>
+    }
+
     let shipping = total >= 500000 ? 0 : 30000;
     document.getElementById('shipping-cell').innerHTML = shipping === 0
         ? '<span class="text-success">Miễn phí</span>'
         : shipping.toLocaleString('vi-VN') + ' VND';
 
-    let grand = total + shipping;
+    let grand = total + shipping - coupon_discount;
     document.getElementById('grand-total-cell').textContent = grand.toLocaleString('vi-VN') + ' VND';
 }
 
