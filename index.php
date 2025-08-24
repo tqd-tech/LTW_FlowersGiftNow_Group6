@@ -26,17 +26,17 @@
 	<section class="section-slide hidden-mobile hidden_tablet">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1" style="background-image: url(assets/images/flowers/slide1.png);">
+				<div class="item-slick1" style="background-image: linear-gradient(rgba(251, 194, 235, 0.2), rgba(166, 193, 238, 0.2)), url(assets/images/flowers/slide1.png); background-size: cover; background-position: center; background-repeat: no-repeat; border-radius: 20px; overflow: hidden; margin: 10px;">
 					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+						<div class="flex-col-l-m h-75  p-b-30 respon5">		
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
+								<span class="ltext-101 cl2 respon2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
 									Sắc màu hạnh phúc
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+								<h2 class="ltext-201 cl2 p-t-20 p-b-20 respon1" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
 									Bó hoa mix đa sắc
 								</h2>
 							</div>
@@ -50,17 +50,17 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(assets/images/flowers/slide2.png);">
+				<div class="item-slick1" style="background-image: linear-gradient(rgba(251, 194, 235, 0.2), rgba(166, 193, 238, 0.2)), url(assets/images/flowers/slide2.png); background-size: cover; background-position: center; background-repeat: no-repeat; border-radius: 20px; overflow: hidden; margin: 10px;">
 					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+						<div class="flex-col-l-m h-75  p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
+								<span class="ltext-101 cl2 respon2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
 									Biểu Tượng Tình Yêu Vĩnh Cửu
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+								<h2 class="ltext-201 cl2 p-t-20 p-b-20 respon1" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
 									Hoa Hồng Đỏ Rực 
 								</h2>
 							</div>
@@ -74,17 +74,17 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(assets/images/flowers/slide3.png);">
+				<div class="item-slick1" style="background-image: linear-gradient(rgba(251, 194, 235, 0.2), rgba(166, 193, 238, 0.2)), url(assets/images/flowers/slide3.png); background-size: cover; background-position: center; background-repeat: no-repeat;">
 					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+						<div class="flex-col-l-m h-75  p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
+								<span class="ltext-101 cl2 respon2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
 									Quan Tâm Từng Chi Tiết
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+								<h2 class="ltext-201 cl2 p-t-20 p-b-20 respon1" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
 									Set quà tặng phụ nữ
 								</h2>
 							</div>
@@ -161,10 +161,10 @@
         <div class="filter-col1 p-r-15 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Sắp xếp</div>
              <ul class="p-0">
-                <li class="p-b-6"><a href="index.php" class="filter-link" style="color: blue; font-weight: bold;">Mặc định</a></li>
-                <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'price_asc']) ?>" class="filter-link">Giá tăng dần</a></li>
-                <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'price_desc']) ?>" class="filter-link">Giá giảm dần</a></li>
-                <li class="p-b-6"><a href="<?= buildQuery(['sort' => 'newest']) ?>" class="filter-link">Mới nhất</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('sort', '')" class="filter-link <?= empty($sort) ? 'active' : '' ?>" style="<?= empty($sort) ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Mặc định</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('sort', 'price_asc')" class="filter-link <?= $sort === 'price_asc' ? 'active' : '' ?>" style="<?= $sort === 'price_asc' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Giá tăng dần</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('sort', 'price_desc')" class="filter-link <?= $sort === 'price_desc' ? 'active' : '' ?>" style="<?= $sort === 'price_desc' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Giá giảm dần</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('sort', 'newest')" class="filter-link <?= $sort === 'newest' ? 'active' : '' ?>" style="<?= $sort === 'newest' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Mới nhất</a></li>
             </ul>
         </div>
 
@@ -172,9 +172,9 @@
         <div class="filter-col2 p-r-15 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Khoảng giá</div>
              <ul class="p-0">
-                <li class="p-b-6"><a href="<?= buildQuery(['price' => '0-200']) ?>" class="filter-link">200k</a></li>
-                <li class="p-b-6"><a href="<?= buildQuery(['price' => '200-400']) ?>" class="filter-link">Từ 200k - 400k</a></li>
-                <li class="p-b-6"><a href="<?= buildQuery(['price' => '500+']) ?>" class="filter-link">Trên 500k</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('price', '0-200')" class="filter-link <?= $price === '0-200' ? 'active' : '' ?>" style="<?= $price === '0-200' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Dưới 200k</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('price', '200-400')" class="filter-link <?= $price === '200-400' ? 'active' : '' ?>" style="<?= $price === '200-400' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Từ 200k - 400k</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('price', '500+')" class="filter-link <?= $price === '500+' ? 'active' : '' ?>" style="<?= $price === '500+' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Trên 500k</a></li>
             </ul>
         </div>
 
@@ -182,8 +182,8 @@
         <div class="filter-col3 p-r-15 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Danh mục</div>
              <ul class="p-0">
-                <li class="p-b-6"><a href="<?= buildQuery(['category' => 'flowers']) ?>" class="filter-link">Hoa</a></li>
-                <li class="p-b-6"><a href="<?= buildQuery(['category' => 'gifts']) ?>" class="filter-link">Quà tặng</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('category', 'flowers')" class="filter-link <?= $category === 'flowers' ? 'active' : '' ?>" style="<?= $category === 'flowers' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Hoa</a></li>
+                <li class="p-b-6"><a href="javascript:void(0)" onclick="applyFilter('category', 'gifts')" class="filter-link <?= $category === 'gifts' ? 'active' : '' ?>" style="<?= $category === 'gifts' ? 'color: #007bff; font-weight: bold;' : 'color: #333;' ?>">Quà tặng</a></li>
             </ul>
         </div>
 
@@ -191,12 +191,12 @@
         <div class="filter-col4 p-b-27">
             <div class="mtext-102 cl2 p-b-15">Chủ đề</div>
             <div class="flex-w p-t-4 m-r--5">
-                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Mẹ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Hoa Tặng Mẹ</a>
-                <a href="<?= buildQuery(['tag' => 'Hoa Tiền']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Hoa Tiền</a>
-                <a href="<?= buildQuery(['tag' => 'Set Quà Tặng 8/3']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Set Quà 8/3</a>
-                <a href="<?= buildQuery(['tag' => 'Hoa Tặng Vợ']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Hoa Tặng Vợ</a>
-                <a href="<?= buildQuery(['tag' => 'Tình Yêu']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Tình Yêu</a>
-				<a href="<?= buildQuery(['tag' => 'Quà Tặng']) ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none">Quà Tặng</a>
+                <a href="javascript:void(0)" onclick="applyFilter('tag', 'Hoa Tặng Mẹ')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Hoa Tặng Mẹ' ? 'active' : '' ?>" style="<?= $tag === 'Hoa Tặng Mẹ' ? 'background-color: #007bff; color: white;' : '' ?>">Hoa Tặng Mẹ</a>
+                <a href="javascript:void(0)" onclick="applyFilter('tag', 'Hoa Tiền')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Hoa Tiền' ? 'active' : '' ?>" style="<?= $tag === 'Hoa Tiền' ? 'background-color: #007bff; color: white;' : '' ?>">Hoa Tiền</a>
+                <a href="javascript:void(0)" onclick="applyFilter('tag', 'Set Quà Tặng 8/3')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Set Quà Tặng 8/3' ? 'active' : '' ?>" style="<?= $tag === 'Set Quà Tặng 8/3' ? 'background-color: #007bff; color: white;' : '' ?>">Set Quà 8/3</a>
+                <a href="javascript:void(0)" onclick="applyFilter('tag', 'Hoa Tặng Vợ')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Hoa Tặng Vợ' ? 'active' : '' ?>" style="<?= $tag === 'Hoa Tặng Vợ' ? 'background-color: #007bff; color: white;' : '' ?>">Hoa Tặng Vợ</a>
+                <a href="javascript:void(0)" onclick="applyFilter('tag', 'Tình Yêu')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Tình Yêu' ? 'active' : '' ?>" style="<?= $tag === 'Tình Yêu' ? 'background-color: #007bff; color: white;' : '' ?>">Tình Yêu</a>
+				<a href="javascript:void(0)" onclick="applyFilter('tag', 'Quà Tặng')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Quà Tặng' ? 'active' : '' ?>" style="<?= $tag === 'Quà Tặng' ? 'background-color: #007bff; color: white;' : '' ?>">Quà Tặng</a>
             </div>
         </div>
     </div>
@@ -204,7 +204,7 @@
 
 
 
-			<div class="row">
+			<div class="row" id="products-container">
 <?php
 $categoryMap = [
     'flowers' => 1,
@@ -328,5 +328,106 @@ endif;
 
 		</div>
 	</section>
+
+<script>
+// Global filter variables
+var currentFilters = {
+    sort: '<?= $sort ?>',
+    price: '<?= $price ?>',
+    category: '<?= $category ?>',
+    tag: '<?= $tag ?>',
+    search: '<?= $search ?>'
+};
+
+$(document).ready(function() {
+    // Kiểm tra xem có filter nào đang được áp dụng không
+    var hasActiveFilters = <?= (!empty($sort) || !empty($price) || !empty($category) || !empty($tag)) ? 'true' : 'false' ?>;
+    
+    // Nếu có filter active, tự động mở panel filter
+    if (hasActiveFilters) {
+        $('.panel-filter').show();
+        $('.icon-filter').addClass('dis-none');
+        $('.icon-close-filter').removeClass('dis-none');
+    }
+    
+    // Load products on page load
+    loadProducts();
+    
+    // Handle Filter button click
+    $('.js-show-filter').click(function() {
+        $('.panel-filter').slideToggle();
+        $('.icon-filter', this).toggleClass('dis-none');
+        $('.icon-close-filter', this).toggleClass('dis-none');
+    });
+    
+    // Handle Search button click
+    $('.js-show-search').click(function() {
+        $('.panel-search').slideToggle();
+        $('.icon-search', this).toggleClass('dis-none');
+        $('.icon-close-search', this).toggleClass('dis-none');
+    });
+});
+
+// Function to apply filter using AJAX
+function applyFilter(type, value) {
+    // Update current filters
+    currentFilters[type] = value;
+    
+    // Update active states
+    updateActiveStates(type, value);
+    
+    // Load products with new filters
+    loadProducts();
+}
+
+// Function to update active states
+function updateActiveStates(type, value) {
+    // Remove all active states for this filter type
+    if (type === 'sort') {
+        $('.filter-col1 a').removeClass('active').css({'color': '#333', 'font-weight': 'normal'});
+        if (value === '') {
+            $('.filter-col1 a[onclick="applyFilter(\'sort\', \'\')"]').addClass('active').css({'color': '#007bff', 'font-weight': 'bold'});
+        } else {
+            $('.filter-col1 a[onclick="applyFilter(\'sort\', \'' + value + '\')"]').addClass('active').css({'color': '#007bff', 'font-weight': 'bold'});
+        }
+    } else if (type === 'price') {
+        $('.filter-col2 a').removeClass('active').css({'color': '#333', 'font-weight': 'normal'});
+        $('.filter-col2 a[onclick="applyFilter(\'price\', \'' + value + '\')"]').addClass('active').css({'color': '#007bff', 'font-weight': 'bold'});
+    } else if (type === 'category') {
+        $('.filter-col3 a').removeClass('active').css({'color': '#333', 'font-weight': 'normal'});
+        $('.filter-col3 a[onclick="applyFilter(\'category\', \'' + value + '\')"]').addClass('active').css({'color': '#007bff', 'font-weight': 'bold'});
+    } else if (type === 'tag') {
+        $('.filter-col4 a').removeClass('active').css({'background-color': '', 'color': ''});
+        $('.filter-col4 a[onclick="applyFilter(\'tag\', \'' + value + '\')"]').addClass('active').css({'background-color': '#007bff', 'color': 'white'});
+    }
+}
+
+// Function to load products using AJAX
+function loadProducts() {
+    // Show loading
+    $('#products-container').html('<div class="col-12 text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div></div>');
+    
+    // Build query parameters
+    var params = {};
+    if (currentFilters.sort) params.sort = currentFilters.sort;
+    if (currentFilters.price) params.price = currentFilters.price;
+    if (currentFilters.category) params.category = currentFilters.category;
+    if (currentFilters.tag) params.tag = currentFilters.tag;
+    if (currentFilters.search) params.search = currentFilters.search;
+    
+    // Make AJAX request
+    $.ajax({
+        url: 'ajax_filter.php',
+        method: 'GET',
+        data: params,
+        success: function(response) {
+            $('#products-container').html(response);
+        },
+        error: function() {
+            $('#products-container').html('<div class="col-12 text-center"><p class="text-danger">Có lỗi xảy ra khi tải sản phẩm.</p></div>');
+        }
+    });
+}
+</script>
 
 <?php include 'includes/footer.php'; ?>

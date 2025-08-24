@@ -40,16 +40,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Đăng ký tài khoản</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+            min-height: 100vh;
+        }
+        .shadow-2xl {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
-<body class="bg-light">
-<div class="container py-5">
-    <div class="row justify-content-center">
+<body>
+<div class="container py-5" style="height: 100vh;">
+    <div class="d-flex justify-content-center align-items-center h-100">
         <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4>Đăng ký tài khoản</h4>
+            <div class="card shadow-2xl rounded-4">
+                <div class="card-header bg-primary text-white text-center fw-bold d-flex justify-content-center align-items-center gap-2 rounded-4 rounded-bottom-0 ">
+                    <img src="../assets/images/icons/flower.png" alt="Logo" style="height: 40px; margin-bottom: 10px;">
+                    <h4 class="fw-bold ">Đăng ký tài khoản</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body rounded-4">
                     <?php if ($error): ?>
                         <div class="alert alert-danger"><?= $error ?></div>
                     <?php endif; ?>
@@ -78,10 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="confirm" class="form-label">Nhập lại mật khẩu</label>
                             <input type="password" class="form-control" id="confirm" name="confirm" required>
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Đăng ký</button>
+                        <button type="submit" class="btn btn-info w-100 shadow-2xl">Đăng ký</button>
                     </form>
                     <div class="mt-3 text-center">
-                        Đã có tài khoản? <a href="login.php">Đăng nhập</a>
+                        Đã có tài khoản? <a href="login.php" class="fw-bold">Đăng nhập</a>
                     </div>
                 </div>
             </div>
