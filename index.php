@@ -115,27 +115,27 @@
 
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<a href="index.php" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 text-decoration-none fw-bold <?= !isset($_GET['category']) ? 'how-active1' : '' ?>">
+					<a href="index.php" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= !isset($_GET['category']) ? 'how-active1' : '' ?>">
 						Tất cả
 					</a>
 
-					<a href="index.php?category=gift" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 text-decoration-none fw-bold <?= isset($_GET['category']) && $_GET['category'] === 'gift' ? 'how-active1' : '' ?>">
+					<a href="index.php?category=gift" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= isset($_GET['category']) && $_GET['category'] === 'gift' ? 'how-active1' : '' ?>">
 						Quà tặng
 					</a>
 
-					<a href="index.php?category=other" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 text-decoration-none fw-bold	 <?= isset($_GET['category']) && $_GET['category'] === 'other' ? 'how-active1' : '' ?>">
+					<a href="index.php?category=other" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= isset($_GET['category']) && $_GET['category'] === 'other' ? 'how-active1' : '' ?>">
 						Khác
 					</a>
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter fw-bold" >
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 rounded-3 shadow-sm pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter fw-bold" >
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						 Filter
 					</div>
 
-					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search fw-bold	">
+					<div class="flex-c-m stext-106 cl6 size-105 bor4 rounded-3 shadow-sm pointer hov-btn3 trans-04 m-tb-4 js-show-search fw-bold	">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						Search
@@ -317,10 +317,10 @@ if ($products):
     
     foreach ($products as $product): ?>
         <div class="<?= $colClass ?> p-b-35">
-            <div class="card h-100 shadow-sm border-0 shadow-lg">
-                <div class="position-relative text-center " >
+            <div class="card h-100 shadow border-0 rounded-3 overflow-hidden">
+                <div class="position-relative text-center">
                     <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>" style="height: 350px; object-fit: cover;">
-                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn bg-primary position-absolute top-50 start-50 translate-middle px-3 py-12 my-2">
+                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn bg-primary position-absolute top-50 start-50 translate-middle px-3 py-2 rounded-3">
     					Mua ngay
 					</a>
                 </div>
@@ -583,11 +583,31 @@ function loadProducts() {
 
 .filter-tope-group a.how-active1 {
     text-decoration: none !important;
-    border-bottom: none !important;
 }
 
 .filter-tope-group a:hover {
     text-decoration: none !important;
+}
+
+/* Hover effect cho product cards */
+.card {
+    transition: transform 0.8s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2) !important;  /*Bóng đen sáng */
+}
+
+/* Hover effect cho nút Mua ngay */
+.card:hover .btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.card .btn {
+    opacity: 0.9;
+    transition: all 0.3s ease;
 }
 </style>
 
