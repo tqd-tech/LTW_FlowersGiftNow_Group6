@@ -2,7 +2,6 @@
 
 ![PHP](https://img.shields.io/badge/PHP-7.4+-blue.svg)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 > **Dự án Lập Trình Web - Nhóm 6**  
