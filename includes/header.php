@@ -102,8 +102,10 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 
 					<div class="right-top-bar flex-w h-full gap-4">
 						<?php if (isset($_SESSION['user_id'])): ?>
-    <span class="flex-c-m trans-04 p-lr-10 text-info font-family-base" > <span class="p-r-6">Xin chào,  </span>
-		<b> <?= htmlspecialchars($_SESSION['user_name']) ?></b></span>
+    <span class="flex-c-m trans-04 p-lr-10 text-white" style="font-family: 'Impact', sans-serif;"> 
+		<span class="p-r-6">Xin chào,</span>
+		<b style="color: #FFFFFF; font-weight: 700;"><?= htmlspecialchars($_SESSION['user_name']) ?></b>
+	</span>
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
         <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
             <a class="flex-c-m justify-content-center align-items-center gap-2 trans-04 p-lr-25 text-white text-decoration-none dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -248,7 +250,9 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 				<li>
 					<div class="right-top-bar flex-w h-full">
 						<?php if (isset($_SESSION['user_id'])): ?>
-    <span class="flex-c-m trans-04 p-lr-25 text-success">Xin chào, <b><?= htmlspecialchars($_SESSION['user_name']) ?></b></span>
+    <span class="flex-c-m trans-04 p-lr-25 text-success" style="font-family: 'Roboto', sans-serif; font-weight: 500;">
+		Xin chào, <b style="color: #28a745; font-weight: 700;"><?= htmlspecialchars($_SESSION['user_name']) ?></b>
+	</span>
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
         <div class="dropdown d-inline-block">
             <a class="flex-c-m trans-04 p-lr-25 text-white text-decoration-none dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

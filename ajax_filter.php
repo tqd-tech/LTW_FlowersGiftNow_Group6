@@ -77,12 +77,25 @@ $products = $stmt->fetchAll();
 
 // Trả về HTML
 if ($products):
+    $productCount = count($products);
+    
+    // Tính toán class responsive dựa trên số lượng sản phẩm
+    if ($productCount == 1) {
+        $colClass = "col-12 col-sm-8 col-md-6 col-lg-4 mx-auto"; // Giữa màn hình
+    } elseif ($productCount == 2) {
+        $colClass = "col-12 col-sm-6 col-md-6 col-lg-4"; // 2 cột đều nhau
+    } elseif ($productCount == 3) {
+        $colClass = "col-12 col-sm-6 col-md-4 col-lg-4"; // 3 cột đều nhau
+    } else {
+        $colClass = "col-12 col-sm-6 col-md-4 col-lg-3"; // Layout bình thường
+    }
+    
     foreach ($products as $product): ?>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-b-35">
-            <div class="card h-100 shadow-sm border-0">
+        <div class="<?= $colClass ?> p-b-35">
+            <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden">
                 <div class="position-relative text-center">
                     <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>" style="height: 350px; object-fit: cover;">
-                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn bg-primary position-absolute top-50 start-50 translate-middle px-3 py-2 my-2">
+                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn bg-primary position-absolute top-50 start-50 translate-middle px-3 py-2 rounded-3">
                         Mua ngay
                     </a>
                 </div>
@@ -101,7 +114,15 @@ if ($products):
             </div>
         </div>
 <?php endforeach;
-else:
-    echo "<p class='stext-104 cl6 text-center'>Không tìm thấy sản phẩm nào.</p>";
-endif;
-?>
+else: ?>
+    <div class="col-12 text-center py-5">
+        <div class="empty-state">
+            <i class="zmdi zmdi-search zmdi-hc-5x text-muted mb-3"></i>
+            <h4 class="text-muted">Không tìm thấy sản phẩm</h4>
+            <p class="text-muted">Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+            <button onclick="clearAllFilters()" class="btn btn-primary mt-2">
+                <i class="fa fa-refresh"></i> Xóa bộ lọc
+            </button>
+        </div>
+    </div>
+<?php endif;
