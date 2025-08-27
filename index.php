@@ -1,6 +1,15 @@
 <?php require_once 'includes/db.php'; ?>
 <?php include 'includes/header.php'; ?>
 
+<?php
+// Lấy parameters từ URL để sử dụng trong toàn bộ trang
+$search = $_GET['search'] ?? '';
+$category = $_GET['category'] ?? '';
+$tag = $_GET['tag'] ?? '';
+$price = $_GET['price'] ?? '';
+$sort = $_GET['sort'] ?? '';
+?>
+
         <!-- Cart -->
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
@@ -105,7 +114,7 @@
 
 
 	<!-- Product -->
-	<section class="bg0 p-t-23 p-b-140">
+	<section class="bg0 p-t-23">
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
@@ -113,18 +122,18 @@
 				</h3>
 			</div>
 
-			<div class="flex-w flex-sb-m p-b-52">
+			<div class="flex-w flex-sb-m p-b-10">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<a href="index.php" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= !isset($_GET['category']) ? 'how-active1' : '' ?>">
+					<a href="#" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= !isset($_GET['category']) ? 'how-active1' : '' ?>">
 						Tất cả
 					</a>
 
-					<a href="index.php?category=gift" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= isset($_GET['category']) && $_GET['category'] === 'gift' ? 'how-active1' : '' ?>">
+					<a href="#" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= isset($_GET['category']) && $_GET['category'] === 'gift' ? 'how-active1' : '' ?>">
 						Quà tặng
 					</a>
 
-					<a href="index.php?category=other" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= isset($_GET['category']) && $_GET['category'] === 'other' ? 'how-active1' : '' ?>">
-						Khác
+					<a href="#" class="stext-106 cl6 hov1 shadow-sm  p-lr-25 p-tb-10 rounded-2 trans-04 m-r-10 m-tb-5 text-decoration-none fw-bold <?= isset($_GET['category']) && $_GET['category'] === 'other' ? 'how-active1' : '' ?>">
+						Hoa
 					</a>
 				</div>
 
@@ -144,12 +153,18 @@
 				
 				<!-- Search product -->
 				<div class="dis-none panel-search w-full p-t-10 border-bottom py-1	">
-					<div class="bor8 dis-flex p-l-15 m-b-20 rounded-4 shadow-lg">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+					<div class="bor8 dis-flex p-l-15 m-b-20 rounded-4 shadow-lg position-relative">
+						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" onclick="performSearch()">
 							<i class="zmdi zmdi-search"></i>
 						</button>
 
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15 rounded-4 " type="text" name="search" placeholder="Search">
+						<input id="search-input" class="mtext-107 cl2 size-114 plh2 p-r-15 rounded-4" type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="<?= htmlspecialchars($search) ?>">
+						
+						<?php if (!empty($search)): ?>
+						<button class="position-absolute top-50 end-0 translate-middle-y bg-transparent border-0 p-2 me-2" onclick="clearSearch()" title="Xóa từ khóa">
+							<i class="zmdi zmdi-close text-muted"></i>
+						</button>
+						<?php endif; ?>
 					</div>	
 				</div>
 
@@ -212,6 +227,19 @@
 
 
 			<div class="row" id="products-container">
+				<?php if (!empty($search)): ?>
+				<div class="col-12 mb-3">
+					<div class="search-highlight d-flex justify-content-between align-items-center">
+						<div>
+							<strong>Kết quả tìm kiếm cho:</strong> 
+							<span class="badge bg-primary ms-2"><?= htmlspecialchars($search) ?></span>
+						</div>
+						<button onclick="clearSearch()" class="btn btn-sm btn-outline-secondary">
+							<i class="zmdi zmdi-close"></i> Xóa tìm kiếm
+						</button>
+					</div>
+				</div>
+				<?php endif; ?>
 <?php
 $categoryMap = [
     'flowers' => 1,
@@ -224,12 +252,6 @@ function buildQuery($overrides = []) {
     }
     return '?' . http_build_query($query);
 }
-
-$search = $_GET['search'] ?? '';
-$category = $_GET['category'] ?? '';
-$tag = $_GET['tag'] ?? '';
-$price = $_GET['price'] ?? '';
-$sort = $_GET['sort'] ?? '';
 
 $where = [];
 $params = [];
@@ -338,8 +360,19 @@ if ($products):
                 </div>
             </div>
         </div>
-<?php endforeach;
-else: ?>
+<?php endforeach; ?>
+
+<!-- Thông báo cuối danh sách -->
+<div class="col-12 text-center mt-4 mb-3">
+    <div class="alert alert-info border-0 shadow-sm rounded-3" style=" ">
+        <i class="zmdi zmdi-info-outline "></i>
+        <strong>Không còn sản phẩm nào khác</strong>
+        <br>
+        <small class="text-muted">Bạn đã xem hết tất cả sản phẩm có sẵn</small>
+    </div>
+</div>
+
+<?php else: ?>
     <div class="col-12 text-center py-5">
         <div class="empty-state">
             <i class="zmdi zmdi-search zmdi-hc-5x text-muted mb-3"></i>
@@ -379,6 +412,14 @@ $(document).ready(function() {
         $('.icon-close-filter').removeClass('dis-none');
     }
     
+    // Nếu có từ khóa search, tự động mở panel search
+    var hasSearch = '<?= $search ?>' !== '';
+    if (hasSearch) {
+        $('.panel-search').show();
+        $('.icon-search').addClass('dis-none');
+        $('.icon-close-search').removeClass('dis-none');
+    }
+    
     // Load products on page load
     loadProducts();
     
@@ -395,7 +436,60 @@ $(document).ready(function() {
         $('.icon-search', this).toggleClass('dis-none');
         $('.icon-close-search', this).toggleClass('dis-none');
     });
+    
+    // Search khi nhấn Enter
+    $('#search-input').on('keypress', function(e) {
+        if (e.which === 13) { // Enter key
+            performSearch();
+        }
+    });
+    
+    // Search real-time khi người dùng dừng gõ
+    var searchTimeout;
+    $('#search-input').on('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            performSearch();
+        }, 500); // Delay 500ms sau khi dừng gõ
+    });
 });
+
+// Function to perform search
+function performSearch() {
+    var searchValue = $('#search-input').val().trim();
+    currentFilters.search = searchValue;
+    
+    // Update search field display
+    updateSearchDisplay();
+    
+    // Load products with search
+    loadProducts();
+}
+
+// Function to clear search
+function clearSearch() {
+    $('#search-input').val('');
+    currentFilters.search = '';
+    
+    // Update search field display
+    updateSearchDisplay();
+    
+    // Load products without search
+    loadProducts();
+}
+
+// Function to update search display
+function updateSearchDisplay() {
+    // Tự động thêm/bỏ nút clear search
+    var searchValue = currentFilters.search;
+    if (searchValue) {
+        if ($('.panel-search .zmdi-close').length === 0) {
+            $('#search-input').after('<button class="position-absolute top-50 end-0 translate-middle-y bg-transparent border-0 p-2 me-2" onclick="clearSearch()" title="Xóa từ khóa"><i class="zmdi zmdi-close text-muted"></i></button>');
+        }
+    } else {
+        $('.panel-search .zmdi-close').parent().remove();
+    }
+}
 
 // Function to toggle filter - bật/tắt filter khi click
 function toggleFilter(type, value) {
@@ -436,8 +530,14 @@ function clearAllFilters() {
         search: ''
     };
     
+    // Clear search input
+    $('#search-input').val('');
+    
     // Update all active states
     updateAllActiveStates();
+    
+    // Update search display
+    updateSearchDisplay();
     
     // Load products
     loadProducts();
@@ -608,6 +708,78 @@ function loadProducts() {
 .card .btn {
     opacity: 0.9;
     transition: all 0.3s ease;
+}
+
+/* Search styling */
+.panel-search {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    padding-right: 40px;
+}
+
+#search-input:focus {
+    box-shadow: none;
+}
+
+.panel-search .bor8 {
+    border: 2px solid #e9ecef;
+    transition: border-color 0.3s ease;
+}
+
+.panel-search .bor8:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Search results highlight */
+.search-highlight {
+    background-color: #fff3cd;
+    padding: 10px;
+    border-left: 4px solid #ffc107;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.search-highlight .badge {
+    font-size: 0.8rem;
+}
+
+/* End of products message styling */
+.alert-info {
+    border: none !important;
+    /* background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%) !important; */
+    color: #1976d2;
+    animation: fadeInUp 0.6s ease;
+}
+
+.alert-info i {
+    color: #2196f3;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 

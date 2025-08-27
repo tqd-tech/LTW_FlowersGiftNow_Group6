@@ -92,12 +92,22 @@
 					</div>
 				</div>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<!-- <div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 text-center">
 						Xem thêm về đội ngũ nhóm 6
 					</h4>
 					<div class="p-t-18">
 							<a href="https://tqd-tech.github.io/group6-porfolio" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04 text-decoration-none">
+								Xem ngay
+							</a>
+						</div>
+				</div> -->
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 text-center">
+						Xem thêm về đội ngũ chúng tôi
+					</h4>
+					<div class="p-t-18">
+							<a href="#" class="flex-c-m stext-101 bg-primary cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04 text-decoration-none">
 								Xem ngay
 							</a>
 						</div>
@@ -129,7 +139,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" class="text-decoration-none" target="_blank">Group 6</a> &amp; distributed by <a href="" class="text-decoration-none" target="_blank">UTH</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" class="text-decoration-none" target="_blank">student passionate about IT</a> &amp; distributed by <a href="" class="text-decoration-none" target="_blank">UTH</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
