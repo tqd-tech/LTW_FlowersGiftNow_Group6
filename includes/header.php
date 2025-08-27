@@ -78,6 +78,107 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 		.dropdown-item:last-child {
 			border-bottom: none;
 		}
+
+		/* Mobile Menu Enhancements */
+		.menu-mobile {
+			display: none !important;
+			z-index: 9999 !important;
+			background-color: rgba(0, 0, 0, 0.95) !important;
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100vh !important;
+			overflow-y: auto !important;
+			padding: 20px !important;
+			color: white !important;
+		}
+
+		/* Force show when toggled */
+		.menu-mobile[style*="block"] {
+			display: block !important;
+		}
+
+		.btn-show-menu-mobile {
+			z-index: 10000 !important;
+			cursor: pointer !important;
+			position: relative !important;
+		}
+
+		.btn-show-menu-mobile:hover {
+			opacity: 0.8;
+		}
+
+		.main-menu-m {
+			list-style: none !important;
+			padding: 0 !important;
+			margin: 20px 0 !important;
+		}
+
+		.main-menu-m li {
+			border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+			padding: 15px 0 !important;
+		}
+
+		.main-menu-m li a {
+			color: white !important;
+			text-decoration: none !important;
+			font-size: 18px !important;
+			display: block !important;
+			font-weight: 500;
+		}
+
+		.main-menu-m li a:hover {
+			color: #ffc107 !important;
+		}
+
+		.topbar-mobile {
+			list-style: none !important;
+			padding: 0 !important;
+			margin: 0 0 20px 0 !important;
+			border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+			padding-bottom: 20px !important;
+		}
+
+		.topbar-mobile li {
+			margin-bottom: 10px;
+		}
+
+		.topbar-mobile a {
+			color: #ffc107 !important;
+			text-decoration: none !important;
+		}
+
+		/* Sub menu styling */
+		.sub-menu-m {
+			list-style: none !important;
+			padding-left: 20px !important;
+			margin: 10px 0 !important;
+			display: none;
+		}
+
+		.sub-menu-m li a {
+			font-size: 16px !important;
+			color: #ccc !important;
+		}
+
+		/* Arrow styling */
+		.arrow-main-menu-m {
+			float: right;
+			color: white;
+			transition: transform 0.3s ease;
+		}
+
+		.arrow-main-menu-m.turn-arrow-main-menu-m {
+			transform: rotate(90deg);
+		}
+
+		/* Hamburger Animation */
+		.hamburger.is-active .hamburger-inner,
+		.hamburger.is-active .hamburger-inner::before,
+		.hamburger.is-active .hamburger-inner::after {
+			background-color: #fff !important;
+		}
 	</style>
 
 	<!-- jQuery -->
@@ -85,6 +186,15 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 
 	<!-- Bootstrap Bundle JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Additional JavaScript Libraries -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animsition.js/1.0.0/js/animsition.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/js/perfect-scrollbar.min.js"></script>
 </head>
 <body class="animsition">
 
@@ -207,7 +317,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="assets/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php"><img src="assets/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -230,7 +340,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 			</div>
 
 			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze" onclick="toggleMobileMenu()" style="cursor: pointer; z-index: 10001;">
 				<span class="hamburger-box">
 					<span class="hamburger-inner"></span>
 				</span>
@@ -281,31 +391,30 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Trang chủ</a>
+					<a href="index.php">Trang chủ</a>
 					<ul class="sub-menu-m">
-						<li><a href="index.html">Hoa tươi</a></li>
-						<li><a href="home-02.html">Quà tặng</a></li>
+						<li><a href="index.php?category=flowers">Hoa tươi</a></li>
+						<li><a href="index.php?category=gifts">Quà tặng</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
 				</li>
 
-
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Giảm giá</a>
+					<a href="index.php?category=sale" class="label1 rs1" data-label1="hot">Giảm giá</a>
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="#blog">Blog</a>
 				</li>
 
 				<li>
-					<a href="about.html">Về chúng tôi</a>
+					<a href="#about">Về chúng tôi</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Liên hệ</a>
+					<a href="#contact">Liên hệ</a>
 				</li>
 			</ul>
 		</div>
@@ -326,3 +435,61 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 			</div>
 		</div>
 	</header>
+
+	<!-- Main JavaScript Files -->
+	<script src="assets/js/main.js"></script>
+	
+	<!-- Mobile Menu Debug Script -->
+	<script>
+	// Simple toggle function
+	function toggleMobileMenu() {
+		console.log('Toggle mobile menu called');
+		var menu = document.querySelector('.menu-mobile');
+		var button = document.querySelector('.btn-show-menu-mobile');
+		
+		if (menu.style.display === 'none' || menu.style.display === '') {
+			menu.style.display = 'block';
+			button.classList.add('is-active');
+			document.body.style.overflow = 'hidden'; // Prevent background scroll
+			console.log('Menu opened');
+		} else {
+			menu.style.display = 'none';
+			button.classList.remove('is-active');
+			document.body.style.overflow = 'auto'; // Restore background scroll
+			console.log('Menu closed');
+		}
+	}
+	
+	// Close menu when clicking on menu background
+	function closeMenuOnOverlay(event) {
+		if (event.target.classList.contains('menu-mobile')) {
+			toggleMobileMenu();
+		}
+	}
+	
+	$(document).ready(function() {
+		console.log('Document ready, checking mobile menu...');
+		console.log('jQuery version:', $.fn.jquery);
+		console.log('Mobile menu button found:', $('.btn-show-menu-mobile').length);
+		console.log('Mobile menu found:', $('.menu-mobile').length);
+		
+		// Add click event to menu background for closing
+		$('.menu-mobile').on('click', closeMenuOnOverlay);
+		
+		// Handle sub-menu arrows
+		$('.arrow-main-menu-m').on('click', function(e) {
+			e.preventDefault();
+			$(this).parent().find('.sub-menu-m').slideToggle();
+			$(this).toggleClass('turn-arrow-main-menu-m');
+		});
+		
+		// Close menu when window is resized to desktop
+		$(window).resize(function() {
+			if ($(window).width() >= 992) {
+				if ($('.menu-mobile').css('display') === 'block') {
+					toggleMobileMenu();
+				}
+			}
+		});
+	});
+	</script>
