@@ -54,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container py-5" style="height: 100vh;">
     <div class="d-flex justify-content-center align-items-center h-100">
         <div class="col-md-6">
-            <div class="card shadow-2xl rounded-4">
-                <div class="card-header bg-primary text-white text-center fw-bold d-flex justify-content-center align-items-center gap-2 rounded-4 rounded-bottom-0 ">
-                    <img src="../assets/images/icons/flower.png" alt="Logo" style="height: 40px; margin-bottom: 10px;">
+            <div class="card shadow-2xl rounded-4" style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);">
+                <div class="card-header bg-primary text-black text-center fw-bold d-flex justify-content-center py-3 align-items-center gap-2 rounded-4 rounded-bottom-0 border-0" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
+                    <img src="../assets/images/icons/flower.png" alt="Logo" style="height: 40px; ">
                     <h4 class="fw-bold ">Đăng ký tài khoản</h4>
                 </div>
                 <div class="card-body rounded-4">
