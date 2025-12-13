@@ -498,10 +498,11 @@ a:hover {
 
 /* ====== BADGES ====== */
 .badge-modern {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     gap: 0.5rem;
     align-items: center;
-    padding: 0.5rem 0.75rem;
+    padding: 0.25rem 0.5rem;
     font-size: 0.8rem;
     font-weight: 700;
     border-radius: var(--radius-sm);
@@ -520,8 +521,8 @@ a:hover {
 }
 
 .badge-danger {
-    background: #FEE2E2;
-    color: #991B1B;
+    background: #ff4040;
+    color: #ffffff;
 }
 
 .badge-info {

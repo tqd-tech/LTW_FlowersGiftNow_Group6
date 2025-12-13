@@ -36,7 +36,7 @@ $sort = $_GET['sort'] ?? '';
     <div class="container-modern" style="padding: 4rem 2rem;">
         <div class="hero-modern-content">
             <div class="animate-slide-up">
-                <span class="badge-modern badge-info" style="font-size: 0.875rem; margin-bottom: 1rem;">
+                <span class="badge-modern badge-info d-inline-block " style="font-size: 0.875rem; margin-bottom: 1rem;">
                     <i class="fa fa-star"></i>
                     Uy tín • Chất lượng • Giao nhanh
                 </span>

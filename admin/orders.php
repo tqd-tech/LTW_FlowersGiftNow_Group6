@@ -73,15 +73,15 @@ foreach ($items_stmt as $item) {
 </head>
 <body>
 <div class="container py-5">
-    <div class="page-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2>
+    <div class="page-header" style="text-align: center; margin-bottom: 1rem; background: white; padding: 1.5rem 2rem; border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); display:flex; flex-direction: column; justify-content: space-between; align-items: center; ">
+        <h2 class="mb-1">
             <i class="zmdi zmdi-assignment"></i> Quản lý Đơn hàng
         </h2>
-        <p style="color: var(--text-secondary);">Theo dõi và cập nhật trạng thái đơn hàng</p>
+        <p style="color: var(--text-secondary); margin: 0; font-weight: 700;">Theo dõi và cập nhật trạng thái đơn hàng</p>
     </div>
 
-    <div style="display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center;">
-        <a href="dashboard.php" class="btn-modern btn-ghost"><i class="zmdi zmdi-view-dashboard"></i> Dashboard</a>
+    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; justify-content: center;">
+        <a href="dashboard.php" class="btn-modern btn btn-ghost"><i class="zmdi zmdi-view-dashboard"></i> Dashboard</a>
         <a href="../index.php" class="btn-modern btn-ghost"><i class="zmdi zmdi-home"></i> Trang chủ</a>
     </div>
 
@@ -121,13 +121,13 @@ foreach ($items_stmt as $item) {
                     <td><strong style="color: var(--primary);">#<?= $order['id'] ?></strong></td>
                     <td>
                         <div style="font-weight: 600; color: var(--text-primary);"><?= htmlspecialchars($order['customer_name']) ?></div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary);"><i class="zmdi zmdi-phone"></i> <?= $order['customer_phone'] ?></div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;"><i class="zmdi zmdi-phone"></i> <?= $order['customer_phone'] ?></div>
                         <?php if ($order['coupon_code']): ?>
-                            <span class="badge-modern badge-secondary" style="font-size: 0.7rem; margin-top: 0.25rem;"><i class="zmdi zmdi-card-giftcard"></i> <?= $order['coupon_code'] ?></span>
+                            <span class="badge-modern badge-secondary justify-content-start" style="font-size: 0.7rem; "><i class="zmdi zmdi-card-giftcard"></i> <?= $order['coupon_code'] ?></span>
                         <?php endif; ?>
                     </td>
                     <td>
-                        <div style="font-weight: 500;"><?= date('d/m/Y', strtotime($order['order_date'])) ?></div>
+                        <div style="font-weight: 500; font-weight: 700;"><?= date('d/m/Y', strtotime($order['order_date'])) ?></div>
                         <div style="font-size: 0.8rem; color: var(--text-secondary);"><?= date('H:i', strtotime($order['order_date'])) ?></div>
                     </td>
                     <td>

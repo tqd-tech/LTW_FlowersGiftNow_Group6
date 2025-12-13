@@ -56,18 +56,18 @@ $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEF
         thead {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
         }
-        thead th {
+        /* thead th {
             color: white !important;
-        }
+        } */
     </style>
 </head>
 <body>
 <div class="container py-5">
-    <div class="page-header" style="margin-bottom: 2rem;">
+    <div class="page-header" style="margin-bottom: 2rem; background: white; padding: 1.5rem 2rem; border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); display:flex; flex-direction: column; justify-content: space-between; align-items: center; ">
         <h1>
             <i class="zmdi zmdi-collection-item"></i> Danh sách sản phẩm
         </h1>
-        <p style="color: var(--text-secondary);">Quản lý tất cả sản phẩm trong cửa hàng</p>
+        <p style="color: var(--text-secondary); margin: 0; ">Quản lý tất cả sản phẩm trong cửa hàng</p>
     </div>
 
     <div style="display: flex; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap;">
@@ -87,13 +87,13 @@ $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEF
             <table class="table align-middle" style="margin-bottom: 0;">
                 <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-200);">
                     <tr>
-                        <th style="padding: 1rem; font-weight: 600; color: var(--text-primary); width: 80px;">ID</th>
-                        <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Sản phẩm</th>
-                        <th style="padding: 1rem; font-weight: 600; color: var(--text-primary); text-align: center;">Danh mục</th>
-                        <th style="padding: 1rem; font-weight: 600; color: var(--text-primary); text-align: right;">Giá</th>
-                        <th style="padding: 1rem; font-weight: 600; color: var(--text-primary); text-align: center;">Tồn kho</th>
-                        <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Tags</th>
-                        <th style="padding: 1rem; font-weight: 600; color: var(--text-primary); text-align: center; width: 150px;">Thao tác</th>
+                        <th style="padding: 0.5rem 1.5rem ; font-weight: 600; color: var(--text-primary); width: 80px;">ID</th>
+                        <th style="padding: 0.5rem 1.5rem; font-weight: 600; color: var(--text-primary);">Sản phẩm</th>
+                        <th style="padding: 0.5rem 1.5rem; font-weight: 600; color: var(--text-primary); text-align: center;">Danh mục</th>
+                        <th style="padding: 0.5rem 1.5rem; font-weight: 600; color: var(--text-primary); text-align: right;">Giá</th>
+                        <th style="padding: 0.5rem 1.5rem; font-weight: 600; color: var(--text-primary); text-align: center;">Kho</th>
+                        <th style="padding: 0.5rem 1.5rem; font-weight: 600; color: var(--text-primary);">Tags</th>
+                        <th style="padding: 0.5rem 1.5rem; font-weight: 600; color: var(--text-primary); text-align: center; width: 150px;">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +114,7 @@ $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEF
                                     </div>
                                 <?php endif; ?>
                                 <div>
-                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">
+                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem;">
                                         <?= htmlspecialchars($product['name']) ?>
                                     </div>
                                     <?php if (!empty($product['description'])): ?>
@@ -127,7 +127,7 @@ $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEF
                         </td>
                         <td style="padding: 1rem; text-align: center;">
                             <?php if ($product['category_name']): ?>
-                                <span class="badge-modern badge-info">
+                                <span class="badge-modern badge-info shadow-sm">
                                     <?= htmlspecialchars($product['category_name']) ?>
                                 </span>
                             <?php else: ?>
@@ -156,7 +156,7 @@ $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEF
                             ?>
                                 <div class="tag-list">
                                     <?php foreach (array_slice($tags, 0, 3) as $tag): ?>
-                                        <span class="badge-modern badge-secondary" style="font-size: 0.75rem;">
+                                        <span class="badge-modern badge-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; background: #ff0073ff; color: #ffffffff;">
                                             <?= htmlspecialchars(trim($tag)) ?>
                                         </span>
                                     <?php endforeach; ?>
@@ -171,12 +171,12 @@ $products = $pdo->query("SELECT p.*, c.name AS category_name FROM products p LEF
                         <td style="padding: 1rem;">
                             <div style="display: flex; gap: 0.5rem; justify-content: center;">
                                 <a href="edit_product.php?id=<?= $product['id'] ?>" 
-                                   class="btn-modern btn-warning btn-sm" 
+                                   class="btn-modern btn btn-warning btn-sm rounded-circle p-2" 
                                    title="Sửa sản phẩm">
                                     <i class="zmdi zmdi-edit"></i>
                                 </a>
                                 <a href="delete_product.php?id=<?= $product['id'] ?>" 
-                                   class="btn-modern btn-danger btn-sm" 
+                                   class="btn-modern btn btn-danger btn-sm rounded-circle p-2" 
                                    onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"
                                    title="Xóa sản phẩm">
                                     <i class="zmdi zmdi-delete"></i>
