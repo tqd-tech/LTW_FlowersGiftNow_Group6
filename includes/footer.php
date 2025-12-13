@@ -1,147 +1,132 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="assets/js/main.js"></script> <!-- hoặc script chứa đoạn vừa gửi -->
 
-	<footer class="bg3 p-t-75 p-b-32">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Danh mục
-					</h4>
-
-					<ul class="p-0">
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								Hoa tươi
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								Quà tặng
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								Hoa sự kiện
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								Quà lưu niệm
-							</a>
-						</li>
-					</ul>
+	<!-- Modern Footer (clean, no gradients) -->
+	<footer class="footer-modern">
+		<div class="footer-modern-content">
+			<!-- Newsletter sign-up -->
+			<div style="background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: var(--radius-xl); padding: 1.75rem; margin-bottom: 2rem; text-align: center;">
+				<h3 style="color: white; font-weight: 700; margin-bottom: 0.5rem;">Đăng ký nhận ưu đãi</h3>
+				<p style="color: var(--gray-400); margin-bottom: 1rem;">Nhận thông tin khuyến mãi và sản phẩm mới mỗi tuần</p>
+				<div style="display: flex; gap: 0.5rem; max-width: 520px; margin: 0 auto;">
+					<input type="email" placeholder="Email của bạn" style="flex: 1; padding: 0.75rem 1rem; border: 2px solid var(--gray-700); border-radius: var(--radius-lg); background: var(--gray-900); color: white;">
+					<button class="btn-modern btn-primary" style="border-radius: var(--radius-lg);">Đăng ký</button>
 				</div>
+			</div>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Trợ giúp
-					</h4>
-
-					<ul class="p-0">
-						<li class="p-b-10">
-							<a href="track_order.php" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								Theo dõi đơn hàng
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								Trả hàng 
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								Vận chuyển
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04 text-decoration-none">
-								FAQs
-							</a>
-						</li>
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Liên hệ với chúng tôi
-					</h4>
-
-					<p class="stext-107 cl7 size-201">	
-						Địa chỉ: 02 Võ Oanh, Phường Thạnh Mỹ Tây, TP.HCM hoặc gọi điện đến số 1900 1234 để được tư vấn và hỗ trợ.	
-					</p>
-
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16 text-decoration-none">
+			<div class="footer-modern-grid">
+				<!-- About -->
+				<div>
+					<h3 class="footer-modern-title"> FlowerGiftNow</h3>
+					<p style="color: var(--gray-400); line-height: 1.6; font-weight: 700;">Cửa hàng hoa tươi & quà tặng cao cấp, giao cấp tốc - chất lượng sốc.</p>
+					<div style="display: flex; gap: 0.75rem;">
+						<a href="#" class="modern-icon-btn" style="background: var(--gray-800); color: white;">
 							<i class="fa fa-facebook"></i>
 						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16 text-decoration-none">
+						<a href="#" class="modern-icon-btn" style="background: var(--gray-800); color: white;">
 							<i class="fa fa-instagram"></i>
 						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16 text-decoration-none" >
-							<i class="fa fa-pinterest-p"></i>
+						<a href="#" class="modern-icon-btn" style="background: var(--gray-800); color: white;">
+							<i class="fa fa-pinterest"></i>
+						</a>
+						<a href="#" class="modern-icon-btn" style="background: var(--gray-800); color: white;">
+							<i class="fa fa-youtube-play"></i>
 						</a>
 					</div>
 				</div>
 
-				<!-- <div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 text-center">
-						Xem thêm về đội ngũ nhóm 6
-					</h4>
-					<div class="p-t-18">
-							<a href="https://tqd-tech.github.io/group6-porfolio" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04 text-decoration-none">
-								Xem ngay
-							</a>
+				<!-- Products -->
+				<div>
+					<h3 class="footer-modern-title">Sản phẩm</h3>
+					<a href="index.php?category=flowers" class="footer-modern-link"><i class="zmdi zmdi-flower"></i> Hoa tươi</a>
+					<a href="index.php?category=gifts" class="footer-modern-link"><i class="zmdi zmdi-card-giftcard"></i> Quà tặng</a>
+					<a href="#" class="footer-modern-link"><i class="zmdi zmdi-cake"></i> Hoa sự kiện</a>
+					<a href="#" class="footer-modern-link"><i class="zmdi zmdi-favorite"></i> Hoa cưới</a>
+				</div>
+
+				<!-- Support -->
+				<div>
+					<h3 class="footer-modern-title">Hỗ trợ</h3>
+					<a href="track_order.php" class="footer-modern-link"><i class="fa fa-truck"></i> Theo dõi đơn hàng</a>
+					<a href="#" class="footer-modern-link"><i class="fa fa-refresh"></i> Chính sách đổi trả</a>
+					<a href="#" class="footer-modern-link"><i class="fa fa-shield"></i> Bảo mật</a>
+					<a href="#" class="footer-modern-link"><i class="fa fa-question-circle"></i> FAQs</a>
+				</div>
+
+				<!-- Contact -->
+				<div>
+					<h3 class="footer-modern-title">Liên hệ</h3>
+					<div style="display: flex; flex-direction: column; gap: 0.75rem; color: var(--gray-400); font-weight: 700;">
+						<div style="display: flex; align-items: start; gap: 0.5rem;">
+							<i class="fa fa-map-marker" style="color: var(--primary);"></i>
+							<span>02 Võ Oanh, Phường Thạnh Mỹ Tây, TP.HCM</span>
 						</div>
-				</div> -->
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 text-center">
-						Xem thêm về đội ngũ chúng tôi
-					</h4>
-					<div class="p-t-18">
-							<a href="#" class="flex-c-m stext-101 bg-primary cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04 text-decoration-none">
-								Xem ngay
-							</a>
+						<div style="display: flex; align-items: center; gap: 0.5rem;">
+							<i class="fa fa-phone" style="color: var(--primary);"></i>
+							<a href="tel:19001234" style="color: var(--gray-400); text-decoration: none;">1900 1234</a>
 						</div>
+						<div style="display: flex; align-items: center; gap: 0.5rem;">
+							<i class="fa fa-envelope" style="color: var(--primary);"></i>
+							<a href="mailto:support@flowergiftnow.vn" style="color: var(--gray-400); text-decoration: none;">support@flowergiftnow.vn</a>
+						</div>
+						<div style="display: flex; align-items: center; gap: 0.5rem;">
+							<i class="fa fa-clock-o" style="color: var(--primary);"></i>
+							<span>24/7 - Luôn phục vụ</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="assets/images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="assets/images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="assets/images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="assets/images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="assets/images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
+			<!-- Trust badges -->
+			<!-- <div style="padding: 2rem 0; border-top: 1px solid var(--gray-700); border-bottom: 1px solid var(--gray-700); margin: 2rem 0;">
+				<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+					<div style="text-align: center;">
+						<div style="width: 56px; height: 56px; background: var(--gray-800); border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+							<i class="fa fa-shield" style="color: var(--success);"></i>
+						</div>
+						<p style="color: white; font-weight: 600; margin: 0;">Thanh toán an toàn</p>
+						<small style="color: var(--gray-500);">Bảo mật SSL 256-bit</small>
+					</div>
+					<div style="text-align: center;">
+						<div style="width: 56px; height: 56px; background: var(--gray-800); border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+							<i class="fa fa-truck" style="color: var(--info);"></i>
+						</div>
+						<p style="color: white; font-weight: 600; margin: 0;">Giao hàng nhanh</p>
+						<small style="color: var(--gray-500);">Miễn phí từ 500k</small>
+					</div>
+					<div style="text-align: center;">
+						<div style="width: 56px; height: 56px; background: var(--gray-800); border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+							<i class="fa fa-refresh" style="color: var(--warning);"></i>
+						</div>
+						<p style="color: white; font-weight: 600; margin: 0;">Đổi trả linh hoạt</p>
+						<small style="color: var(--gray-500);">Trong 7 ngày</small>
+					</div>
+					<div style="text-align: center;">
+						<div style="width: 56px; height: 56px; background: var(--gray-800); border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+							<i class="fa fa-headphones" style="color: var(--secondary);"></i>
+						</div>
+						<p style="color: white; font-weight: 600; margin: 0;">Hỗ trợ 24/7</p>
+						<small style="color: var(--gray-500);">Tận tâm, nhiệt tình</small>
+					</div>
 				</div>
+			</div> -->
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" class="text-decoration-none" target="_blank">student passionate about IT</a> &amp; distributed by <a href="" class="text-decoration-none" target="_blank">UTH</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			<!-- Payment Methods -->
+			<div style="padding: 1rem;">
+				<div style="text-align: center; margin-bottom: 1rem; color: var(--gray-400); font-weight: 900;">PHƯƠNG THỨC THANH TOÁN</div>
+				<div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; align-items: center;">
+					<img src="assets/images/icons/icon-pay-01.png" alt="Visa" style="height: 28px; opacity: 0.8;">
+					<img src="assets/images/icons/icon-pay-02.png" alt="MasterCard" style="height: 28px; opacity: 0.8;">
+					<img src="assets/images/icons/icon-pay-03.png" alt="PayPal" style="height: 28px; opacity: 0.8;">
+					<img src="assets/images/icons/icon-pay-04.png" alt="COD" style="height: 28px; opacity: 0.8;">
+					<img src="assets/images/icons/icon-pay-05.png" alt="Bank" style="height: 28px; opacity: 0.8;">
+				</div>
+			</div>
 
+			<!-- Copyright -->
+			<div class="footer-modern-bottom">
+				<p style="margin: 0;">
+					© <script>document.write(new Date().getFullYear());</script> FlowerGiftNow • All right reserved.
 				</p>
 			</div>
 		</div>

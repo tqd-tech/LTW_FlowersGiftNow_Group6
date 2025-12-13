@@ -27,52 +27,117 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - FlowerGiftNow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../assets/css/modern-design.css">
     <style>
+        :root {
+            --primary: #EC4899;
+            --primary-dark: #DB2777;
+            --primary-light: #F472B6;
+        }
         body {
-            background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+            background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #FBCFE8 100%);
             min-height: 100vh;
+            font-family: 'Inter', sans-serif;
         }
-        .shadow-2xl {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
         }
-        .card-body {
-            background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+        }
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .auth-header img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+        .form-control {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.1);
+        }
+        .form-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 <body>
-<div class="container py-5" style="height: 100vh;">
-    <div class="d-flex justify-content-center align-items-center h-100"  >
-        <div class="col-md-6">
-            <div class="card shadow-2xl rounded-4 " style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);">
-                <div class="card-header  text-black text-center fw-bold d-flex justify-content-center align-items-center gap-2 py-3 rounded-4 rounded-bottom-0 border-0" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
-                    <img src="../assets/images/icons/flower.png" alt="Logo" style="height: 40px; ">
-                    <h4 class="fw-bold">Đăng nhập</h4>
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="card-modern" style="padding: 2rem;">
+            <div class="auth-header">
+                <div class="d-flex justify-content-center align-items-center gap-2 ">
+                <img src="../assets/images/icons/sign-in-pink.png"  alt="FlowerGiftNow Logo">
+                <h2 style="font-size: 1.75rem; font-weight: 700; color: var(--text-primary); ">Đăng nhập</h2>
                 </div>
-                <div class="card-body rounded-4 rounded-top-0">
-                    <?php if (isset($_GET['registered'])): ?>
-                        <div class="alert alert-success">Đăng ký thành công! Vui lòng đăng nhập.</div>
-                    <?php endif; ?>
-                    <?php if ($error): ?>
-                        <div class="alert alert-danger"><?= $error ?></div>
-                    <?php endif; ?>
-                    <form method="post">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email hoặc tên đăng nhập</label>
-                            <input type="text" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-success w-100 shadow-2xl">Đăng nhập</button>
-                    </form>
-                    <div class="mt-3 text-center">
-                        Chưa có tài khoản? <a href="register.php" class="fw-bold">Đăng ký</a>
-                    </div>
+            <p style="color: var(--text-secondary); margin: 0; font-weight: 700;">Đăng nhập để mở rộng nhiều tính năng</p>
+            </div>
+
+            <?php if (isset($_GET['registered'])): ?>
+                <div class="alert-modern alert-success" style="margin-bottom: 1.5rem;">
+                    <i class="zmdi zmdi-check-circle"></i>
+                    Đăng ký thành công! Vui lòng đăng nhập.
                 </div>
+            <?php endif; ?>
+            <?php if ($error): ?>
+                <div class="alert-modern alert-danger" style="margin-bottom: 1.5rem;">
+                    <i class="zmdi zmdi-alert-circle"></i>
+                    <?= $error ?>
+                </div>
+            <?php endif; ?>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                        <i class="zmdi zmdi-account"></i> Email hoặc username
+                    </label>
+                    <input type="text" class="form-control " id="email" name="email" placeholder="Nhập email hoặc username" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                        <i class="zmdi zmdi-lock"></i> Mật khẩu
+                    </label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                </div>
+                <button type="submit" class="btn-modern btn btn-primary btn-lg" style="width: 100%;">
+                    <i class="zmdi zmdi-lock-open"></i> Đăng nhập
+                </button>
+            </form>
+
+            <div style="margin-top: 1.25rem; text-align: center; padding-top: 1.25rem; border-top: 1px solid var(--gray-200);">
+                <p style="color: var(--text-secondary); margin: 0;">
+                    Chưa có tài khoản? 
+                    <a href="register.php" style="color: var(--primary); font-weight: 600; text-decoration: none;">
+                        Đăng ký ngay
+                    </a>
+                </p>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.php" class="btn-modern btn-ghost btn-sm">
+                    <i class="fa fa-arrow-left"></i> Quay về trang chủ
+                </a>
             </div>
         </div>
     </div>

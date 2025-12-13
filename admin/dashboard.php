@@ -45,100 +45,231 @@ $coupon_usage = $pdo->query(
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Quản Trị</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Quản Trị - FlowerGiftNow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../assets/css/modern-design.css">
+    <style>
+        :root {
+            --primary: #EC4899;
+            --primary-dark: #DB2777;
+            --primary-light: #F472B6;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #FBCFE8 100%);
+            min-height: 100vh;
+        }
+        .page-header h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
+        }
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
-<div class="container py-4">
-    <h1 class="mb-4">Dashboard Quản Trị</h1>
+<div class="container py-5">
+    <div class="page-header" style="text-align: center; margin-bottom: 3rem;">
+        <h1>
+            <i class="zmdi zmdi-chart"></i> Dashboard Quản Trị
+        </h1>
+        <p style="color: var(--text-secondary); font-size: 1.125rem;">Tổng quan hoạt động kinh doanh</p>
+    </div>
 
-    <!-- Thẻ tổng quan -->
+    <!-- Stats Cards -->
     <div class="row mb-4">
         <div class="col-lg-4 mb-3">
-            <div class="card text-white bg-primary h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Tổng đơn hàng</h5>
-                    <p class="display-5"><?= number_format($summary['total_orders'], 0, ',', '.') ?></p>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">
+                    <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
+                <div class="stat-value" style="color: var(--text-primary);">
+                    <?= number_format($summary['total_orders'] ?? 0, 0, ',', '.') ?>
+                </div>
+                <div class="stat-label">Tổng đơn hàng</div>
             </div>
         </div>
         <div class="col-lg-4 mb-3">
-            <div class="card text-white bg-success h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Tổng doanh thu</h5>
-                    <p class="display-5"><?= number_format($summary['total_revenue'], 0, ',', '.') ?> Đ</p>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: var(--success-light); color: var(--success);">
+                    <i class="zmdi zmdi-money-box"></i>
                 </div>
+                <div class="stat-value" style="color: var(--text-primary);">
+                    <?= number_format($summary['total_revenue'] ?? 0, 0, ',', '.') ?>₫
+                </div>
+                <div class="stat-label">Tổng doanh thu</div>
             </div>
         </div>
         <div class="col-lg-4 mb-3">
-            <div class="card text-white bg-info h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Giá trị đơn trung bình</h5>
-                    <p class="display-5"><?= number_format($summary['avg_order_value'], 0, ',', '.') ?> Đ</p>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: var(--info-light); color: var(--info);">
+                    <i class="zmdi zmdi-balance-wallet"></i>
                 </div>
+                <div class="stat-value" style="color: var(--text-primary);">
+                    <?= number_format($summary['avg_order_value'] ?? 0, 0, ',', '.') ?>₫
+                </div>
+                <div class="stat-label">Giá trị đơn trung bình</div>
             </div>
         </div>
     </div>
 
-    <!-- Biểu đồ / Bảng doanh thu -->
-    <div class="card mb-4">
-        <div class="card-header">Doanh thu 7 ngày gần nhất</div>
-        <div class="card-body p-0">
-            <table class="table table-striped mb-0">
-                <thead class="table-light">
-                    <tr><th>Ngày</th><th>Số đơn</th><th>Doanh thu (Đ)</th></tr>
-                </thead>
-                <tbody>
-                <?php foreach ($daily as $d): ?>
-                    <tr>
-                        <td><?= $d['day'] ?></td>
-                        <td><?= $d['orders_count'] ?></td>
-                        <td><?= number_format($d['revenue'], 0, ',', '.') ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+    <!-- Daily Revenue Table -->
+    <div class="card-modern" style="padding: 2rem; margin-bottom: 2rem;">
+        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="zmdi zmdi-trending-up" style="color: var(--primary);"></i>
+            Doanh thu 7 ngày gần nhất
+        </h5>
+        <?php if (!empty($daily)): ?>
+            <div class="table-responsive">
+                <table class="table align-middle" style="margin-bottom: 0;">
+                    <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-200);">
+                        <tr>
+                            <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Ngày</th>
+                            <th style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-primary);">Số đơn</th>
+                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Doanh thu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($daily as $d): ?>
+                        <tr style="border-bottom: 1px solid var(--gray-200);">
+                            <td style="padding: 1rem;">
+                                <i class="zmdi zmdi-calendar" style="color: var(--text-secondary);"></i>
+                                <?= date('d/m/Y', strtotime($d['day'])) ?>
+                            </td>
+                            <td style="padding: 1rem; text-align: center;">
+                                <span class="badge-modern badge-primary"><?= $d['orders_count'] ?></span>
+                            </td>
+                            <td style="padding: 1rem; text-align: right; font-weight: 700; color: var(--success);">
+                                <?= number_format($d['revenue'], 0, ',', '.') ?>₫
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <div style="text-align: center; padding: 3rem 2rem; color: var(--text-secondary);">
+                <i class="zmdi zmdi-chart" style="font-size: 3rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                <p style="margin: 0;">Chưa có dữ liệu doanh thu trong 7 ngày gần nhất</p>
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- Top Products -->
-    <div class="card mb-4">
-        <div class="card-header">Top 5 Sản phẩm bán chạy</div>
-        <div class="card-body p-0">
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr><th>Sản phẩm</th><th>Đã bán</th></tr>
-                </thead>
-                <tbody>
-                <?php foreach ($top_products as $p): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($p['name']) ?></td>
-                        <td><?= $p['total_sold'] ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+    <div class="card-modern" style="padding: 2rem; margin-bottom: 2rem;">
+        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="zmdi zmdi-fire" style="color: var(--danger);"></i>
+            Top 5 Sản phẩm bán chạy
+        </h5>
+        <?php if (!empty($top_products)): ?>
+            <div class="table-responsive">
+                <table class="table align-middle" style="margin-bottom: 0;">
+                    <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-200);">
+                        <tr>
+                            <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Sản phẩm</th>
+                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Đã bán</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($top_products as $p): ?>
+                        <tr style="border-bottom: 1px solid var(--gray-200);">
+                            <td style="padding: 1rem; font-weight: 500; color: var(--text-primary);">
+                                <i class="zmdi zmdi-flower-alt" style="color: var(--primary);"></i>
+                                <?= htmlspecialchars($p['name']) ?>
+                            </td>
+                            <td style="padding: 1rem; text-align: right;">
+                                <span class="badge-modern badge-success" style="font-size: 0.875rem;">
+                                    <?= $p['total_sold'] ?> sản phẩm
+                                </span>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <div style="text-align: center; padding: 3rem 2rem; color: var(--text-secondary);">
+                <i class="zmdi zmdi-shopping-basket" style="font-size: 3rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                <p style="margin: 0;">Chưa có sản phẩm nào được bán</p>
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- Coupon Usage -->
-    <div class="card mb-4">
-        <div class="card-header">Tần suất sử dụng mã khuyến mãi</div>
-        <div class="card-body p-0">
-            <table class="table mb-0">
-                <thead class="table-light">
-                    <tr><th>Mã</th><th>Lần sử dụng</th></tr>
-                </thead>
-                <tbody>
-                <?php foreach ($coupon_usage as $c): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($c['code']) ?></td>
-                        <td><?= $c['used_count'] ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+    <div class="card-modern" style="padding: 2rem;">
+        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="zmdi zmdi-card-giftcard" style="color: var(--warning);"></i>
+            Tần suất sử dụng mã khuyến mãi
+        </h5>
+        <?php if (!empty($coupon_usage)): ?>
+            <div class="table-responsive">
+                <table class="table align-middle" style="margin-bottom: 0;">
+                    <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-200);">
+                        <tr>
+                            <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Mã khuyến mãi</th>
+                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Lần sử dụng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($coupon_usage as $c): ?>
+                        <tr style="border-bottom: 1px solid var(--gray-200);">
+                            <td style="padding: 1rem;">
+                                <span class="badge-modern badge-warning" style="font-size: 0.875rem; font-family: 'Courier New', monospace;">
+                                    <?= htmlspecialchars($c['code']) ?>
+                                </span>
+                            </td>
+                            <td style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">
+                                <?= $c['used_count'] ?> lần
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <div style="text-align: center; padding: 3rem 2rem; color: var(--text-secondary);">
+                <i class="zmdi zmdi-card-giftcard" style="font-size: 3rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                <p style="margin: 0;">Chưa có mã khuyến mãi nào được tạo</p>
+            </div>
+        <?php endif; ?>
     </div>
 
 </div>
