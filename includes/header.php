@@ -3,12 +3,13 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>FLOWERGIFTNOW | SHOP HOA VÀ QUÀ CHẤT LƯỢNG</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link rel="icon" type="image/png" href="assets/images/icons/flower.png"/>
+
+	<link rel="icon" type="image/png" href="assets/images/icons/flower.png" />
 
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +20,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Font Awesome -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -56,31 +57,52 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 
 	<!-- Google Font Inter -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	
+
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/modern-design.css">
-	
+
 	<!-- Custom Dropdown Hover CSS -->
 	<style>
 		.dropdown-menu {
-			background-color: rgba(0, 0, 0, 0.9) !important;
-			border: 1px solid #333;
+			background: linear-gradient(135deg, #ffffffff 0%, #ffeff8ff 50%, #fff0f9ff 100%);
+			border: 2px solid #0048ffff;
+			/* border-radius: var(--radius-lg); */
+			/* animation */
+			animation: fadeIn 0.8s ease-in-out;
+			box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+			padding: 4px;
 		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				/* transform: translateY(10px); */
+			}
+
+			to {
+				opacity: 1;
+				/* transform: translateY(0); */
+			}
+		}
+
 		.dropdown-item {
-			color: white !important;
-			border-bottom: 1px solid #333;
-			padding: 12px 20px;
+			color: black !important;
+			border-bottom: 1px solid #000000ff;
+			/* padding: 12px 0; */
 			transition: all 0.3s ease;
+			/* border-radius: 4px; */
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 0.8rem;
 		}
+
 		.dropdown-item:hover,
 		.dropdown-item:focus {
-			background-color: #747474 !important;
+			background-color: #000000ff !important;
 			color: white !important;
-		}
-		.dropdown-item:last-child {
-			border-bottom: none;
 		}
 
 		/* Mobile Menu Enhancements */
@@ -120,7 +142,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 		}
 
 		.main-menu-m li {
-			border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 			padding: 15px 0 !important;
 		}
 
@@ -140,7 +162,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 			list-style: none !important;
 			padding: 0 !important;
 			margin: 0 0 20px 0 !important;
-			border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
 			padding-bottom: 20px !important;
 		}
 
@@ -200,9 +222,10 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/js/perfect-scrollbar.min.js"></script>
 </head>
+
 <body class="animsition">
 
-	
+
 	<!-- Modern Header -->
 	<header class="modern-header">
 		<!-- Topbar -->
@@ -217,21 +240,21 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 						<span style="display: flex; align-items: center; gap: 0.8rem; color: #ffb6edff; font-weight: 900;">
 							<img src="./assets/images/icons/user.png" width="20" height="20" alt="">
 							<div>
-							Xin chào,<strong style="margin-left: 3px !important;"><?= htmlspecialchars($_SESSION['user_name']) ?></strong>
+								Xin chào,<strong style="margin-left: 3px !important;"><?= htmlspecialchars($_SESSION['user_name']) ?></strong>
 							</div>
 						</span>
 						<?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
 							<div class="dropdown">
 								<a class="text-decoration-none" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
-									<i class="fa fa-cog"></i>
-									<span>Quản trị</span>
+									<img src="./assets/images/icons/admin-color.png" width="20" height="20" alt="">
+									<span class="fw-bold">Quản trị hệ thống</span>
 									<i class="fa fa-angle-down"></i>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end  fw-bold" aria-labelledby="adminDropdown">
-									<li><a class="dropdown-item  fw-bold" href="admin/dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-									<li><a class="dropdown-item  fw-bold" href="admin/products.php"><i class="fa fa-cube"></i> Sản phẩm</a></li>
-									<li><a class="dropdown-item  fw-bold" href="admin/orders.php"><i class="fa fa-shopping-bag"></i> Đơn hàng</a></li>
-									<li><a class="dropdown-item  fw-bold" href="admin/coupons.php"><i class="fa fa-tag"></i> Giảm giá</a></li>
+									<li><a class="dropdown-item  fw-bold" href="admin/dashboard.php"><img src="./assets/images/icons/dashboard.png" width="20" height="20" alt=""> Dashboard</a></li>
+									<li><a class="dropdown-item  fw-bold" href="admin/products.php"><img src="./assets/images/icons/products.png" width="20" height="20" alt=""> Sản phẩm</a></li>
+									<li><a class="dropdown-item  fw-bold" href="admin/orders.php"><img src="./assets/images/icons/order.png" width="20" height="20" alt=""> Đơn hàng</a></li>
+									<li><a class="dropdown-item  fw-bold border-0" href="admin/coupons.php"><img src="./assets/images/icons/coupons.png" width="20" height="20" alt=""> Giảm giá</a></li>
 									<!-- <li><a class="dropdown-item" href="admin/reports.php"><i class="fa fa-bar-chart"></i> Báo cáo</a></li> -->
 								</ul>
 							</div>
@@ -298,12 +321,12 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 						</button>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.php"><img src="assets/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
@@ -319,7 +342,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 				$cartCount = array_sum($cart);
 				?>
 				<a href="cart.php" class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="<?= $cartCount ?>">
-				    <i class="zmdi zmdi-shopping-cart"></i>
+					<i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 
 				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
@@ -348,31 +371,31 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 				<li>
 					<div class="right-top-bar flex-w h-full">
 						<?php if (isset($_SESSION['user_id'])): ?>
-    <span class="flex-c-m trans-04 p-lr-25 text-success" style="font-family: 'Roboto', sans-serif; font-weight: 500;">
-		Xin chào, <b style="color: #28a745; font-weight: 700;"><?= htmlspecialchars($_SESSION['user_name']) ?></b>
-	</span>
-    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <div class="dropdown d-inline-block">
-            <a class="flex-c-m trans-04 p-lr-25 text-white text-decoration-none dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Quản trị hệ thống
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                <li><a class="dropdown-item text-primary" href="admin/dashboard.php">Dashboard quản trị</a></li>
-                <li><a class="dropdown-item text-primary" href="admin/products.php">Quản lý sản phẩm</a></li>
-                <li><a class="dropdown-item text-primary" href="admin/orders.php">Quản lý đơn hàng</a></li>
-                <li><a class="dropdown-item text-primary" href="admin/coupons.php">Quản lý giảm giá</a></li>
-                <li><a class="dropdown-item text-primary" href="admin/reports.php">Báo cáo thống kê</a></li>
-            </ul>
-        </div>
-    <?php else: ?>
-        <a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đơn hàng</a>
-    <?php endif; ?>
-    <a href="user/logout.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng xuất</a>
-<?php else: ?>
-    <a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Tra cứu đơn hàng</a>
-    <a href="user/login.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng nhập</a>
-    <a href="user/register.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng ký</a>
-<?php endif; ?>
+							<span class="flex-c-m trans-04 p-lr-25 text-success" style="font-family: 'Roboto', sans-serif; font-weight: 500;">
+								Xin chào, <b style="color: #28a745; font-weight: 700;"><?= htmlspecialchars($_SESSION['user_name']) ?></b>
+							</span>
+							<?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+								<div class="dropdown d-inline-block">
+									<a class="flex-c-m trans-04 p-lr-25 text-white text-decoration-none dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Quản trị hệ thống
+									</a>
+									<ul class="dropdown-menu" aria-labelledby="adminDropdown">
+										<li><a class="dropdown-item text-primary" href="admin/dashboard.php">Dashboard quản trị</a></li>
+										<li><a class="dropdown-item text-primary" href="admin/products.php">Quản lý sản phẩm</a></li>
+										<li><a class="dropdown-item text-primary" href="admin/orders.php">Quản lý đơn hàng</a></li>
+										<li><a class="dropdown-item text-primary" href="admin/coupons.php">Quản lý giảm giá</a></li>
+										<li><a class="dropdown-item text-primary" href="admin/reports.php">Báo cáo thống kê</a></li>
+									</ul>
+								</div>
+							<?php else: ?>
+								<a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đơn hàng</a>
+							<?php endif; ?>
+							<a href="user/logout.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng xuất</a>
+						<?php else: ?>
+							<a href="user/orders.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Tra cứu đơn hàng</a>
+							<a href="user/login.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng nhập</a>
+							<a href="user/register.php" class="flex-c-m trans-04 p-lr-25 text-decoration-none">Đăng ký</a>
+						<?php endif; ?>
 					</div>
 				</li>
 			</ul>
@@ -426,58 +449,58 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 
 	<!-- Main JavaScript Files -->
 	<script src="assets/js/main.js"></script>
-	
+
 	<!-- Mobile Menu Debug Script -->
 	<script>
-	// Simple toggle function
-	function toggleMobileMenu() {
-		console.log('Toggle mobile menu called');
-		var menu = document.querySelector('.menu-mobile');
-		var button = document.querySelector('.btn-show-menu-mobile');
-		
-		if (menu.style.display === 'none' || menu.style.display === '') {
-			menu.style.display = 'block';
-			button.classList.add('is-active');
-			document.body.style.overflow = 'hidden'; // Prevent background scroll
-			console.log('Menu opened');
-		} else {
-			menu.style.display = 'none';
-			button.classList.remove('is-active');
-			document.body.style.overflow = 'auto'; // Restore background scroll
-			console.log('Menu closed');
-		}
-	}
-	
-	// Close menu when clicking on menu background
-	function closeMenuOnOverlay(event) {
-		if (event.target.classList.contains('menu-mobile')) {
-			toggleMobileMenu();
-		}
-	}
-	
-	$(document).ready(function() {
-		console.log('Document ready, checking mobile menu...');
-		console.log('jQuery version:', $.fn.jquery);
-		console.log('Mobile menu button found:', $('.btn-show-menu-mobile').length);
-		console.log('Mobile menu found:', $('.menu-mobile').length);
-		
-		// Add click event to menu background for closing
-		$('.menu-mobile').on('click', closeMenuOnOverlay);
-		
-		// Handle sub-menu arrows
-		$('.arrow-main-menu-m').on('click', function(e) {
-			e.preventDefault();
-			$(this).parent().find('.sub-menu-m').slideToggle();
-			$(this).toggleClass('turn-arrow-main-menu-m');
-		});
-		
-		// Close menu when window is resized to desktop
-		$(window).resize(function() {
-			if ($(window).width() >= 992) {
-				if ($('.menu-mobile').css('display') === 'block') {
-					toggleMobileMenu();
-				}
+		// Simple toggle function
+		function toggleMobileMenu() {
+			console.log('Toggle mobile menu called');
+			var menu = document.querySelector('.menu-mobile');
+			var button = document.querySelector('.btn-show-menu-mobile');
+
+			if (menu.style.display === 'none' || menu.style.display === '') {
+				menu.style.display = 'block';
+				button.classList.add('is-active');
+				document.body.style.overflow = 'hidden'; // Prevent background scroll
+				console.log('Menu opened');
+			} else {
+				menu.style.display = 'none';
+				button.classList.remove('is-active');
+				document.body.style.overflow = 'auto'; // Restore background scroll
+				console.log('Menu closed');
 			}
+		}
+
+		// Close menu when clicking on menu background
+		function closeMenuOnOverlay(event) {
+			if (event.target.classList.contains('menu-mobile')) {
+				toggleMobileMenu();
+			}
+		}
+
+		$(document).ready(function() {
+			console.log('Document ready, checking mobile menu...');
+			console.log('jQuery version:', $.fn.jquery);
+			console.log('Mobile menu button found:', $('.btn-show-menu-mobile').length);
+			console.log('Mobile menu found:', $('.menu-mobile').length);
+
+			// Add click event to menu background for closing
+			$('.menu-mobile').on('click', closeMenuOnOverlay);
+
+			// Handle sub-menu arrows
+			$('.arrow-main-menu-m').on('click', function(e) {
+				e.preventDefault();
+				$(this).parent().find('.sub-menu-m').slideToggle();
+				$(this).toggleClass('turn-arrow-main-menu-m');
+			});
+
+			// Close menu when window is resized to desktop
+			$(window).resize(function() {
+				if ($(window).width() >= 992) {
+					if ($('.menu-mobile').css('display') === 'block') {
+						toggleMobileMenu();
+					}
+				}
+			});
 		});
-	});
 	</script>

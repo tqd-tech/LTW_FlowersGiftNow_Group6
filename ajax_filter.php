@@ -129,7 +129,7 @@ if ($products):
                     </div>
                     <!-- Category Badge -->
                     <?php if (!empty($product['tags'])): ?>
-                        <span class="badge-modern badge-info" style="position: absolute; top: 1rem; left: 1rem;">
+                        <span class="badge-modern badge-info" style="position: absolute; top: 1rem; right: 1rem;">
                             <?= htmlspecialchars(explode(',', $product['tags'])[0]) ?>
                         </span>
                     <?php endif; ?>

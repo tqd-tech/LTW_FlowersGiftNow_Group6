@@ -42,7 +42,7 @@ $sort = $_GET['sort'] ?? '';
                 </span>
                 <h1 class="hero-modern-title">
                     Hoa Tươi & Quà Tặng<br>
-                    <span style="color: var(--primary);">Đẳng Cấp Việt Nam</span>
+                    <span style="color: var(--primary);">Giao Nhanh & Uy Tín</span>
                 </h1>
                 <p class="hero-modern-subtitle ">
                     Gửi yêu thương qua từng cánh hoa tươi thắm. Miễn phí vận chuyển đơn từ 500k.

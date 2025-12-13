@@ -62,6 +62,13 @@ $coupon_usage = $pdo->query(
             background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #FBCFE8 100%);
             min-height: 100vh;
         }
+        .page-header{
+            /* nền đẹp */
+            background-color: #ffffffff;
+            padding: 16px;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+            border-radius: var(--radius-md);
+        }
         .page-header h1 {
             font-size: 2.25rem;
             font-weight: 800;
@@ -69,6 +76,7 @@ $coupon_usage = $pdo->query(
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 0.1rem;
         }
         .stat-card {
             background: white;
@@ -108,17 +116,17 @@ $coupon_usage = $pdo->query(
 <body>
 <div class="container py-5">
     <div class="page-header" style="text-align: center; margin-bottom: 3rem;">
-        <h1>
-            <i class="zmdi zmdi-chart"></i> Dashboard Quản Trị
+        <h1 class="d-flex justify-content-center align-item-center gap-3">
+            <img src="../assets/images/icons/dashboard.png" width="50" alt=""> DASHBOARD
         </h1>
-        <p style="color: var(--text-secondary); font-size: 1.125rem;">Tổng quan hoạt động kinh doanh</p>
+        <p style="color: var(--text-secondary); font-size: 1.125rem; margin: 0; font-weight: 700;">Tổng quan hoạt động kinh doanh</p>
     </div>
 
     <!-- Stats Cards -->
     <div class="row mb-4">
         <div class="col-lg-4 mb-3">
             <div class="stat-card">
-                <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">
+                <div class="stat-icon" style=" color: var(--primary);">
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
                 <div class="stat-value" style="color: var(--text-primary);">
@@ -153,24 +161,24 @@ $coupon_usage = $pdo->query(
 
     <!-- Daily Revenue Table -->
     <div class="card-modern" style="padding: 2rem; margin-bottom: 2rem;">
-        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
             <i class="zmdi zmdi-trending-up" style="color: var(--primary);"></i>
             Doanh thu 7 ngày gần nhất
         </h5>
         <?php if (!empty($daily)): ?>
             <div class="table-responsive">
                 <table class="table align-middle" style="margin-bottom: 0;">
-                    <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-200);">
+                    <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-600);">
                         <tr>
-                            <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Ngày</th>
-                            <th style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-primary);">Số đơn</th>
-                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Doanh thu</th>
+                            <th style="padding: 1rem; font-weight: 600; color: var(--gray-400);">Ngày</th>
+                            <th style="padding: 1rem; text-align: center; font-weight: 600; color: var(--gray-400);">Số đơn</th>
+                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--gray-400);">Doanh thu</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($daily as $d): ?>
-                        <tr style="border-bottom: 1px solid var(--gray-200);">
-                            <td style="padding: 1rem;">
+                        <tr style="border-bottom: 1px solid var(--gray-300);">
+                            <td style="padding: 1rem; display: flex; align-items: center; gap: 0.5rem; border: none; font-weight: 800; color: var(--text-primary);">
                                 <i class="zmdi zmdi-calendar" style="color: var(--text-secondary);"></i>
                                 <?= date('d/m/Y', strtotime($d['day'])) ?>
                             </td>
@@ -178,7 +186,7 @@ $coupon_usage = $pdo->query(
                                 <span class="badge-modern badge-primary"><?= $d['orders_count'] ?></span>
                             </td>
                             <td style="padding: 1rem; text-align: right; font-weight: 700; color: var(--success);">
-                                <?= number_format($d['revenue'], 0, ',', '.') ?>₫
+                                <?= number_format($d['revenue'], 0, ',', '.') ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -195,7 +203,7 @@ $coupon_usage = $pdo->query(
 
     <!-- Top Products -->
     <div class="card-modern" style="padding: 2rem; margin-bottom: 2rem;">
-        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
             <i class="zmdi zmdi-fire" style="color: var(--danger);"></i>
             Top 5 Sản phẩm bán chạy
         </h5>
@@ -204,14 +212,14 @@ $coupon_usage = $pdo->query(
                 <table class="table align-middle" style="margin-bottom: 0;">
                     <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-200);">
                         <tr>
-                            <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Sản phẩm</th>
-                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Đã bán</th>
+                            <th style="padding: 1rem; font-weight: 600; color: var(--gray-400);">Sản phẩm</th>
+                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--gray-400);">Đã bán</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($top_products as $p): ?>
-                        <tr style="border-bottom: 1px solid var(--gray-200);">
-                            <td style="padding: 1rem; font-weight: 500; color: var(--text-primary);">
+                        <tr style="border-bottom: 1px solid var(--gray-300);">
+                            <td style="padding: 1rem; font-weight: 500; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; border: none; font-weight: 800; ">
                                 <i class="zmdi zmdi-flower-alt" style="color: var(--primary);"></i>
                                 <?= htmlspecialchars($p['name']) ?>
                             </td>
@@ -235,8 +243,8 @@ $coupon_usage = $pdo->query(
 
     <!-- Coupon Usage -->
     <div class="card-modern" style="padding: 2rem;">
-        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-            <i class="zmdi zmdi-card-giftcard" style="color: var(--warning);"></i>
+        <h5 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <img src="../assets/images/icons/tap.png" alt="Coupon Icon" width="20" height="20" >
             Tần suất sử dụng mã khuyến mãi
         </h5>
         <?php if (!empty($coupon_usage)): ?>
@@ -244,15 +252,15 @@ $coupon_usage = $pdo->query(
                 <table class="table align-middle" style="margin-bottom: 0;">
                     <thead style="background: var(--gray-100); border-bottom: 2px solid var(--gray-200);">
                         <tr>
-                            <th style="padding: 1rem; font-weight: 600; color: var(--text-primary);">Mã khuyến mãi</th>
-                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Lần sử dụng</th>
+                            <th style="padding: 1rem; font-weight: 600; color: var(--gray-400);">Mã khuyến mãi</th>
+                            <th style="padding: 1rem; text-align: right; font-weight: 600; color: var(--gray-400);">Lần sử dụng</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($coupon_usage as $c): ?>
                         <tr style="border-bottom: 1px solid var(--gray-200);">
                             <td style="padding: 1rem;">
-                                <span class="badge-modern badge-warning" style="font-size: 0.875rem; font-family: 'Courier New', monospace;">
+                                <span class="badge-modern badge-warning" style="font-size: 0.875rem; font-family: 'Courier New', monospace; ">
                                     <?= htmlspecialchars($c['code']) ?>
                                 </span>
                             </td>
