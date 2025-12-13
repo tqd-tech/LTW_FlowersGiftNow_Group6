@@ -205,7 +205,7 @@ $sort = $_GET['sort'] ?? '';
 
 
 <!-- Product -->
-<section id="products" style="padding: 3rem 0;">
+<section id="products" style="padding: 1rem 0;">
     <div class="container-modern">
         <!-- Section Header -->
         <div style="text-align: center; margin-bottom: 1rem; background: var(--bg-primary); padding: 1.8rem 2rem; border-radius: 8px; box-shadow: 0 4px 12px 5px rgba(0,0,0,0.1);">
@@ -448,10 +448,10 @@ $sort = $_GET['sort'] ?? '';
                                         onmouseover="this.style.opacity='1'"
                                         onmouseout="this.style.opacity='0'">
                                         <a href="product.php?id=<?= $product['id'] ?>" class="btn-modern btn-ghost btn-lg" style="background: white; color: var(--primary);">
-                                            <img src="../assets/images/icons/eye.png" width="20" height="20" alt="Xem"> Xem
+                                            <i class="fa fa-eye"></i> Xem
                                         </a>
                                         <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn-modern btn-primary btn-lg">
-                                            <img src="../assets/images/icons/add-cart.png" width="20" height="20" alt="Thêm"> Thêm
+                                            <i class="fa fa-cart-plus"></i> Thêm
                                         </a>
                                     </div>
                                     <!-- Category Badge -->
