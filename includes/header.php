@@ -54,9 +54,13 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 	<!-- Perfect Scrollbar -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/css/perfect-scrollbar.min.css" rel="stylesheet">
 
+	<!-- Google Font Inter -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/modern-design.css">
 	
 	<!-- Custom Dropdown Hover CSS -->
 	<style>
@@ -199,117 +203,101 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 <body class="animsition">
 
 	
-	<!-- Header -->
-	<header>
-		<!-- Header desktop -->
-		<div class="container-menu-desktop">
-			<!-- Topbar -->
-			<div class="top-bar">
-				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
-						Miễn phí vẫn chuyển cho đơn từ 500k
-					</div>
-
-					<div class="right-top-bar flex-w h-full gap-4">
-						<?php if (isset($_SESSION['user_id'])): ?>
-    <span class="flex-c-m trans-04 p-lr-10 text-white" style="font-family: 'Impact', sans-serif;"> 
-		<span class="p-r-6">Xin chào,</span>
-		<b style="color: #FFFFFF; font-weight: 700;"><?= htmlspecialchars($_SESSION['user_name']) ?></b>
-	</span>
-    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <div class="dropdown d-inline-block d-flex justify-content-center align-items-center">
-            <a class="flex-c-m justify-content-center align-items-center gap-2 trans-04 p-lr-25 text-white text-decoration-none dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="assets/images/icons/admin.png" width="20" height="20"	 alt="">
-				<span class="text-white fw-bold	">Quản trị hệ thống</span>
-            </a>
-            <ul class="dropdown-menu p-0 rounded-3 bg-black	" aria-labelledby="adminDropdown">
-                <li><a class="dropdown-item text-white text-center fw-bold border-bottom" href="admin/dashboard.php">Dashboard quản trị</a></li>
-                <li><a class="dropdown-item text-white text-center fw-bold border-bottom" href="admin/products.php">Quản lý sản phẩm</a></li>
-                <li><a class="dropdown-item text-white text-center fw-bold border-bottom" href="admin/orders.php">Quản lý đơn hàng</a></li>
-                <li><a class="dropdown-item text-white text-center fw-bold border-bottom" href="admin/coupons.php">Quản lý giảm giá</a></li>
-                <li><a class="dropdown-item text-white text-center fw-bold border-bottom" href="admin/reports.php">Báo cáo thống kê</a></li>
-            </ul>
-        </div>
-    <?php else: ?>
-	<div class="d-flex justify-content-center align-items-center gap-2 ">
-	<img src="assets/images/icons/cart.png" width="20" height="20" alt="">
-        <a href="user/orders.php" class="flex-c-m trans-04 p-r-25 text-decoration-none text-white fw-bold">Đơn hàng</a>
-	</div>
-    <?php endif; ?>
-	<div class="d-flex justify-content-center align-items-center gap-2 ">
-		<img src="assets/images/icons/logout.png" width="20" height="20" alt="">
-		<a href="user/logout.php" class="flex-c-m trans-04 p-r-25 text-decoration-none text-white fw-bold">Đăng xuất</a>
-	</div>
-<?php else: ?>
-	<div class="d-flex justify-content-center align-items-center gap-2 ">
-	<img src="assets/images/icons/cart.png" width="20" height="20" alt="">
-    <a href="user/orders.php" class="flex-c-m trans-04 p-r-25 text-decoration-none fw-bold text-white" >Tra cứu đơn hàng</a>
-	</div>
-	<div class="d-flex justify-content-center align-items-center gap-2">
-	<img src="assets/images/icons/sign-in.png" width="20" height="20" alt="">
-		<a href="user/login.php" class="flex-c-m trans-04 p-r-25 text-decoration-none fw-bold text-white">Đăng nhập</a>
-	</div>
-	<div class="d-flex justify-content-center align-items-center gap-2">
-	<img src="assets/images/icons/sign-up.png" width="20" height="20" alt="">
-		<a href="user/register.php" class="flex-c-m trans-04 p-r-25 text-decoration-none fw-bold text-white" >Đăng ký</a>
-	</div>
-<?php endif; ?>
-					</div>
+	<!-- Modern Header -->
+	<header class="modern-header">
+		<!-- Topbar -->
+		<div style="background: var(--gray-800); color: white; padding: 0.5rem 0; font-size: 0.875rem;">
+			<div class="container-modern" style="display: flex; justify-content: space-between; align-items: center;">
+				<div class="fw-bold">
+					<i class="fa fa-truck" style="margin-right: 0.5rem;"></i>
+					Miễn phí vận chuyển cho đơn từ 500k
+				</div>
+				<div style="display: flex; gap: 1.5rem; align-items: center;">
+					<?php if (isset($_SESSION['user_id'])): ?>
+						<span style="display: flex; align-items: center; gap: 0.8rem; color: #ffb6edff; font-weight: 900;">
+							<img src="./assets/images/icons/user.png" width="20" height="20" alt="">
+							<div>
+							Xin chào,<strong style="margin-left: 3px !important;"><?= htmlspecialchars($_SESSION['user_name']) ?></strong>
+							</div>
+						</span>
+						<?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+							<div class="dropdown">
+								<a class="text-decoration-none" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
+									<i class="fa fa-cog"></i>
+									<span>Quản trị</span>
+									<i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-end  fw-bold" aria-labelledby="adminDropdown">
+									<li><a class="dropdown-item  fw-bold" href="admin/dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+									<li><a class="dropdown-item  fw-bold" href="admin/products.php"><i class="fa fa-cube"></i> Sản phẩm</a></li>
+									<li><a class="dropdown-item  fw-bold" href="admin/orders.php"><i class="fa fa-shopping-bag"></i> Đơn hàng</a></li>
+									<li><a class="dropdown-item  fw-bold" href="admin/coupons.php"><i class="fa fa-tag"></i> Giảm giá</a></li>
+									<!-- <li><a class="dropdown-item" href="admin/reports.php"><i class="fa fa-bar-chart"></i> Báo cáo</a></li> -->
+								</ul>
+							</div>
+						<?php else: ?>
+							<a href="user/orders.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
+								<img src="./assets/images/icons/order.png" width="20" height="20" alt=""> Đơn hàng
+							</a>
+						<?php endif; ?>
+						<a href="user/logout.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
+							<img src="./assets/images/icons/logout-color.png" width="20" height="20" alt=""> Đăng xuất
+						</a>
+					<?php else: ?>
+						<a href="user/orders.php" class="text-decoration-none fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
+							<img src="./assets/images/icons/search-cart.png" width="20" height="20" alt=""> Tra cứu đơn hàng
+						</a>
+						<a href="user/login.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
+							<img src="./assets/images/icons/sign-in-pink.png" width="20" height="20" alt=""> Đăng nhập
+						</a>
+						<a href="user/register.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
+							<img src="./assets/images/icons/sign-up-color.png" width="20" height="20" alt=""> Đăng ký
+						</a>
+					<?php endif; ?>
 				</div>
 			</div>
+		</div>
 
+		<!-- Main Header -->
+		<div class="container-menu-desktop">
 			<div class="wrap-menu-desktop">
-				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="assets/images/icons/logo-01.png" alt="IMG-LOGO">
+				<div style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+					<!-- Logo -->
+					<a href="index.php" class="logo" style="display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none;">
+						<!-- <img src="assets/images/icons/logo-01.png" alt="FlowerGiftNow" style="height: 50px;"> -->
+						<span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">FlowerGiftNow</span>
 					</a>
 
-					<!-- Menu desktop -->
-					<div class="menu-desktop">
-						<ul class="main-menu">
-							<li class="active-menu">
-								<a href="index.php" class="text-decoration-none" >Trang chủ</a>
-							</li>
+					<!-- Navigation -->
+					<nav class="modern-nav">
+						<a href="index.php" class="modern-nav-link active">Trang chủ</a>
+						<a href="index.php?category=flowers" class="modern-nav-link">Hoa tươi</a>
+						<a href="index.php?category=gifts" class="modern-nav-link">Quà tặng</a>
+						<a href="#sale" class="modern-nav-link" style="position: relative;">
+							Giảm giá
+							<span class="badge-modern badge-danger" style="position: absolute; top: -10px; right: -25px; font-size: 0.65rem;">HOT</span>
+						</a>
+						<a href="#about" class="modern-nav-link">Về chúng tôi</a>
+						<a href="#contact" class="modern-nav-link">Liên hệ</a>
+					</nav>
 
-							<li class="label1" data-label1="hot">
-								<a href="" class="text-decoration-none">Giảm giá</a>
-							</li>
-
-							<li>
-								<a href="" class="text-decoration-none">Blog</a>
-							</li>
-
-							<li>
-								<a href="" class="text-decoration-none">Về chúng tôi</a>
-							</li>
-
-							<li>
-								<a href="" class="text-decoration-none">Liên hệ</a>
-							</li>
-						</ul>
-					</div>	
-
-					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
-
+					<!-- Icons -->
+					<div class="modern-header-icons">
 						<?php
 						$cart = $_SESSION['cart'] ?? [];
 						$cartCount = array_sum($cart);
 						?>
-						<a href="cart.php" class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="<?= $cartCount ?>">
-						    <i class="zmdi zmdi-shopping-cart"></i>
+						<a href="cart.php" class="modern-icon-btn">
+							<i class="zmdi zmdi-shopping-cart"></i>
+							<?php if ($cartCount > 0): ?>
+								<span class="modern-badge"><?= $cartCount ?></span>
+							<?php endif; ?>
 						</a>
-
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+						<button class="modern-icon-btn">
 							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+						</button>
 					</div>
-				</nav>
+				</div>
 			</div>	
 		</div>
 

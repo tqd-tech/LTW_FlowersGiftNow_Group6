@@ -80,12 +80,13 @@ $products = $stmt->fetchAll();
 
 <?php if (!empty($search)): ?>
 <div class="col-12 mb-3">
-    <div class="search-highlight d-flex justify-content-between align-items-center">
+    <div class="alert-modern alert-info" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <div>
-            <strong>Kết quả tìm kiếm cho:</strong> 
-            <span class="badge bg-primary ms-2"><?= htmlspecialchars($search) ?></span>
+            <i class="zmdi zmdi-search"></i>
+            <strong>Kết quả tìm kiếm cho:</strong>
+            <span class="badge-modern badge-primary" style="margin-left: 0.5rem;"><?= htmlspecialchars($search) ?></span>
         </div>
-        <button onclick="clearSearch()" class="btn btn-sm btn-outline-secondary">
+        <button onclick="clearSearch()" class="btn-modern btn-ghost btn-sm">
             <i class="zmdi zmdi-close"></i> Xóa tìm kiếm
         </button>
     </div>
@@ -108,47 +109,71 @@ if ($products):
     }
     
     foreach ($products as $product): ?>
-        <div class="<?= $colClass ?> p-b-35">
-            <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden" style="background-image: linear-gradient(rgba(255, 160, 228, 0.5), rgba(255, 255, 255, 0.1)); box-shadow: 4px 8px 10px 20px rgba(0, 0, 0, 0.1);">
-                <div class="position-relative text-center">
-                    <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>" style="height: 350px; object-fit: cover;">
-                    <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn position-absolute top-50 start-50 text-white fw-bold translate-middle px-3 py-2 rounded-4 shadow-lg border-0" style="background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%); box-shadow: 1px 1px 50px 20px rgba(0, 0, 0, 0.4) !important; "> 
-                        Mua ngay
-                    </a>
+        <div class="<?= $colClass ?> p-b-35 animate-slide-up">
+            <div class="card-modern" style="height: 100%;">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>"
+                        class="card-modern-img"
+                        alt="<?php echo htmlspecialchars($product['name']); ?>"
+                        style="transition: transform 0.3s ease;">
+                    <!-- Quick View Overlay -->
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 0.5rem;"
+                        onmouseover="this.style.opacity='1'"
+                        onmouseout="this.style.opacity='0'">
+                        <a href="product.php?id=<?= $product['id'] ?>" class="btn-modern btn-ghost btn-sm" style="background: white; color: var(--primary);">
+                            <img src="./assets/images/icons/eye.png" width="20" height="20" alt="Xem"> Xem
+                        </a>
+                        <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn-modern btn-primary btn-sm">
+                            <img src="./assets/images/icons/add_cart.png" width="20" height="20" alt="Thêm"> Thêm
+                        </a>
+                    </div>
+                    <!-- Category Badge -->
+                    <?php if (!empty($product['tags'])): ?>
+                        <span class="badge-modern badge-info" style="position: absolute; top: 1rem; left: 1rem;">
+                            <?= htmlspecialchars(explode(',', $product['tags'])[0]) ?>
+                        </span>
+                    <?php endif; ?>
                 </div>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title text-truncate text-wrap text-center fw-bold" title="<?php echo htmlspecialchars($product['name']); ?>">
+                <div class="card-modern-body">
+                    <h3 class="card-modern-title" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                        title="<?php echo htmlspecialchars($product['name']); ?>">
                         <?php echo htmlspecialchars($product['name']); ?>
-                    </h5>
-                    <p class="card-text small mb-1 text-secondary">
-                        <?php echo htmlspecialchars(mb_strimwidth($product['description'], 0, 60, '...')); ?>
+                    </h3>
+                    <p class="card-modern-text" style="font-size: 0.875rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                        <?php echo htmlspecialchars($product['description']); ?>
                     </p>
-                    <p class="card-text fw-bold text-danger mb-1">
-                        <?php echo number_format($product['price'], 0, ',', '.') ?> VND
-                    </p>
-                    <small class="text-secondary mt-auto">Ngày bán: <?php echo date('d/m/Y', strtotime($product['created_at'])); ?></small>
+                    <div style="display: flex; align-items: center; justify-content: space-around; margin-top: auto; width:100%" >
+                        <div class="card-modern-price">
+                            <?php echo number_format($product['price'], 0, ',', '.') ?>₫
+                        </div>
+                        <div style="color: var(--text-secondary); font-size: 0.75rem; font-weight: bold;">
+                            <i class="fa fa-clock-o"></i>
+                            <?php echo date('d/m/Y', strtotime($product['created_at'])); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 <?php endforeach; ?>
 
 <!-- Thông báo cuối danh sách -->
-<div class="col-12 text-center mt-4 mb-3 "  style=" ">
-    <div class="alert  border-0  border-top pt-5" style=" border-radius: 5px !important; font-size: 16px; color: blue;">
-        <i class="zmdi zmdi-info-outline" style="font-size: 18px;"></i>
-        <strong>Không còn sản phẩm nào khác</strong>
-        <br>
-        <small class="text-muted">Bạn đã xem hết tất cả sản phẩm có sẵn</small>
+<div class="col-12 text-center mt-4 mb-3">
+    <div class="alert-modern alert-info d-flex flex-column align-items-center justify-content-center" style="text-align: center;">
+        <div class="d-flex align-items-center justify-content-center gap-2">
+        <i class="zmdi zmdi-check-circle" style="font-size: 2rem; "></i>
+            <strong>Không còn sản phẩm nào khác</strong>
+        </div>
+        <small style="color: var(--gray-500); font-weight: 600;">Bạn đã xem hết tất cả sản phẩm có sẵn</small>
     </div>
 </div>
 
 <?php else: ?>
-    <div class="col-12 text-center py-5">
-        <div class="empty-state">
-            <i class="zmdi zmdi-search zmdi-hc-5x text-muted mb-3"></i>
-            <h4 class="text-muted">Không tìm thấy sản phẩm</h4>
-            <p class="text-muted">Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
-            <button onclick="clearAllFilters()" class="btn btn-primary mt-2">
+    <div class="col-12 text-center ">
+        <div class="card-modern" style="padding: 3rem 2rem; text-align: center;">
+            <i class="zmdi zmdi-shopping-basket" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Không tìm thấy sản phẩm</h4>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+            <button onclick="clearAllFilters()" class="btn-modern btn-primary">
                 <i class="fa fa-refresh"></i> Xóa bộ lọc
             </button>
         </div>

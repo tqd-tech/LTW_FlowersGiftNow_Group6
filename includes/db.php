@@ -4,7 +4,7 @@
 // $user = 'if0_39416227';
 // $pass = 'le0GhQVuTo7vpvR'; 
 
-$host = '127.0.0.1';      // hoặc 'localhost'
+$host = 'localhost';      // hoặc 'localhost'
 $db   = 'if0_39416227_flower_shop';    
 $user = 'root';           // mặc định XAMPP là 'root'
 $pass = '';               // mặc định XAMPP password trống

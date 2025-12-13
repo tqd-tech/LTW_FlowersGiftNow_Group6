@@ -38,62 +38,153 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng ký tài khoản</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản - FlowerGiftNow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../assets/css/modern-design.css">
     <style>
-        body {
-            background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
-            min-height: 100vh;
+        :root {
+            --primary: #EC4899;
+            --primary-dark: #DB2777;
+            --primary-light: #F472B6;
         }
-        .shadow-2xl {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        body {
+            background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #FBCFE8 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 550px;
+        }
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .auth-header img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+        .form-control {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.1);
+        }
+        .form-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container py-5" style="height: 100vh;">
-    <div class="d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-6">
-            <div class="card shadow-2xl rounded-4" style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);">
-                <div class="card-header bg-primary text-black text-center fw-bold d-flex justify-content-center py-3 align-items-center gap-2 rounded-4 rounded-bottom-0 border-0" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-                    <img src="../assets/images/icons/flower.png" alt="Logo" style="height: 40px; ">
-                    <h4 class="fw-bold ">Đăng ký tài khoản</h4>
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="card-modern" style="padding: 2rem;">
+            <div class="auth-header">
+                <div class="d-flex justify-content-center align-items-center gap-2 ">
+                <img src="../assets/images/icons/sign-up-color.png" alt="FlowerGiftNow Logo">
+                <h2 style="font-size: 1.75rem; font-weight: 700; color: var(--text-primary);">Tạo tài khoản mới</h2>
                 </div>
-                <div class="card-body rounded-4">
-                    <?php if ($error): ?>
-                        <div class="alert alert-danger"><?= $error ?></div>
-                    <?php endif; ?>
-                    <form method="post">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Họ và tên</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Tên người dùng</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Số điện thoại</label>
-                            <input type="text" class="form-control" id="phone" name="phone" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirm" class="form-label">Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control" id="confirm" name="confirm" required>
-                        </div>
-                        <button type="submit" class="btn btn-info w-100 shadow-2xl">Đăng ký</button>
-                    </form>
-                    <div class="mt-3 text-center">
-                        Đã có tài khoản? <a href="login.php" class="fw-bold">Đăng nhập</a>
+                <p style="color: var(--text-secondary); margin: 0; font-weight: 700;">Đăng ký để trải nghiệm mua sắm tuyệt vời</p>
+            </div>
+
+            <?php if ($error): ?>
+                <div class="alert-modern alert-danger" style="margin-bottom: 1.5rem;">
+                    <i class="zmdi zmdi-alert-circle"></i>
+                    <?= $error ?>
+                </div>
+            <?php endif; ?>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                        <i class="zmdi zmdi-account"></i> Họ và tên
+                    </label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên đầy đủ" required>
+                </div>
+                
+                <div class="form-row mb-3">
+                    <div>
+                        <label for="username" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                            <i class="zmdi zmdi-account-box"></i> Tên đăng nhập
+                        </label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="4-20 ký tự" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                            <i class="zmdi zmdi-phone"></i> Số điện thoại
+                        </label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="0123456789" required>
                     </div>
                 </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                        <i class="zmdi zmdi-email"></i> Email
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>
+                </div>
+                
+                <div class="form-row mb-4">
+                    <div>
+                        <label for="password" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                            <i class="zmdi zmdi-lock"></i> Mật khẩu
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required>
+                    </div>
+                    <div>
+                        <label for="confirm" class="form-label d-flex align-items-center gap-2" style="font-weight: 700; color: var(--text-primary);">
+                            <i class="zmdi zmdi-lock-outline"></i> Xác nhận
+                        </label>
+                        <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Nhập lại mật khẩu" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-modern btn-primary btn-lg" style="width: 100%;">
+                    <i class="zmdi zmdi-account-add"></i> Đăng ký tài khoản
+                </button>
+            </form>
+
+            <div style="margin-top: 1.25rem; text-align: center; padding-top: 1.25rem; border-top: 1px solid var(--gray-200);">
+                <p style="color: var(--text-secondary); margin: 0;">
+                    Đã có tài khoản? 
+                    <a href="login.php" style="color: var(--primary); font-weight: 600; text-decoration: none;">
+                        Đăng nhập ngay
+                    </a>
+                </p>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.php" class="btn-modern btn-ghost btn-sm">
+                    <i class="fa fa-arrow-left"></i> Quay về trang chủ
+                </a>
             </div>
         </div>
     </div>
