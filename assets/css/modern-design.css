@@ -374,7 +374,7 @@ a:hover {
 
 /* ====== MODERN HERO SECTION ====== */
 .hero-modern {
-    background: var(--bg-primary);
+    background: #fff2fa;
     padding: var(--space-2xl) 0;
     margin-bottom: var(--space-2xl);
 }
@@ -471,11 +471,11 @@ a:hover {
 }
 
 .filter-modern-chip {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.8rem;
     background: var(--gray-100);
     color: var(--text-primary);
     border-radius: var(--radius-full);
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -483,7 +483,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
 }
 
 .filter-modern-chip:hover {
@@ -811,4 +811,99 @@ a:hover {
 
 .animate-slide-up {
     animation: slideUp 0.5s ease-in-out;
+}
+
+/* ====== RESPONSIVE DISPLAY UTILITIES ====== */
+/* Mobile: < 576px */
+/* Tablet: 576px - 991px */
+/* Desktop/Laptop: >= 992px */
+
+/* Hidden on specific devices */
+.hidden-mobile {
+    display: block;
+}
+
+.hidden-tablet {
+    display: block;
+}
+
+.hidden-desktop {
+    display: block;
+}
+
+/* Visible only on specific devices */
+.visible-mobile {
+    display: none;
+}
+
+.visible-tablet {
+    display: none;
+}
+
+.visible-desktop {
+    display: none;
+}
+
+/* Mobile (<576px) */
+@media (max-width: 575px) {
+    .hidden-mobile {
+        display: none !important;
+    }
+    
+    .visible-mobile {
+        display: block !important;
+    }
+}
+
+/* Tablet (576px - 991px) */
+@media (min-width: 576px) and (max-width: 991px) {
+    .hidden-tablet {
+        display: none !important;
+    }
+    
+    .visible-tablet {
+        display: block !important;
+    }
+}
+
+/* Desktop/Laptop (>=992px) */
+@media (min-width: 992px) {
+    .hidden-desktop {
+        display: none !important;
+    }
+    
+    .visible-desktop {
+        display: block !important;
+    }
+}
+
+/* Additional utility for inline elements */
+.hidden-mobile-inline {
+    display: inline-block;
+}
+
+.hidden-tablet-inline {
+    display: inline-block;
+}
+
+.hidden-desktop-inline {
+    display: inline-block;
+}
+
+@media (max-width: 575px) {
+    .hidden-mobile-inline {
+        display: none !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .hidden-tablet-inline {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .hidden-desktop-inline {
+        display: none !important;
+    }
 }

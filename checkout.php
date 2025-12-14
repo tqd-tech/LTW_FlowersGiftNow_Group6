@@ -8,7 +8,7 @@ if (!$cart) {
     $empty_cart = true;
 } else {
     $empty_cart = false;
-    
+
     // Lấy sản phẩm trong giỏ
     $placeholders = implode(',', array_fill(0, count($cart), '?'));
     $stmt = $pdo->prepare("SELECT * FROM products WHERE id IN ($placeholders)");
@@ -70,6 +70,7 @@ if (!$cart) {
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -156,7 +157,7 @@ if (!$cart) {
             padding: 0.75rem 1.25rem;
             background: white;
             border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .step.completed {
@@ -181,9 +182,19 @@ if (!$cart) {
             background: var(--gray-100);
         }
 
+        @media (max-width: 575px) {
+            .hidden-mobile {
+                display: none !important;
+            }
+
+            .visible-mobile {
+                display: block !important;
+            }
+        }
+
         .step.completed .step-number,
         .step.active .step-number {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.25);
         }
 
         .step-connector {
@@ -209,7 +220,7 @@ if (!$cart) {
         .checkout-card {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
 
@@ -548,188 +559,190 @@ if (!$cart) {
         }
     </style>
 </head>
+
 <body>
 
-<div class="checkout-container">
-    <?php if ($empty_cart): ?>
-        <!-- Empty Cart State -->
-        <div class="checkout-card">
-            <div class="empty-cart">
-                <div class="empty-cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <h2>Giỏ hàng trống!</h2>
-                <p>Bạn chưa có sản phẩm nào trong giỏ hàng</p>
-                <a href="index.php" class="btn-shop">
-                    <i class="fas fa-arrow-left"></i>
-                    Quay lại mua hàng
-                </a>
-            </div>
-        </div>
-    <?php else: ?>
-        <!-- Header -->
-        <div class="checkout-header">
-            <h1><i class="fas fa-credit-card"></i> Thanh toán đơn hàng</h1>
-            <p>Vui lòng kiểm tra thông tin và xác nhận đặt hàng</p>
-        </div>
-
-        <!-- Progress Steps -->
-        <div class="checkout-steps">
-            <div class="step completed">
-                <span class="step-number"><i class="fas fa-check"></i></span>
-                <span>Giỏ hàng</span>
-            </div>
-            <div class="step-connector"></div>
-            <div class="step active">
-                <span class="step-number">2</span>
-                <span>Thanh toán</span>
-            </div>
-            <div class="step-connector"></div>
-            <div class="step">
-                <span class="step-number">3</span>
-                <span>Hoàn tất</span>
-            </div>
-        </div>
-
-        <div class="checkout-grid">
-            <!-- Left Column - Form -->
-            <div>
-                <!-- Products Card -->
-                <div class="checkout-card" style="margin-bottom: 1.5rem;">
-                    <div class="card-header">
-                        <i class="fas fa-shopping-bag"></i>
-                        <h3>Sản phẩm đặt mua (<?= count($products) ?>)</h3>
+    <div class="checkout-container">
+        <?php if ($empty_cart): ?>
+            <!-- Empty Cart State -->
+            <div class="checkout-card">
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <div class="card-body">
-                        <?php foreach ($products as $p): ?>
-                            <div class="product-item">
-                                <img src="assets/images/<?= htmlspecialchars($p['image']) ?>" 
-                                     alt="<?= htmlspecialchars($p['name']) ?>" 
-                                     class="product-image"
-                                     onerror="this.src='assets/images/flowers/default.jpg'">
-                                <div class="product-info">
-                                    <div class="product-name"><?= htmlspecialchars($p['name']) ?></div>
-                                    <div class="product-price"><?= number_format($p['price'], 0, ',', '.') ?>đ</div>
+                    <h2>Giỏ hàng trống!</h2>
+                    <p>Bạn chưa có sản phẩm nào trong giỏ hàng</p>
+                    <a href="index.php" class="btn-shop">
+                        <i class="fas fa-arrow-left"></i>
+                        Quay lại mua hàng
+                    </a>
+                </div>
+            </div>
+        <?php else: ?>
+            <!-- Header -->
+            <div class="checkout-header">
+                <h1><i class="fas fa-credit-card"></i> Thanh toán đơn hàng</h1>
+                <p>Vui lòng kiểm tra thông tin và xác nhận đặt hàng</p>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="checkout-steps">
+                <div class="step completed">
+                    <span class="step-number"><i class="fas fa-check"></i></span>
+                    <span>Giỏ hàng</span>
+                </div>
+                <div class="step-connector hidden-mobile"></div>
+                <div class="step active">
+                    <span class="step-number">2</span>
+                    <span>Thanh toán</span>
+                </div>
+                <div class="step-connector hidden-mobile"></div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <span>Hoàn tất</span>
+                </div>
+            </div>
+
+            <div class="checkout-grid">
+                <!-- Left Column - Form -->
+                <div>
+                    <!-- Products Card -->
+                    <div class="checkout-card" style="margin-bottom: 1.5rem;">
+                        <div class="card-header">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h3>Sản phẩm đặt mua (<?= count($products) ?>)</h3>
+                        </div>
+                        <div class="card-body">
+                            <?php foreach ($products as $p): ?>
+                                <div class="product-item">
+                                    <img src="assets/images/<?= htmlspecialchars($p['image']) ?>"
+                                        alt="<?= htmlspecialchars($p['name']) ?>"
+                                        class="product-image"
+                                        onerror="this.src='assets/images/flowers/default.jpg'">
+                                    <div class="product-info">
+                                        <div class="product-name"><?= htmlspecialchars($p['name']) ?></div>
+                                        <div class="product-price"><?= number_format($p['price'], 0, ',', '.') ?>đ</div>
+                                    </div>
+                                    <span class="product-qty">x<?= $cart[$p['id']] ?></span>
+                                    <div class="product-total"><?= number_format($p['price'] * $cart[$p['id']], 0, ',', '.') ?>đ</div>
                                 </div>
-                                <span class="product-qty">x<?= $cart[$p['id']] ?></span>
-                                <div class="product-total"><?= number_format($p['price'] * $cart[$p['id']], 0, ',', '.') ?>đ</div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Shipping Form Card -->
-                <div class="checkout-card">
-                    <div class="card-header">
-                        <i class="fas fa-truck"></i>
-                        <h3>Thông tin giao hàng</h3>
-                    </div>
-                    <div class="card-body">
-                        <?php if (!empty($error)): ?>
-                            <div class="alert-error">
-                                <i class="fas fa-exclamation-circle"></i>
-                                <span><?= $error ?></span>
+                    <!-- Shipping Form Card -->
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <i class="fas fa-truck"></i>
+                            <h3>Thông tin giao hàng</h3>
+                        </div>
+                        <div class="card-body">
+                            <?php if (!empty($error)): ?>
+                                <div class="alert-error">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span><?= $error ?></span>
+                                </div>
+                            <?php endif; ?>
+
+                            <form method="post" id="checkout-form">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-user"></i>Họ và tên người nhận
+                                    </label>
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="Nhập họ và tên đầy đủ" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-phone"></i>Số điện thoại
+                                    </label>
+                                    <input type="tel" name="phone" class="form-control"
+                                        placeholder="Nhập số điện thoại liên hệ" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-map-marker-alt"></i>Địa chỉ giao hàng
+                                    </label>
+                                    <textarea name="address" class="form-control"
+                                        placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố" required></textarea>
+                                </div>
+
+                                <div class="btn-group">
+                                    <a href="cart.php" class="btn btn-back">
+                                        <i class="fas fa-arrow-left"></i>
+                                        Quay lại
+                                    </a>
+                                    <button type="submit" class="btn btn-submit">
+                                        <i class="fas fa-check-circle"></i>
+                                        Xác nhận đặt hàng
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div class="security-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Thông tin của bạn được bảo mật an toàn</span>
                             </div>
-                        <?php endif; ?>
-
-                        <form method="post" id="checkout-form">
-                            <div class="form-group">
-                                <label class="form-label">
-                                    <i class="fas fa-user"></i>Họ và tên người nhận
-                                </label>
-                                <input type="text" name="name" class="form-control" 
-                                       placeholder="Nhập họ và tên đầy đủ" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">
-                                    <i class="fas fa-phone"></i>Số điện thoại
-                                </label>
-                                <input type="tel" name="phone" class="form-control" 
-                                       placeholder="Nhập số điện thoại liên hệ" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">
-                                    <i class="fas fa-map-marker-alt"></i>Địa chỉ giao hàng
-                                </label>
-                                <textarea name="address" class="form-control" 
-                                          placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố" required></textarea>
-                            </div>
-
-                            <div class="btn-group">
-                                <a href="cart.php" class="btn btn-back">
-                                    <i class="fas fa-arrow-left"></i>
-                                    Quay lại
-                                </a>
-                                <button type="submit" class="btn btn-submit">
-                                    <i class="fas fa-check-circle"></i>
-                                    Xác nhận đặt hàng
-                                </button>
-                            </div>
-                        </form>
-
-                        <div class="security-badge">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Thông tin của bạn được bảo mật an toàn</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Right Column - Order Summary -->
-            <div>
-                <div class="checkout-card order-summary-card">
-                    <div class="card-header">
-                        <i class="fas fa-receipt"></i>
-                        <h3>Tóm tắt đơn hàng</h3>
-                    </div>
-                    <div class="card-body">
-                        <?php if ($coupon_discount > 0): ?>
-                            <div class="coupon-badge">
-                                <i class="fas fa-ticket-alt"></i>
-                                <span>Mã giảm giá: <?= htmlspecialchars($coupon_code) ?></span>
-                            </div>
-                        <?php endif; ?>
-
-                        <div class="summary-row">
-                            <span class="summary-label">Tạm tính (<?= array_sum($cart) ?> sản phẩm)</span>
-                            <span class="summary-value"><?= number_format($subtotal, 0, ',', '.') ?>đ</span>
+                <!-- Right Column - Order Summary -->
+                <div>
+                    <div class="checkout-card order-summary-card">
+                        <div class="card-header">
+                            <i class="fas fa-receipt"></i>
+                            <h3>Tóm tắt đơn hàng</h3>
                         </div>
+                        <div class="card-body">
+                            <?php if ($coupon_discount > 0): ?>
+                                <div class="coupon-badge">
+                                    <i class="fas fa-ticket-alt"></i>
+                                    <span>Mã giảm giá: <?= htmlspecialchars($coupon_code) ?></span>
+                                </div>
+                            <?php endif; ?>
 
-                        <?php if ($coupon_discount > 0): ?>
-                            <div class="summary-row discount">
-                                <span class="summary-label">Giảm giá</span>
-                                <span class="summary-value">-<?= number_format($coupon_discount, 0, ',', '.') ?>đ</span>
+                            <div class="summary-row">
+                                <span class="summary-label">Tạm tính (<?= array_sum($cart) ?> sản phẩm)</span>
+                                <span class="summary-value"><?= number_format($subtotal, 0, ',', '.') ?>đ</span>
                             </div>
-                        <?php endif; ?>
 
-                        <div class="summary-row shipping">
-                            <span class="summary-label">Phí vận chuyển</span>
-                            <span class="summary-value <?= $shipping == 0 ? 'free' : '' ?>">
-                                <?= $shipping == 0 ? 'Miễn phí' : number_format($shipping, 0, ',', '.') . 'đ' ?>
-                            </span>
-                        </div>
+                            <?php if ($coupon_discount > 0): ?>
+                                <div class="summary-row discount">
+                                    <span class="summary-label">Giảm giá</span>
+                                    <span class="summary-value">-<?= number_format($coupon_discount, 0, ',', '.') ?>đ</span>
+                                </div>
+                            <?php endif; ?>
 
-                        <?php if ($shipping > 0): ?>
-                            <div style="background: #FEF3C7; padding: 0.75rem; border-radius: 8px; margin: 0.5rem 0;">
-                                <small style="color: #92400E;">
-                                    <i class="fas fa-info-circle"></i>
-                                    Miễn phí ship cho đơn từ 500.000đ
-                                </small>
+                            <div class="summary-row shipping">
+                                <span class="summary-label">Phí vận chuyển</span>
+                                <span class="summary-value <?= $shipping == 0 ? 'free' : '' ?>">
+                                    <?= $shipping == 0 ? 'Miễn phí' : number_format($shipping, 0, ',', '.') . 'đ' ?>
+                                </span>
                             </div>
-                        <?php endif; ?>
 
-                        <div class="summary-row total">
-                            <span class="summary-label">Tổng thanh toán</span>
-                            <span class="summary-value"><?= number_format($total, 0, ',', '.') ?>đ</span>
+                            <?php if ($shipping > 0): ?>
+                                <div style="background: #FEF3C7; padding: 0.75rem; border-radius: 8px; margin: 0.5rem 0;">
+                                    <small style="color: #92400E;">
+                                        <i class="fas fa-info-circle"></i>
+                                        Miễn phí ship cho đơn từ 500.000đ
+                                    </small>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="summary-row total">
+                                <span class="summary-label">Tổng thanh toán</span>
+                                <span class="summary-value"><?= number_format($total, 0, ',', '.') ?>đ</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php endif; ?>
-</div>
+        <?php endif; ?>
+    </div>
 
 </body>
+
 </html>

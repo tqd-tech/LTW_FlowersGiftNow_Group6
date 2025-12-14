@@ -185,7 +185,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 
 		.sub-menu-m li a {
 			font-size: 16px !important;
-			color: #ccc !important;
+			color: #000000ff !important;
 		}
 
 		/* Arrow styling */
@@ -193,6 +193,8 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 			float: right;
 			color: white;
 			transition: transform 0.3s ease;
+			margin-right: 20px;
+			margin-top: 30px;
 		}
 
 		.arrow-main-menu-m.turn-arrow-main-menu-m {
@@ -231,23 +233,23 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 		<!-- Topbar -->
 		<div style="background: var(--gray-800); color: white; padding: 0.5rem 0; font-size: 0.875rem;">
 			<div class="container-modern" style="display: flex; justify-content: space-between; align-items: center;">
-				<div class="fw-bold">
+				<div class="fw-bold d-flex align-items-center">
 					<i class="fa fa-truck" style="margin-right: 0.5rem;"></i>
-					Miễn phí vận chuyển cho đơn từ 500k
+					<span class="hidden-mobile" style="margin-right: 0.3rem;">Miễn phí vận chuyển </span> <span class="hidden-desktop hidden-tablet" style="margin-right: 0.3rem;">Freeship</span> cho đơn từ 500k
 				</div>
 				<div style="display: flex; gap: 1.5rem; align-items: center;">
 					<?php if (isset($_SESSION['user_id'])): ?>
 						<span style="display: flex; align-items: center; gap: 0.8rem; color: #ffb6edff; font-weight: 900;">
 							<img src="./assets/images/icons/user.png" width="20" height="20" alt="">
-							<div>
-								Xin chào,<strong style="margin-left: 3px !important;"><?= htmlspecialchars($_SESSION['user_name']) ?></strong>
+							<div class="d-flex">
+								<span class="hidden-mobile">Xin chào,</span><strong style="margin-left: 3px !important;"><?= htmlspecialchars($_SESSION['user_name']) ?></strong>
 							</div>
 						</span>
 						<?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
 							<div class="dropdown">
 								<a class="text-decoration-none" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
 									<img src="./assets/images/icons/admin-color.png" width="20" height="20" alt="">
-									<span class="fw-bold">Quản trị hệ thống</span>
+									<span class="fw-bold hidden-mobile">Quản trị hệ thống</span>
 									<i class="fa fa-angle-down"></i>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end  fw-bold" aria-labelledby="adminDropdown">
@@ -260,21 +262,21 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 							</div>
 						<?php else: ?>
 							<a href="user/orders.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
-								<img src="./assets/images/icons/order.png" width="20" height="20" alt=""> Đơn hàng
+								<img src="./assets/images/icons/order.png" width="20" height="20" alt=""> <span class="hidden-mobile">Đơn hàng</span>
 							</a>
 						<?php endif; ?>
 						<a href="user/logout.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
-							<img src="./assets/images/icons/logout-color.png" width="20" height="20" alt=""> Đăng xuất
+							<img src="./assets/images/icons/logout-color.png" width="20" height="20" alt=""> <span class="hidden-mobile">Đăng xuất</span>
 						</a>
 					<?php else: ?>
 						<a href="user/orders.php" class="text-decoration-none fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
-							<img src="./assets/images/icons/search-cart.png" width="20" height="20" alt=""> Tra cứu đơn hàng
+							<img src="./assets/images/icons/search-cart.png" width="20" height="20" alt=""> <span class="hidden-mobile">Tra cứu đơn hàng</span>
 						</a>
 						<a href="user/login.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
-							<img src="./assets/images/icons/sign-in-pink.png" width="20" height="20" alt=""> Đăng nhập
+							<img src="./assets/images/icons/sign-in-pink.png" width="20" height="20" alt=""> <span class="hidden-mobile">Đăng nhập</span>
 						</a>
 						<a href="user/register.php" class="text-decoration-none  fw-bold" style="color: white; display: flex; align-items: center; gap: 0.5rem;">
-							<img src="./assets/images/icons/sign-up-color.png" width="20" height="20" alt=""> Đăng ký
+							<img src="./assets/images/icons/sign-up-color.png" width="20" height="20" alt=""> <span class="hidden-mobile">Đăng ký</span>
 						</a>
 					<?php endif; ?>
 				</div>
@@ -286,8 +288,9 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 			<div class="wrap-menu-desktop">
 				<div style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
 					<!-- Logo -->
-					<a href="index.php" class="logo" style="display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none;">
+					<a href="index.php" class="logo" style="display: flex; align-items: center; justify-content: center; gap: 0.25rem; font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none;">
 						<!-- <img src="assets/images/icons/logo-01.png" alt="FlowerGiftNow" style="height: 50px;"> -->
+						<img src="./assets/images/LOGO.png" alt="FlowerGiftNow" style="height: 50px;">
 						<span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">FlowerGiftNow</span>
 					</a>
 
@@ -327,8 +330,11 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
-			<div class="logo-mobile">
-				<a href="index.php"><img src="assets/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			<div class="logo-mobile d-flex align-items-center justify-content-center" style=" font-size: 1.25rem; font-weight: 800; color: var(--primary);">
+				<a href="index.php"> <img src="./assets/images/LOGO.png" alt="FlowerGiftNow" style="height: 50px;">
+				<span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">FlowerGiftNow</span>
+
+				</a>
 			</div>
 
 			<!-- Icon header -->
@@ -361,7 +367,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			<ul class="topbar-mobile ">
+			<!-- <ul class="topbar-mobile ">
 				<li>
 					<div class="left-top-bar">
 						Miễn phí vẫn chuyển cho đơn từ 500k
@@ -398,7 +404,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 						<?php endif; ?>
 					</div>
 				</li>
-			</ul>
+			</ul> -->
 
 			<ul class="main-menu-m">
 				<li>
