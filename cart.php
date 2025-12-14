@@ -137,6 +137,172 @@ $products = $stmt->fetchAll();
             box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
             border: 1px solid rgba(236, 72, 153, 0.1);
         }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        /* Mobile Layout - Card Style */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem !important;
+            }
+            .card-modern {
+                padding: 1rem !important;
+            }
+            .page-header h2 {
+                font-size: 1.5rem;
+            }
+            .page-header p {
+                font-size: 0.875rem;
+            }
+            
+            /* Hide table header on mobile */
+            .table thead {
+                display: none;
+            }
+            
+            /* Transform table rows into cards */
+            .table tbody tr {
+                display: block;
+                background: var(--gray-50);
+                border-radius: var(--radius-lg);
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border: 1px solid var(--gray-200) !important;
+            }
+            
+            .table tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 0 !important;
+                border: none !important;
+                text-align: right;
+            }
+            
+            .table tbody td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--text-primary);
+                text-align: left;
+                flex-shrink: 0;
+                margin-right: 1rem;
+            }
+            
+            /* Product cell - special layout */
+            .table tbody td:first-child {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+                padding-bottom: 0.75rem !important;
+                border-bottom: 1px solid var(--gray-200) !important;
+                margin-bottom: 0.5rem;
+            }
+            
+            .table tbody td:first-child::before {
+                display: none;
+            }
+            
+            .table tbody td:first-child > div {
+                width: 100%;
+            }
+            
+            .product-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            /* Quantity input */
+            .qty-input {
+                width: 60px !important;
+            }
+            
+            /* Footer rows */
+            .table tfoot tr {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.75rem 0;
+            }
+            
+            .table tfoot td {
+                padding: 0 !important;
+            }
+            
+            .table tfoot td[colspan="3"] {
+                text-align: left !important;
+            }
+            
+            .table tfoot td:last-child:empty {
+                display: none;
+            }
+            
+            /* Action buttons */
+            .cart-actions {
+                flex-direction: column;
+            }
+            
+            .cart-actions a {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* Coupon section */
+            .coupon-form {
+                flex-direction: column;
+            }
+            
+            .coupon-form input {
+                width: 100%;
+            }
+            
+            .coupon-form button {
+                width: 100%;
+            }
+            
+            .alert-modern {
+                padding: 1rem !important;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* Tablet adjustments */
+        @media (min-width: 769px) and (max-width: 991px) {
+            .product-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .table th, .table td {
+                padding: 0.75rem !important;
+                font-size: 0.875rem;
+            }
+            
+            .qty-input {
+                width: 60px !important;
+            }
+        }
+        
+        /* Small phone adjustments */
+        @media (max-width: 375px) {
+            .page-header h2 {
+                font-size: 1.25rem;
+            }
+            
+            .product-img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .btn-modern {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            
+            .btn-lg {
+                padding: 0.625rem 1rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -169,7 +335,7 @@ $products = $stmt->fetchAll();
                             $subtotal = $qty * $p['price'];
                         ?>
                             <tr data-id="<?= $p['id'] ?>" data-price="<?= $p['price'] ?>" style="border-bottom: 1px solid var(--gray-200);">
-                                <td style="padding: 1rem;">
+                                <td data-label="Sản phẩm" style="padding: 1rem;">
                                     <div style="display: flex; align-items: center; gap: 1rem;">
                                         <img src="assets/images/<?= htmlspecialchars($p['image']) ?>"
                                             alt="<?= htmlspecialchars($p['name']) ?>"
@@ -179,10 +345,10 @@ $products = $stmt->fetchAll();
                                         </span>
                                     </div>
                                 </td>
-                                <td class="unit-price" style="padding: 1rem; text-align: center; color: var(--text-secondary);">
+                                <td data-label="Đơn giá" class="unit-price" style="padding: 1rem; text-align: center; color: var(--text-secondary);">
                                     <?= number_format($p['price'], 0, ',', '.') ?>₫
                                 </td>
-                                <td style="padding: 1rem;">
+                                <td data-label="Số lượng" style="padding: 1rem;">
                                     <form action="update_cart.php" method="post" style="display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
                                         <input type="hidden" name="id" value="<?= $p['id'] ?>">
                                         <input
@@ -197,10 +363,10 @@ $products = $stmt->fetchAll();
                                         </button>
                                     </form>
                                 </td>
-                                <td class="subtotal" style="padding: 1rem; text-align: right; font-weight: 700; color: var(--primary);">
+                                <td data-label="Thành tiền" class="subtotal" style="padding: 1rem; text-align: right; font-weight: 700; color: var(--primary);">
                                     <?= number_format($subtotal, 0, ',', '.') ?>₫
                                 </td>
-                                <td style="padding: 1rem; text-align: center;">
+                                <td data-label="Xóa" style="padding: 1rem; text-align: center;">
                                     <a href="remove_from_cart.php?id=<?= $p['id'] ?>"
                                         class="btn-modern btn-danger btn-sm"
                                         onclick="return confirm('Xóa sản phẩm này khỏi giỏ hàng?')">
@@ -212,8 +378,8 @@ $products = $stmt->fetchAll();
                     </tbody>
                     <tfoot style="background: var(--gray-50);">
                         <tr style="border-top: 2px solid var(--gray-200);">
-                            <td colspan="3" style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Tạm tính:</td>
-                            <td id="subtotal-cell" style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);"><?= number_format(array_sum(array_map(fn($p) => $p['price'] * $cart[$p['id']], $products)), 0, ',', '.') ?>₫</td>
+                            <td colspan="3" style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary); background: none; border: none;">Tạm tính:</td>
+                            <td id="subtotal-cell" style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary); background: none; border: none;"><?= number_format(array_sum(array_map(fn($p) => $p['price'] * $cart[$p['id']], $products)), 0, ',', '.') ?>₫</td>
                             <td></td>
                         </tr>
                         <?php if (!empty($_SESSION['coupon'])):
@@ -230,13 +396,13 @@ $products = $stmt->fetchAll();
                             </tr>
                         <?php endif; ?>
                         <tr>
-                            <td colspan="3" style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary);">Phí vận chuyển:</td>
-                            <td id="shipping-cell" style="padding: 1rem; text-align: right; font-weight: 600;"></td>
+                            <td colspan="3" style="padding: 1rem; text-align: right; font-weight: 600; color: var(--text-primary); background: none; border: none;">Phí vận chuyển:</td>
+                            <td id="shipping-cell" style="padding: 1rem; text-align: right; font-weight: 600; background: none; border: none;"></td>
                             <td></td>
                         </tr>
                         <tr style="background: var(--gray-100); border-top: 2px solid var(--gray-700);">
-                            <td colspan="3" style="padding: 1.25rem; text-align: right; font-weight: 700; color: var(--text-primary); font-size: 1.1rem;">Tổng cộng:</td>
-                            <td id="grand-total-cell" style="padding: 1.25rem; text-align: right; font-weight: 700; color: var(--primary); font-size: 1.25rem;"></td>
+                            <td colspan="3" style="padding: 1.25rem; text-align: right; font-weight: 700; color: var(--text-primary); font-size: 1.1rem; background: none; border: none;">Tổng cộng:</td>
+                            <td id="grand-total-cell" style="padding: 1.25rem; text-align: right; font-weight: 700; color: var(--primary); font-size: 1.25rem; background: none; border: none;"></td>
                             <td></td>
                         </tr>
                     </tfoot>
@@ -264,12 +430,12 @@ $products = $stmt->fetchAll();
                             </form>
                         </div>
                     <?php else: ?>
-                        <form method="post" action="apply_coupon.php" style="max-width: 400px; margin: 0 auto 1rem;">
-                            <div style="display: flex; gap: 0.5rem;">
+                        <form method="post" action="apply_coupon.php" class="coupon-form" style="max-width: 400px; margin: 0 auto 1rem;">
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                                 <input
                                     type="text"
                                     name="coupon_code"
-                                    style="flex: 1; padding: 0.75rem 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-lg); transition: all 0.3s ease;"
+                                    style="flex: 1; min-width: 200px; padding: 0.75rem 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-lg); transition: all 0.3s ease;"
                                     placeholder="Nhập mã giảm giá"
                                     onfocus="this.style.borderColor='var(--primary)'"
                                     onblur="this.style.borderColor='var(--gray-200)'"
@@ -290,7 +456,7 @@ $products = $stmt->fetchAll();
                 </div>
 
 
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--gray-200); gap: 1rem; flex-wrap: wrap;">
+                <div class="cart-actions" style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--gray-200); gap: 1rem; flex-wrap: wrap;">
                     <a href="index.php" class="btn-modern btn-ghost">
                         <i class="zmdi zmdi-arrow-left"></i> Tiếp tục mua sắm
                     </a>

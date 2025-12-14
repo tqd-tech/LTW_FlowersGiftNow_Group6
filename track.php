@@ -34,6 +34,7 @@ $statusLabel = $statusLabels[$status] ?? $status;
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,13 +104,27 @@ $statusLabel = $statusLabels[$status] ?? $status;
         }
 
         @keyframes scaleIn {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4); }
-            50% { box-shadow: 0 10px 60px rgba(16, 185, 129, 0.6); }
+
+            0%,
+            100% {
+                box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 10px 60px rgba(16, 185, 129, 0.6);
+            }
         }
 
         .success-header h1 {
@@ -141,7 +156,7 @@ $statusLabel = $statusLabels[$status] ?? $status;
             padding: 0.6rem 1rem;
             background: white;
             border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             font-size: 0.9rem;
         }
 
@@ -163,7 +178,7 @@ $statusLabel = $statusLabels[$status] ?? $status;
         }
 
         .step.completed .step-number {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.25);
         }
 
         .step-connector {
@@ -176,7 +191,7 @@ $statusLabel = $statusLabels[$status] ?? $status;
         .track-card {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             margin-bottom: 1.5rem;
         }
@@ -207,7 +222,7 @@ $statusLabel = $statusLabels[$status] ?? $status;
         }
 
         .order-id-badge {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -302,6 +317,16 @@ $statusLabel = $statusLabels[$status] ?? $status;
         .status-badge.cancelled {
             background: #FEE2E2;
             color: #991B1B;
+        }
+
+        @media (max-width: 575px) {
+            .hidden-mobile {
+                display: none !important;
+            }
+
+            .visible-mobile {
+                display: block !important;
+            }
         }
 
         /* Product Items */
@@ -510,187 +535,189 @@ $statusLabel = $statusLabels[$status] ?? $status;
         }
     </style>
 </head>
+
 <body>
 
-<div class="track-container">
-    <?php if (!$order): ?>
-        <!-- Not Found State -->
-        <div class="track-card">
-            <div class="not-found">
-                <div class="not-found-icon">
-                    <i class="fas fa-search"></i>
+    <div class="track-container">
+        <?php if (!$order): ?>
+            <!-- Not Found State -->
+            <div class="track-card">
+                <div class="not-found">
+                    <div class="not-found-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2>Không tìm thấy đơn hàng</h2>
+                    <p>Không có đơn hàng gần đây hoặc đơn hàng không tồn tại</p>
+                    <a href="index.php" class="btn btn-primary">
+                        <i class="fas fa-home"></i>
+                        Về trang chủ
+                    </a>
                 </div>
-                <h2>Không tìm thấy đơn hàng</h2>
-                <p>Không có đơn hàng gần đây hoặc đơn hàng không tồn tại</p>
-                <a href="index.php" class="btn btn-primary">
-                    <i class="fas fa-home"></i>
-                    Về trang chủ
-                </a>
             </div>
-        </div>
-    <?php else: ?>
-        <!-- Success Header -->
-        <div class="success-header">
-            <div class="success-icon">
-                <i class="fas fa-check"></i>
-            </div>
-            <h1>Đặt hàng thành công!</h1>
-            <p>Cảm ơn bạn đã đặt hàng. Đơn hàng của bạn đang được xử lý.</p>
-        </div>
-
-        <!-- Progress Steps -->
-        <div class="checkout-steps">
-            <div class="step completed">
-                <span class="step-number"><i class="fas fa-check"></i></span>
-                <span>Giỏ hàng</span>
-            </div>
-            <div class="step-connector"></div>
-            <div class="step completed">
-                <span class="step-number"><i class="fas fa-check"></i></span>
-                <span>Thanh toán</span>
-            </div>
-            <div class="step-connector"></div>
-            <div class="step completed">
-                <span class="step-number"><i class="fas fa-check"></i></span>
-                <span>Hoàn tất</span>
-            </div>
-        </div>
-
-        <!-- Order Details Card -->
-        <div class="track-card">
-            <div class="card-header">
-                <div class="card-header-left">
-                    <i class="fas fa-file-invoice"></i>
-                    <h3>Chi tiết đơn hàng</h3>
+        <?php else: ?>
+            <!-- Success Header -->
+            <div class="success-header">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
                 </div>
-                <span class="order-id-badge">#<?= $order_id ?></span>
+                <h1>Đặt hàng thành công!</h1>
+                <p>Cảm ơn bạn đã đặt hàng. Đơn hàng của bạn đang được xử lý.</p>
             </div>
-            <div class="card-body">
-                <div class="order-info-grid">
-                    <div class="info-section">
-                        <h4><i class="fas fa-info-circle"></i> Thông tin đơn hàng</h4>
-                        <div class="info-item">
-                            <div>
-                                <div class="label">Ngày đặt hàng</div>
-                                <div class="value"><?= date('d/m/Y - H:i', strtotime($order['order_date'])) ?></div>
+
+            <!-- Progress Steps -->
+            <div class="checkout-steps">
+                <div class="step completed">
+                    <span class="step-number"><i class="fas fa-check"></i></span>
+                    <span>Giỏ hàng</span>
+                </div>
+                <div class="step-connector hidden-mobile"></div>
+                <div class="step completed">
+                    <span class="step-number"><i class="fas fa-check"></i></span>
+                    <span>Thanh toán</span>
+                </div>
+                <div class="step-connector hidden-mobile"></div>
+                <div class="step completed">
+                    <span class="step-number"><i class="fas fa-check"></i></span>
+                    <span>Hoàn tất</span>
+                </div>
+            </div>
+
+            <!-- Order Details Card -->
+            <div class="track-card">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <i class="fas fa-file-invoice"></i>
+                        <h3>Chi tiết đơn hàng</h3>
+                    </div>
+                    <span class="order-id-badge">#<?= $order_id ?></span>
+                </div>
+                <div class="card-body">
+                    <div class="order-info-grid">
+                        <div class="info-section">
+                            <h4><i class="fas fa-info-circle"></i> Thông tin đơn hàng</h4>
+                            <div class="info-item">
+                                <div>
+                                    <div class="label">Ngày đặt hàng</div>
+                                    <div class="value"><?= date('d/m/Y - H:i', strtotime($order['order_date'])) ?></div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div>
+                                    <div class="label">Trạng thái</div>
+                                    <div class="value">
+                                        <span class="status-badge <?= $status ?>">
+                                            <?php if ($status === 'pending'): ?>
+                                                <i class="fas fa-clock"></i>
+                                            <?php elseif ($status === 'processing'): ?>
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                            <?php elseif ($status === 'completed'): ?>
+                                                <i class="fas fa-check-circle"></i>
+                                            <?php else: ?>
+                                                <i class="fas fa-times-circle"></i>
+                                            <?php endif; ?>
+                                            <?= $statusLabel ?>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="info-item">
-                            <div>
-                                <div class="label">Trạng thái</div>
-                                <div class="value">
-                                    <span class="status-badge <?= $status ?>">
-                                        <?php if ($status === 'pending'): ?>
-                                            <i class="fas fa-clock"></i>
-                                        <?php elseif ($status === 'processing'): ?>
-                                            <i class="fas fa-spinner fa-spin"></i>
-                                        <?php elseif ($status === 'completed'): ?>
-                                            <i class="fas fa-check-circle"></i>
-                                        <?php else: ?>
-                                            <i class="fas fa-times-circle"></i>
-                                        <?php endif; ?>
-                                        <?= $statusLabel ?>
-                                    </span>
+                        <div class="info-section">
+                            <h4><i class="fas fa-truck"></i> Thông tin giao hàng</h4>
+                            <div class="info-item">
+                                <div>
+                                    <div class="label">Người nhận</div>
+                                    <div class="value"><?= htmlspecialchars($order['customer_name']) ?></div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div>
+                                    <div class="label">Số điện thoại</div>
+                                    <div class="value"><?= htmlspecialchars($order['customer_phone']) ?></div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div>
+                                    <div class="label">Địa chỉ</div>
+                                    <div class="value"><?= nl2br(htmlspecialchars($order['customer_address'])) ?></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="info-section">
-                        <h4><i class="fas fa-truck"></i> Thông tin giao hàng</h4>
-                        <div class="info-item">
-                            <div>
-                                <div class="label">Người nhận</div>
-                                <div class="value"><?= htmlspecialchars($order['customer_name']) ?></div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div>
-                                <div class="label">Số điện thoại</div>
-                                <div class="value"><?= htmlspecialchars($order['customer_phone']) ?></div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div>
-                                <div class="label">Địa chỉ</div>
-                                <div class="value"><?= nl2br(htmlspecialchars($order['customer_address'])) ?></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Products Card -->
-        <div class="track-card">
-            <div class="card-header">
-                <div class="card-header-left">
-                    <i class="fas fa-shopping-bag"></i>
-                    <h3>Sản phẩm đã đặt (<?= count($items) ?>)</h3>
-                </div>
-            </div>
-            <div class="card-body">
-                <?php 
-                $subtotal = 0;
-                foreach ($items as $item): 
-                    $lineTotal = $item['quantity'] * $item['price'];
-                    $subtotal += $lineTotal;
-                ?>
-                    <div class="product-item">
-                        <img src="assets/images/<?= htmlspecialchars($item['image'] ?? 'flowers/default.jpg') ?>" 
-                             alt="<?= htmlspecialchars($item['name']) ?>" 
-                             class="product-image"
-                             onerror="this.src='assets/images/flowers/default.jpg'">
-                        <div class="product-info">
-                            <div class="product-name"><?= htmlspecialchars($item['name']) ?></div>
-                            <div class="product-price"><?= number_format($item['price'], 0, ',', '.') ?>đ</div>
-                        </div>
-                        <span class="product-qty">x<?= $item['quantity'] ?></span>
-                        <div class="product-total"><?= number_format($lineTotal, 0, ',', '.') ?>đ</div>
+            <!-- Products Card -->
+            <div class="track-card">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>Sản phẩm đã đặt (<?= count($items) ?>)</h3>
                     </div>
-                <?php endforeach; ?>
+                </div>
+                <div class="card-body">
+                    <?php
+                    $subtotal = 0;
+                    foreach ($items as $item):
+                        $lineTotal = $item['quantity'] * $item['price'];
+                        $subtotal += $lineTotal;
+                    ?>
+                        <div class="product-item">
+                            <img src="assets/images/<?= htmlspecialchars($item['image'] ?? 'flowers/default.jpg') ?>"
+                                alt="<?= htmlspecialchars($item['name']) ?>"
+                                class="product-image"
+                                onerror="this.src='assets/images/flowers/default.jpg'">
+                            <div class="product-info">
+                                <div class="product-name"><?= htmlspecialchars($item['name']) ?></div>
+                                <div class="product-price"><?= number_format($item['price'], 0, ',', '.') ?>đ</div>
+                            </div>
+                            <span class="product-qty">x<?= $item['quantity'] ?></span>
+                            <div class="product-total"><?= number_format($lineTotal, 0, ',', '.') ?>đ</div>
+                        </div>
+                    <?php endforeach; ?>
 
-                <div class="summary-divider"></div>
+                    <div class="summary-divider"></div>
 
-                <?php
+                    <?php
                     $shipping = ($subtotal >= 500000) ? 0 : 30000;
                     $total = $subtotal + $shipping;
-                ?>
+                    ?>
 
-                <div class="summary-row">
-                    <span class="label">Tạm tính</span>
-                    <span class="value"><?= number_format($subtotal, 0, ',', '.') ?>đ</span>
-                </div>
-                <div class="summary-row shipping">
-                    <span class="label">Phí vận chuyển</span>
-                    <span class="value <?= $shipping == 0 ? 'free' : '' ?>">
-                        <?= $shipping == 0 ? 'Miễn phí' : number_format($shipping, 0, ',', '.') . 'đ' ?>
-                    </span>
-                </div>
-                <div class="summary-row total">
-                    <span class="label">Tổng thanh toán</span>
-                    <span class="value"><?= number_format($order['total_price'], 0, ',', '.') ?>đ</span>
-                </div>
+                    <div class="summary-row">
+                        <span class="label">Tạm tính</span>
+                        <span class="value"><?= number_format($subtotal, 0, ',', '.') ?>đ</span>
+                    </div>
+                    <div class="summary-row shipping">
+                        <span class="label">Phí vận chuyển</span>
+                        <span class="value <?= $shipping == 0 ? 'free' : '' ?>">
+                            <?= $shipping == 0 ? 'Miễn phí' : number_format($shipping, 0, ',', '.') . 'đ' ?>
+                        </span>
+                    </div>
+                    <div class="summary-row total">
+                        <span class="label">Tổng thanh toán</span>
+                        <span class="value"><?= number_format($order['total_price'], 0, ',', '.') ?>đ</span>
+                    </div>
 
-                <div class="thank-you-box">
-                    <h4>🌸 Cảm ơn bạn đã tin tưởng!</h4>
-                    <p>Chúng tôi sẽ liên hệ với bạn sớm nhất để xác nhận đơn hàng.</p>
+                    <div class="thank-you-box">
+                        <h4>🌸 Cảm ơn bạn đã tin tưởng!</h4>
+                        <p>Chúng tôi sẽ liên hệ với bạn sớm nhất để xác nhận đơn hàng.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <a href="track_order.php" class="btn btn-outline">
-                <i class="fas fa-search"></i>
-                Tra cứu đơn hàng
-            </a>
-            <a href="index.php" class="btn btn-primary">
-                <i class="fas fa-shopping-bag"></i>
-                Tiếp tục mua sắm
-            </a>
-        </div>
-    <?php endif; ?>
-</div>
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="track_order.php" class="btn btn-outline">
+                    <i class="fas fa-search"></i>
+                    Tra cứu đơn hàng
+                </a>
+                <a href="index.php" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i>
+                    Tiếp tục mua sắm
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
 
 </body>
+
 </html>

@@ -49,10 +49,10 @@ $sort = $_GET['sort'] ?? '';
                 </p>
                 <div class="hero-modern-actions">
                     <a href="#products" class="btn-modern btn-primary btn-lg">
-                        <i class="fa fa-shopping-cart"></i> Mua sắm ngay
+                        <i class="fa fa-shopping-cart"></i> Mua ngay
                     </a>
                     <a href="#about" class="btn-modern btn btn-outline btn-lg">
-                        <i class="fa fa-info-circle"></i> Tìm hiểu thêm
+                        <i class="fa fa-info-circle"></i> Xem thêm
                     </a>
                 </div>
             </div>
