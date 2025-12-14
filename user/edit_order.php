@@ -123,7 +123,7 @@ $items = getOrderItems($pdo, $order_id);
                     <div style="margin-bottom: 2rem;">
                         <div class="section-header">
                             <h5 style="margin: 0; font-weight: 600; color: var(--text-primary);">
-                                <i class="zmdi zmdi-shopping-basket"></i> Sản phẩm trong đơn hàng
+                                <img src="../assets/images/icons/products.png" width="24" height="24" alt=""> Sản phẩm trong đơn hàng
                             </h5>
                         </div>
                         <div class="table-responsive">
@@ -177,7 +177,7 @@ $items = getOrderItems($pdo, $order_id);
                     <form method="post">
                         <div class="section-header">
                             <h5 style="margin: 0; font-weight: 600; color: var(--text-primary);">
-                                <i class="zmdi zmdi-truck"></i> Thông tin giao hàng
+                                <img src="../assets/images/icons/delivery-car.png" width="24" height="24" alt=""> Thông tin giao hàng
                             </h5>
                         </div>
                         

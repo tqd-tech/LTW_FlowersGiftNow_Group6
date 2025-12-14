@@ -72,7 +72,7 @@ $tags = !empty($product['tags']) ? explode(',', $product['tags']) : [];
                         
                         <!-- Category Badge -->
                         <?php if (!empty($tags)): ?>
-                            <span class="badge-modern badge-info" style="position: absolute; top: 0rem; left: 0rem; font-size: 0.875rem;">
+                            <span class="badge-modern badge-info" style="position: absolute; top: 1rem; left: 1rem; font-size: 0.875rem;">
                                 <?= htmlspecialchars(trim($tags[0])) ?>
                             </span>
                         <?php endif; ?>
@@ -100,7 +100,7 @@ $tags = !empty($product['tags']) ? explode(',', $product['tags']) : [];
                         </div>
 
                         <!-- Price -->
-                        <div style="background: linear-gradient(135deg, #fff0f5 0%, #fce7f3 100%); padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+                        <div style="background: linear-gradient(135deg, #fff0f5 0%, #fce7f3 100%); padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
                                 <span style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">
                                     <?= number_format($product['price'], 0, ',', '.') ?>₫
@@ -111,7 +111,7 @@ $tags = !empty($product['tags']) ? explode(',', $product['tags']) : [];
                                     </span>
                                 <?php endif; ?>
                             </div>
-                            <p style="margin: 0.5rem 0 0; color: var(--text-secondary); font-size: 0.875rem;">
+                            <p style=" color: var(--text-secondary); font-size: 0.875rem; margin: 0; font-weight: 700; ">
                                 <i class="fa fa-check-circle" style="color: var(--success);"></i>
                                 Còn hàng - Giao ngay trong 2-4 giờ
                             </p>

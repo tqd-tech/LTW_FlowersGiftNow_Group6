@@ -311,13 +311,13 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 						$cartCount = array_sum($cart);
 						?>
 						<a href="cart.php" class="modern-icon-btn">
-							<i class="zmdi zmdi-shopping-cart"></i>
+							<img src="./assets/images/icons/shopping-cart.png" width="20" height="20" alt="Giỏ hàng">
 							<?php if ($cartCount > 0): ?>
 								<span class="modern-badge"><?= $cartCount ?></span>
 							<?php endif; ?>
 						</a>
 						<button class="modern-icon-btn">
-							<i class="zmdi zmdi-favorite-outline"></i>
+							<img src="./assets/images/icons/love.png" width="20" height="20" alt="Tìm kiếm">
 						</button>
 					</div>
 				</div>
