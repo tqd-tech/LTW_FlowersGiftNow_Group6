@@ -36,13 +36,13 @@ $sort = $_GET['sort'] ?? '';
     <div class="container-modern" style="padding: 4rem 2rem;">
         <div class="hero-modern-content">
             <div class="animate-slide-up">
-                <span class="badge-modern badge-info" style="font-size: 0.875rem; margin-bottom: 1rem;">
+                <span class="badge-modern badge-info d-inline-block " style="font-size: 0.875rem; margin-bottom: 1rem;">
                     <i class="fa fa-star"></i>
                     Uy tín • Chất lượng • Giao nhanh
                 </span>
                 <h1 class="hero-modern-title">
                     Hoa Tươi & Quà Tặng<br>
-                    <span style="color: var(--primary);">Đẳng Cấp Việt Nam</span>
+                    <span style="color: var(--primary);">Giao Nhanh & Uy Tín</span>
                 </h1>
                 <p class="hero-modern-subtitle ">
                     Gửi yêu thương qua từng cánh hoa tươi thắm. Miễn phí vận chuyển đơn từ 500k.
@@ -205,7 +205,7 @@ $sort = $_GET['sort'] ?? '';
 
 
 <!-- Product -->
-<section id="products" style="padding: 3rem 0;">
+<section id="products" style="padding: 1rem 0;">
     <div class="container-modern">
         <!-- Section Header -->
         <div style="text-align: center; margin-bottom: 1rem; background: var(--bg-primary); padding: 1.8rem 2rem; border-radius: 8px; box-shadow: 0 4px 12px 5px rgba(0,0,0,0.1);">
@@ -223,101 +223,227 @@ $sort = $_GET['sort'] ?? '';
                 <!-- Category Filters -->
                 <div class="filter-modern-group">
                     <a href="index.php" class="filter-modern-chip <?= !isset($_GET['category']) ? 'active' : '' ?>">
-                        <i class="fa fa-th"></i> Tất cả
+                        <img src="./assets/images/icons/all.png" width="20" height="20" alt=""> Tất cả
                     </a>
                     <a href="index.php?category=flowers" class="filter-modern-chip <?= isset($_GET['category']) && $_GET['category'] === 'flowers' ? 'active' : '' ?>">
-                        <i class="zmdi zmdi-flower-alt"></i> Hoa tươi
+                        <img src="./assets/images/icons/flower-bouquet.png" width="20" height="20" alt=""> Hoa tươi
                     </a>
                     <a href="index.php?category=gifts" class="filter-modern-chip <?= isset($_GET['category']) && $_GET['category'] === 'gifts' ? 'active' : '' ?>">
-                        <i class="zmdi zmdi-card-giftcard"></i> Quà tặng
+                        <img src="./assets/images/icons/gift.png" width="20" height="20" alt=""> Quà tặng
                     </a>
                 </div>
 
                 <!-- Filter & Search Buttons -->
                 <div style="display: flex; gap: 0.5rem;">
                     <button class="btn-modern btn-ghost btn-sm js-show-filter">
-                        <i class="icon-filter zmdi zmdi-filter-list"></i>
-                        <i class="icon-close-filter zmdi zmdi-close dis-none"></i>
+                        <img src="./assets/images/icons/filter.png" alt="Filter Icon" width="20" height="20" style="margin-right: 0.25rem;" class="icon-filter">
+                        <img src="./assets/images/icons/close-black.png" alt="Clear Filter" width="20" height="20" style="margin-right: 0.25rem;" class="icon-close-filter dis-none">
                         Lọc
                     </button>
-                    <button class="btn-modern btn-ghost btn-sm js-show-search">
-                        <i class="icon-search zmdi zmdi-search"></i>
-                        <i class="icon-close-search zmdi zmdi-close dis-none"></i>
+                    <button class="btn-modern btn-ghost btn-sm js-show-search gap-0">
+                        <img src="./assets/images/icons/search.png" alt="Search Icon" width="20" height="20" style="margin-right: 0.25rem;" class="icon-search">
+                        <img src="./assets/images/icons/close-black.png" alt="Clear Search" width="20" height="20" style="margin-right: 0.25rem;" class="icon-close-search dis-none">
                         Tìm kiếm
                     </button>
                 </div>
             </div>
 
             <!-- Search product -->
-            <div class="dis-none panel-search w-full p-t-10 py-1	">
-                <div class="bor8 dis-flex p-l-15 m-b-20 rounded-4 shadow-lg position-relative">
-                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" onclick="performSearch()">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-
-                    <input id="search-input" class="mtext-107 cl2 size-114 plh2 p-r-15 rounded-4" type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="<?= htmlspecialchars($search) ?>">
-
-                    <?php if (!empty($search)): ?>
-                        <button class="position-absolute top-50 end-0 translate-middle-y bg-transparent border-0 p-2 me-2" onclick="clearSearch()" title="Xóa từ khóa">
-                            <i class="zmdi zmdi-close text-muted"></i>
+            <div class="dis-none panel-search w-full p-t-10 py-1">
+                <div class="search-panel-modern">
+                    <!-- Search Header -->
+                    <div class="search-header">
+                        <div class="search-header-left">
+                            <img src="./assets/images/icons/search.png" alt="Search Icon" width="20" height="20" style="margin-right: 0.25rem;">
+                            <span>Tìm kiếm sản phẩm</span>
+                        </div>
+                        <button onclick="clearSearch()" class="search-clear-btn">
+                            <i class="fa fa-times"></i> Xóa
                         </button>
-                    <?php endif; ?>
+                    </div>
+                    
+                    <!-- Search Input Area -->
+                    <div class="search-content">
+                        <div class="search-input-wrapper">
+                            <div class="search-icon">
+                                <i class="zmdi zmdi-search"></i>
+                            </div>
+                            <input id="search-input" 
+                                   type="text" 
+                                   name="search" 
+                                   class="search-input-modern" 
+                                   placeholder="Nhập tên hoa, quà tặng bạn muốn tìm..." 
+                                   value="<?= htmlspecialchars($search) ?>"
+                                   autocomplete="off">
+                            <button class="search-submit-btn" onclick="performSearch()">
+                                <i class="fa fa-search"></i> Tìm kiếm
+                            </button>
+                        </div>
+                        
+                        <!-- Quick Search Tags -->
+                        <div class="search-suggestions">
+                            <span class="search-suggestions-label">Gợi ý:</span>
+                            <a href="javascript:void(0)" onclick="quickSearch('Hoa hồng')" class="search-suggestion-tag">
+                                <i class="fa fa-fire"></i> Hoa hồng
+                            </a>
+                            <a href="javascript:void(0)" onclick="quickSearch('Quà tặng')" class="search-suggestion-tag">
+                                <i class="fa fa-gift"></i> Quà tặng
+                            </a>
+                            <a href="javascript:void(0)" onclick="quickSearch('Sinh nhật')" class="search-suggestion-tag">
+                                <i class="fa fa-birthday-cake"></i> Sinh nhật
+                            </a>
+                            <a href="javascript:void(0)" onclick="quickSearch('Hoa lan')" class="search-suggestion-tag">
+                                <i class="fa fa-leaf"></i> Hoa lan
+                            </a>
+                            <a href="javascript:void(0)" onclick="quickSearch('Valentine')" class="search-suggestion-tag">
+                                <i class="fa fa-heart"></i> Valentine
+                            </a>
+                        </div>
+
+                        <!-- Current Search Display -->
+                        <?php if (!empty($search)): ?>
+                        <div class="search-current">
+                            <span class="search-current-label">
+                                <i class="fa fa-search"></i> Đang tìm:
+                            </span>
+                            <span class="search-current-keyword"><?= htmlspecialchars($search) ?></span>
+                            <button onclick="clearSearch()" class="search-current-clear">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
 
             <!-- Filter -->
             <div class="dis-none panel-filter w-full p-t-10 m-t-10">
-                <div class="wrap-filter flex-w bg-white w-full p-lr-40 p-t-27 m-b-30 p-lr-15-sm rounded-4 shadow-lg">
-
-                    <!-- Clear All Filters Button -->
-                    <div class="w-full p-b-20 text-center ">
-                        <button onclick="clearAllFilters()" class="btn btn-danger ">
-                            <i class="fa fa-times"></i> Xóa tất cả bộ lọc
+                <div class="filter-panel-modern">
+                    <!-- Filter Header -->
+                    <div class="filter-header">
+                        <div class="filter-header-left">
+                            <i class="zmdi zmdi-filter-list"></i>
+                            <span>Bộ lọc sản phẩm</span>
+                        </div>
+                        <button onclick="clearAllFilters()" class="filter-clear-btn">
+                            <i class="fa fa-refresh"></i> Xóa tất cả
                         </button>
                     </div>
 
-                    <!-- Sắp xếp -->
-                    <div class="filter-col1 p-r-15 p-b-27">
-                        <div class="mtext-102 cl2 border-bottom py-1 fw-bold">Sắp xếp</div>
-                        <ul class="p-0">
-                            <li class="p-b-6 p-t-6"><a href="javascript:void(0)" onclick="toggleFilter('sort', '')" class="filter-link <?= empty($sort) ? 'active' : '' ?>" style="<?= empty($sort) ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Mặc định</a></li>
-                            <li class="p-b-6"><a href="javascript:void(0)" onclick="toggleFilter('sort', 'price_asc')" class="filter-link <?= $sort === 'price_asc' ? 'active' : '' ?>" style="<?= $sort === 'price_asc' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Giá tăng dần</a></li>
-                            <li class="p-b-6"><a href="javascript:void(0)" onclick="toggleFilter('sort', 'price_desc')" class="filter-link <?= $sort === 'price_desc' ? 'active' : '' ?>" style="<?= $sort === 'price_desc' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Giá giảm dần</a></li>
-                            <li class="p-b-6"><a href="javascript:void(0)" onclick="toggleFilter('sort', 'newest')" class="filter-link <?= $sort === 'newest' ? 'active' : '' ?>" style="<?= $sort === 'newest' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Mới nhất</a></li>
-                        </ul>
-                    </div>
+                    <!-- Filter Content -->
+                    <div class="filter-content">
+                        <!-- Sắp xếp -->
+                        <div class="filter-section">
+                            <div class="filter-section-title">
+                                <i class="fa fa-sort-amount-asc"></i> Sắp xếp
+                            </div>
+                            <div class="filter-options">
+                                <a href="javascript:void(0)" onclick="toggleFilter('sort', '')" class="filter-option <?= empty($sort) ? 'active' : '' ?>">
+                                    <i class="fa fa-circle-o"></i> Mặc định
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('sort', 'price_asc')" class="filter-option <?= $sort === 'price_asc' ? 'active' : '' ?>">
+                                    <i class="fa fa-arrow-up"></i> Giá tăng dần
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('sort', 'price_desc')" class="filter-option <?= $sort === 'price_desc' ? 'active' : '' ?>">
+                                    <i class="fa fa-arrow-down"></i> Giá giảm dần
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('sort', 'newest')" class="filter-option <?= $sort === 'newest' ? 'active' : '' ?>">
+                                    <i class="fa fa-clock-o"></i> Mới nhất
+                                </a>
+                            </div>
+                        </div>
 
-                    <!-- Khoảng giá -->
-                    <div class="filter-col2 p-r-15 p-b-27">
-                        <div class="mtext-102 cl2 border-bottom py-1 fw-bold">Khoảng giá</div>
-                        <ul class="p-0">
-                            <li class="p-b-6 p-t-6"><a href="javascript:void(0)" onclick="toggleFilter('price', '0-200')" class="filter-link <?= $price === '0-200' ? 'active' : '' ?>" style="<?= $price === '0-200' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Dưới 200k</a></li>
-                            <li class="p-b-6"><a href="javascript:void(0)" onclick="toggleFilter('price', '200-400')" class="filter-link <?= $price === '200-400' ? 'active' : '' ?>" style="<?= $price === '200-400' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Từ 200k - 400k</a></li>
-                            <li class="p-b-6"><a href="javascript:void(0)" onclick="toggleFilter('price', '500+')" class="filter-link <?= $price === '500+' ? 'active' : '' ?>" style="<?= $price === '500+' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Trên 500k</a></li>
-                        </ul>
-                    </div>
+                        <!-- Khoảng giá -->
+                        <div class="filter-section">
+                            <div class="filter-section-title">
+                                <i class="fa fa-money"></i> Khoảng giá
+                            </div>
+                            <div class="filter-options">
+                                <a href="javascript:void(0)" onclick="toggleFilter('price', '0-200')" class="filter-option <?= $price === '0-200' ? 'active' : '' ?>">
+                                    <i class="fa fa-tag"></i> Dưới 200k
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('price', '200-400')" class="filter-option <?= $price === '200-400' ? 'active' : '' ?>">
+                                    <i class="fa fa-tag"></i> 200k - 400k
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('price', '400-500')" class="filter-option <?= $price === '400-500' ? 'active' : '' ?>">
+                                    <i class="fa fa-tag"></i> 400k - 500k
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('price', '500+')" class="filter-option <?= $price === '500+' ? 'active' : '' ?>">
+                                    <i class="fa fa-diamond"></i> Trên 500k
+                                </a>
+                            </div>
+                        </div>
 
-                    <!-- Danh mục -->
-                    <div class="filter-col3 p-r-15 p-b-27">
-                        <div class="mtext-102 cl2 border-bottom py-1 fw-bold">Danh mục</div>
-                        <ul class="p-0">
-                            <li class="p-b-6 p-t-6"><a href="javascript:void(0)" onclick="toggleFilter('category', 'flowers')" class="filter-link <?= $category === 'flowers' ? 'active' : '' ?>" style="<?= $category === 'flowers' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Hoa</a></li>
-                            <li class="p-b-6"><a href="javascript:void(0)" onclick="toggleFilter('category', 'gifts')" class="filter-link <?= $category === 'gifts' ? 'active' : '' ?>" style="<?= $category === 'gifts' ? 'color: #EC4899; font-weight: bold;' : 'color: #333;' ?>">Quà tặng</a></li>
-                        </ul>
-                    </div>
+                        <!-- Danh mục -->
+                        <div class="filter-section">
+                            <div class="filter-section-title">
+                                <i class="fa fa-folder-open"></i> Danh mục
+                            </div>
+                            <div class="filter-options filter-options-row">
+                                <a href="javascript:void(0)" onclick="toggleFilter('category', 'flowers')" class="filter-card <?= $category === 'flowers' ? 'active' : '' ?>">
+                                    <i class="zmdi zmdi-flower-alt"></i>
+                                    <span>Hoa tươi</span>
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('category', 'gifts')" class="filter-card <?= $category === 'gifts' ? 'active' : '' ?>">
+                                    <i class="zmdi zmdi-card-giftcard"></i>
+                                    <span>Quà tặng</span>
+                                </a>
+                            </div>
+                        </div>
 
-                    <!-- Tags -->
-                    <div class="filter-col4 p-b-27">
-                        <div class="mtext-102 cl2 border-bottom py-1 fw-bold">Chủ đề</div>
-                        <div class="flex-w p-t-4 m-r--5 p-t-6">
-                            <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Hoa Tặng Mẹ')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Hoa Tặng Mẹ' ? 'active' : '' ?>" style="<?= $tag === 'Hoa Tặng Mẹ' ? 'background-color: #EC4899; color: white;' : '' ?>">Hoa Tặng Mẹ</a>
-                            <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Hoa Tiền')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Hoa Tiền' ? 'active' : '' ?>" style="<?= $tag === 'Hoa Tiền' ? 'background-color: #EC4899; color: white;' : '' ?>">Hoa Tiền</a>
-                            <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Set Quà Tặng 8/3')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Set Quà Tặng 8/3' ? 'active' : '' ?>" style="<?= $tag === 'Set Quà Tặng 8/3' ? 'background-color: #EC4899; color: white;' : '' ?>">Set Quà 8/3</a>
-                            <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Hoa Tặng Vợ')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Hoa Tặng Vợ' ? 'active' : '' ?>" style="<?= $tag === 'Hoa Tặng Vợ' ? 'background-color: #EC4899; color: white;' : '' ?>">Hoa Tặng Vợ</a>
-                            <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Tình Yêu')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Tình Yêu' ? 'active' : '' ?>" style="<?= $tag === 'Tình Yêu' ? 'background-color: #EC4899; color: white;' : '' ?>">Tình Yêu</a>
-                            <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Quà Tặng')" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none <?= $tag === 'Quà Tặng' ? 'active' : '' ?>" style="<?= $tag === 'Quà Tặng' ? 'background-color: #EC4899; color: white;' : '' ?>">Quà Tặng</a>
+                        <!-- Tags -->
+                        <div class="filter-section">
+                            <div class="filter-section-title">
+                                <i class="fa fa-hashtag"></i> Chủ đề
+                            </div>
+                            <div class="filter-tags">
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Hoa Tặng Mẹ')" class="filter-tag <?= $tag === 'Hoa Tặng Mẹ' ? 'active' : '' ?>">
+                                    <i class="fa fa-heart"></i> Hoa Tặng Mẹ
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Hoa Tiền')" class="filter-tag <?= $tag === 'Hoa Tiền' ? 'active' : '' ?>">
+                                    <i class="fa fa-dollar"></i> Hoa Tiền
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Set Quà Tặng 8/3')" class="filter-tag <?= $tag === 'Set Quà Tặng 8/3' ? 'active' : '' ?>">
+                                    <i class="fa fa-gift"></i> Set Quà 8/3
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Hoa Tặng Vợ')" class="filter-tag <?= $tag === 'Hoa Tặng Vợ' ? 'active' : '' ?>">
+                                    <i class="fa fa-female"></i> Hoa Tặng Vợ
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Tình Yêu')" class="filter-tag <?= $tag === 'Tình Yêu' ? 'active' : '' ?>">
+                                    <i class="fa fa-heart-o"></i> Tình Yêu
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Quà Tặng')" class="filter-tag <?= $tag === 'Quà Tặng' ? 'active' : '' ?>">
+                                    <i class="fa fa-cube"></i> Quà Tặng
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Sinh Nhật')" class="filter-tag <?= $tag === 'Sinh Nhật' ? 'active' : '' ?>">
+                                    <i class="fa fa-birthday-cake"></i> Sinh Nhật
+                                </a>
+                                <a href="javascript:void(0)" onclick="toggleFilter('tag', 'Khai Trương')" class="filter-tag <?= $tag === 'Khai Trương' ? 'active' : '' ?>">
+                                    <i class="fa fa-star"></i> Khai Trương
+                                </a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Active Filters Display -->
+                    <?php 
+                    $activeFilters = [];
+                    if (!empty($sort)) $activeFilters[] = ['type' => 'sort', 'label' => $sort === 'price_asc' ? 'Giá tăng' : ($sort === 'price_desc' ? 'Giá giảm' : 'Mới nhất')];
+                    if (!empty($price)) $activeFilters[] = ['type' => 'price', 'label' => $price];
+                    if (!empty($category)) $activeFilters[] = ['type' => 'category', 'label' => $category === 'flowers' ? 'Hoa tươi' : 'Quà tặng'];
+                    if (!empty($tag)) $activeFilters[] = ['type' => 'tag', 'label' => $tag];
+                    ?>
+                    <?php if (!empty($activeFilters)): ?>
+                    <div class="filter-active-bar">
+                        <span class="filter-active-label"><i class="fa fa-check-circle"></i> Đang lọc:</span>
+                        <?php foreach ($activeFilters as $filter): ?>
+                            <span class="filter-active-tag" onclick="toggleFilter('<?= $filter['type'] ?>', '<?= $filter['type'] === 'sort' ? ($sort) : ($filter['type'] === 'price' ? $price : ($filter['type'] === 'category' ? $category : $tag)) ?>')">
+                                <?= htmlspecialchars($filter['label']) ?>
+                                <i class="fa fa-times"></i>
+                            </span>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -448,10 +574,10 @@ $sort = $_GET['sort'] ?? '';
                                         onmouseover="this.style.opacity='1'"
                                         onmouseout="this.style.opacity='0'">
                                         <a href="product.php?id=<?= $product['id'] ?>" class="btn-modern btn-ghost btn-lg" style="background: white; color: var(--primary);">
-                                            <img src="../assets/images/icons/eye.png" width="20" height="20" alt="Xem"> Xem
+                                            <i class="fa fa-eye"></i> Xem
                                         </a>
                                         <a href="add_to_cart.php?id=<?= $product['id'] ?>" class="btn-modern btn-primary btn-lg">
-                                            <img src="../assets/images/icons/add-cart.png" width="20" height="20" alt="Thêm"> Thêm
+                                            <i class="fa fa-cart-plus"></i> Thêm
                                         </a>
                                     </div>
                                     <!-- Category Badge -->
@@ -587,6 +713,14 @@ $sort = $_GET['sort'] ?? '';
         loadProducts();
     }
 
+    // Function for quick search from suggestion tags
+    function quickSearch(keyword) {
+        $('#search-input').val(keyword);
+        currentFilters.search = keyword;
+        updateSearchDisplay();
+        loadProducts();
+    }
+
     // Function to clear search
     function clearSearch() {
         $('#search-input').val('');
@@ -666,101 +800,75 @@ $sort = $_GET['sort'] ?? '';
 
     // Function to update all active states
     function updateAllActiveStates() {
-        // Reset tất cả active states
-        $('.filter-col1 a, .filter-col2 a, .filter-col3 a').removeClass('active').css({
-            'color': '#333',
-            'font-weight': 'normal'
-        });
-        $('.filter-col4 a').removeClass('active').css({
-            'background-color': '',
-            'color': ''
-        });
+        // Reset tất cả active states cho filter-option
+        $('.filter-option').removeClass('active');
+        $('.filter-card').removeClass('active');
+        $('.filter-tag').removeClass('active');
 
         // Update Sort
-        if (!currentFilters.sort) {
-            $('.filter-col1 a[onclick*="\'sort\', \'\'"]').addClass('active').css({
-                'color': '#EC4899',
-                'font-weight': 'bold'
-            });
+        if (!currentFilters.sort || currentFilters.sort === '') {
+            $('.filter-option[onclick*="toggleFilter(\'sort\', \'\')"]').addClass('active');
         } else {
-            $('.filter-col1 a[onclick*="\'sort\', \'' + currentFilters.sort + '\'"]').addClass('active').css({
-                'color': '#EC4899',
-                'font-weight': 'bold'
-            });
+            $('.filter-option[onclick*="toggleFilter(\'sort\', \'' + currentFilters.sort + '\')"]').addClass('active');
         }
 
         // Update Price
         if (currentFilters.price) {
-            $('.filter-col2 a[onclick*="\'price\', \'' + currentFilters.price + '\'"]').addClass('active').css({
-                'color': '#EC4899',
-                'font-weight': 'bold'
-            });
+            $('.filter-option[onclick*="toggleFilter(\'price\', \'' + currentFilters.price + '\')"]').addClass('active');
         }
 
         // Update Category
         if (currentFilters.category) {
-            $('.filter-col3 a[onclick*="\'category\', \'' + currentFilters.category + '\'"]').addClass('active').css({
-                'color': '#EC4899',
-                'font-weight': 'bold'
-            });
+            $('.filter-card[onclick*="toggleFilter(\'category\', \'' + currentFilters.category + '\')"]').addClass('active');
         }
 
         // Update Tag
         if (currentFilters.tag) {
-            $('.filter-col4 a[onclick*="\'tag\', \'' + currentFilters.tag + '\'"]').addClass('active').css({
-                'background-color': '#EC4899',
-                'color': 'white'
-            });
+            $('.filter-tag[onclick*="toggleFilter(\'tag\', \'' + currentFilters.tag + '\')"]').addClass('active');
+        }
+
+        // Update active filters bar
+        updateActiveFiltersBar();
+    }
+
+    // Function to update the active filters bar dynamically
+    function updateActiveFiltersBar() {
+        var activeFiltersHtml = '';
+        var hasActiveFilters = false;
+
+        if (currentFilters.sort && currentFilters.sort !== '') {
+            hasActiveFilters = true;
+            var sortLabel = currentFilters.sort === 'price_asc' ? 'Giá tăng' : (currentFilters.sort === 'price_desc' ? 'Giá giảm' : 'Mới nhất');
+            activeFiltersHtml += '<span class="filter-active-tag" onclick="toggleFilter(\'sort\', \'' + currentFilters.sort + '\')">' + sortLabel + ' <i class="fa fa-times"></i></span>';
+        }
+        if (currentFilters.price) {
+            hasActiveFilters = true;
+            activeFiltersHtml += '<span class="filter-active-tag" onclick="toggleFilter(\'price\', \'' + currentFilters.price + '\')">' + currentFilters.price + ' <i class="fa fa-times"></i></span>';
+        }
+        if (currentFilters.category) {
+            hasActiveFilters = true;
+            var categoryLabel = currentFilters.category === 'flowers' ? 'Hoa tươi' : 'Quà tặng';
+            activeFiltersHtml += '<span class="filter-active-tag" onclick="toggleFilter(\'category\', \'' + currentFilters.category + '\')">' + categoryLabel + ' <i class="fa fa-times"></i></span>';
+        }
+        if (currentFilters.tag) {
+            hasActiveFilters = true;
+            activeFiltersHtml += '<span class="filter-active-tag" onclick="toggleFilter(\'tag\', \'' + currentFilters.tag + '\')">' + currentFilters.tag + ' <i class="fa fa-times"></i></span>';
+        }
+
+        if (hasActiveFilters) {
+            var fullHtml = '<div class="filter-active-bar"><span class="filter-active-label"><i class="fa fa-check-circle"></i> Đang lọc:</span>' + activeFiltersHtml + '</div>';
+            // Remove existing bar and add new one
+            $('.filter-active-bar').remove();
+            $('.filter-panel-modern').append(fullHtml);
+        } else {
+            $('.filter-active-bar').remove();
         }
     }
 
     // Function to update active states (giữ lại để tương thích)
     function updateActiveStates(type, value) {
-        // Remove all active states for this filter type
-        if (type === 'sort') {
-            $('.filter-col1 a').removeClass('active').css({
-                'color': '#333',
-                'font-weight': 'normal'
-            });
-            if (value === '') {
-                $('.filter-col1 a[onclick="applyFilter(\'sort\', \'\')"]').addClass('active').css({
-                    'color': '#EC4899',
-                    'font-weight': 'bold'
-                });
-            } else {
-                $('.filter-col1 a[onclick="applyFilter(\'sort\', \'' + value + '\')"]').addClass('active').css({
-                    'color': '#EC4899',
-                    'font-weight': 'bold'
-                });
-            }
-        } else if (type === 'price') {
-            $('.filter-col2 a').removeClass('active').css({
-                'color': '#333',
-                'font-weight': 'normal'
-            });
-            $('.filter-col2 a[onclick="applyFilter(\'price\', \'' + value + '\')"]').addClass('active').css({
-                'color': '#EC4899',
-                'font-weight': 'bold'
-            });
-        } else if (type === 'category') {
-            $('.filter-col3 a').removeClass('active').css({
-                'color': '#333',
-                'font-weight': 'normal'
-            });
-            $('.filter-col3 a[onclick="applyFilter(\'category\', \'' + value + '\')"]').addClass('active').css({
-                'color': '#EC4899',
-                'font-weight': 'bold'
-            });
-        } else if (type === 'tag') {
-            $('.filter-col4 a').removeClass('active').css({
-                'background-color': '',
-                'color': ''
-            });
-            $('.filter-col4 a[onclick="applyFilter(\'tag\', \'' + value + '\')"]').addClass('active').css({
-                'background-color': '#EC4899',
-                'color': 'white'
-            });
-        }
+        // Sử dụng updateAllActiveStates thay thế
+        updateAllActiveStates();
     }
 
     // Function to load products using AJAX
@@ -792,6 +900,538 @@ $sort = $_GET['sort'] ?? '';
 </script>
 
 <style>
+    /* Modern Search Panel Styles */
+    .search-panel-modern {
+        background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
+        overflow: hidden;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+    }
+
+    .search-header {
+        background: linear-gradient(135deg, #000000ff 0%, #525252ff 100%);
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .search-header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .search-header-left i {
+        font-size: 1.25rem;
+    }
+
+    .search-clear-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .search-clear-btn:hover {
+        background: white;
+        color: #3B82F6;
+        transform: scale(1.05);
+    }
+
+    .search-content {
+        padding: 1.5rem;
+    }
+
+    .search-input-wrapper {
+        display: flex;
+        align-items: center;
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-input-wrapper:focus-within {
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    }
+
+    .search-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        color: #9ca3af;
+        font-size: 1.25rem;
+    }
+
+    .search-input-modern {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        color: #1f2937;
+        padding: 0.75rem 0.5rem;
+        background: transparent;
+    }
+
+    .search-input-modern::placeholder {
+        color: #9ca3af;
+    }
+
+    .search-submit-btn {
+        background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+    }
+
+    .search-submit-btn:hover {
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Search Suggestions */
+    .search-suggestions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px dashed #e5e7eb;
+    }
+
+    .search-suggestions-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #6b7280;
+        margin-right: 0.5rem;
+    }
+
+    .search-suggestion-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.4rem 0.875rem;
+        background: #f3f4f6;
+        color: #4b5563;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid #e5e7eb;
+    }
+
+    .search-suggestion-tag:hover {
+        background: #dbeafe;
+        color: #2563EB;
+        border-color: #3B82F6;
+        text-decoration: none;
+        transform: translateY(-2px);
+    }
+
+    .search-suggestion-tag i {
+        font-size: 0.7rem;
+        opacity: 0.7;
+    }
+
+    /* Current Search Display */
+    .search-current {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding: 0.875rem 1rem;
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border-radius: 10px;
+        border: 1px solid #fcd34d;
+    }
+
+    .search-current-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #92400e;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .search-current-keyword {
+        background: #3B82F6;
+        color: white;
+        padding: 0.35rem 0.875rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .search-current-clear {
+        margin-left: auto;
+        background: #ef4444;
+        color: white;
+        border: none;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.75rem;
+    }
+
+    .search-current-clear:hover {
+        background: #dc2626;
+        transform: scale(1.1);
+    }
+
+    /* Responsive Search */
+    @media (max-width: 640px) {
+        .search-input-wrapper {
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1rem;
+        }
+
+        .search-icon {
+            display: none;
+        }
+
+        .search-input-modern {
+            width: 100%;
+            text-align: center;
+        }
+
+        .search-submit-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .search-header {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    /* Modern Filter Panel Styles */
+    .filter-panel-modern {
+        background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 100%);
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(236, 72, 153, 0.15);
+        overflow: hidden;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(236, 72, 153, 0.1);
+    }
+
+    .filter-header {
+        background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .filter-header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .filter-header-left i {
+        font-size: 1.25rem;
+    }
+
+    .filter-clear-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-clear-btn:hover {
+        background: white;
+        color: #EC4899;
+        transform: scale(1.05);
+    }
+
+    .filter-content {
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .filter-section {
+        background: white;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f3f4f6;
+    }
+
+    .filter-section-title {
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #fce7f3;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .filter-section-title i {
+        color: #EC4899;
+    }
+
+    .filter-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .filter-options-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .filter-option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        color: #4b5563;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+    }
+
+    .filter-option:hover {
+        background: #fdf2f8;
+        color: #EC4899;
+        text-decoration: none;
+    }
+
+    .filter-option.active {
+        background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+    }
+
+    .filter-option.active i {
+        color: white;
+    }
+
+    .filter-option i {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        transition: color 0.2s ease;
+    }
+
+    .filter-option:hover i {
+        color: #EC4899;
+    }
+
+    /* Category Cards */
+    .filter-card {
+        flex: 1;
+        min-width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 0.75rem;
+        border-radius: 12px;
+        background: #f9fafb;
+        color: #4b5563;
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        text-align: center;
+    }
+
+    .filter-card i {
+        font-size: 1.5rem;
+        color: #9ca3af;
+        transition: all 0.3s ease;
+    }
+
+    .filter-card:hover {
+        background: #fdf2f8;
+        border-color: #EC4899;
+        color: #EC4899;
+        text-decoration: none;
+        transform: translateY(-2px);
+    }
+
+    .filter-card:hover i {
+        color: #EC4899;
+        transform: scale(1.1);
+    }
+
+    .filter-card.active {
+        background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35);
+    }
+
+    .filter-card.active i {
+        color: white;
+    }
+
+    /* Filter Tags */
+    .filter-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .filter-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 0.875rem;
+        border-radius: 50px;
+        background: #f3f4f6;
+        color: #4b5563;
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        border: 1px solid #e5e7eb;
+    }
+
+    .filter-tag i {
+        font-size: 0.75rem;
+    }
+
+    .filter-tag:hover {
+        background: #fdf2f8;
+        border-color: #EC4899;
+        color: #EC4899;
+        text-decoration: none;
+        transform: translateY(-1px);
+    }
+
+    .filter-tag.active {
+        background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+    }
+
+    /* Active Filters Bar */
+    .filter-active-bar {
+        background: #fef3c7;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        border-top: 1px solid #fcd34d;
+    }
+
+    .filter-active-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #92400e;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-active-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.75rem;
+        background: #EC4899;
+        color: white;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .filter-active-tag:hover {
+        background: #DB2777;
+        transform: scale(1.05);
+    }
+
+    .filter-active-tag i {
+        font-size: 0.65rem;
+        opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .filter-content {
+            grid-template-columns: 1fr;
+        }
+
+        .filter-header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .filter-section:last-child {
+            grid-column: 1;
+        }
+    }
+
     .empty-state {
         padding: 40px 20px;
         background: #f8f9fa;

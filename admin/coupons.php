@@ -60,7 +60,7 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY id DESC")->fetchAll(PDO::
         .discount-badge {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1rem;
             border-radius: var(--radius-full);
             font-weight: 700;
             font-size: 1.25rem;
@@ -96,11 +96,11 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY id DESC")->fetchAll(PDO::
 </head>
 <body>
 <div class="container py-5">
-    <div class="page-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2>
+    <div class="page-header" style="text-align: center; margin-bottom: 2rem; display:flex; flex-direction: column; justify-content: center; align-items: center; background: white; padding: 1.5rem 2rem; border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);">
+        <h2 class="margin-bottom: 5px !important;">
             <i class="zmdi zmdi-card-giftcard"></i> Quản lý Mã khuyến mãi
         </h2>
-        <p style="color: var(--text-secondary);">Tạo và quản lý các mã giảm giá cho khách hàng</p>
+        <p style="color: var(--text-secondary); margin: 0; font-weight: 700;">Tạo và quản lý các mã giảm giá cho khách hàng</p>
     </div>
 
     <div style="display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center; flex-wrap: wrap;">
@@ -128,7 +128,7 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY id DESC")->fetchAll(PDO::
     <div class="table-responsive table-modern">
         <table class="table mb-0">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th style="width: 60px;">ID</th>
                     <th>Mã khuyến mãi</th>
                     <th>Chiết khấu</th>
@@ -154,7 +154,7 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY id DESC")->fetchAll(PDO::
                     $status_text = 'Đang hoạt động';
                 }
             ?>
-                <tr>
+                <tr class="text-center">
                     <td><strong style="color: var(--text-secondary);">#<?= $coupon['id'] ?></strong></td>
                     <td>
                         <div class="coupon-code">
@@ -184,12 +184,12 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY id DESC")->fetchAll(PDO::
                         </span>
                     </td>
                     <td>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <a href="edit_coupon.php?id=<?= $coupon['id'] ?>" class="btn-modern btn-warning btn-sm" title="Sửa">
+                        <div style="display: flex; justify-content: center; gap: 0.5rem;">
+                            <a href="edit_coupon.php?id=<?= $coupon['id'] ?>" class="btn-modern btn btn-warning btn-sm p-2 rounded-circle" title="Sửa">
                                 <i class="zmdi zmdi-edit"></i>
                             </a>
                             <a href="delete_coupon.php?id=<?= $coupon['id'] ?>" 
-                               class="btn-modern btn-danger btn-sm" 
+                               class="btn-modern btn btn-danger btn-sm p-2 rounded-circle" 
                                onclick="return confirm('Xác nhận xóa mã khuyến mãi <?= htmlspecialchars($coupon['code']) ?>?')"
                                title="Xóa">
                                 <i class="zmdi zmdi-delete"></i>

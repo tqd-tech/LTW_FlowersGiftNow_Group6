@@ -79,15 +79,15 @@ $products = $stmt->fetchAll();
 ?>
 
 <?php if (!empty($search)): ?>
-<div class="col-12 mb-3">
-    <div class="alert-modern alert-info" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+<div class="col-12 mb-4">
+    <div class="alert-modern alert-info " style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-radius: var(--radius-lg);">
         <div>
-            <i class="zmdi zmdi-search"></i>
+            <img src="./assets/images/icons/search.png" alt="Search Icon" width="20" height="20" style="margin-right: 0.25rem;">
             <strong>Kết quả tìm kiếm cho:</strong>
             <span class="badge-modern badge-primary" style="margin-left: 0.5rem;"><?= htmlspecialchars($search) ?></span>
         </div>
         <button onclick="clearSearch()" class="btn-modern btn-ghost btn-sm">
-            <i class="zmdi zmdi-close"></i> Xóa tìm kiếm
+            <img src="./assets/images/icons/delete.png" alt="Clear Search" width="20" height="20" > Xóa tìm kiếm
         </button>
     </div>
 </div>
@@ -109,7 +109,7 @@ if ($products):
     }
     
     foreach ($products as $product): ?>
-        <div class="<?= $colClass ?> p-b-35 animate-slide-up">
+        <div class="<?= $colClass ?> p-b-12 animate-slide-up">
             <div class="card-modern" style="height: 100%;">
                 <div style="position: relative; overflow: hidden;">
                     <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>"
@@ -129,7 +129,7 @@ if ($products):
                     </div>
                     <!-- Category Badge -->
                     <?php if (!empty($product['tags'])): ?>
-                        <span class="badge-modern badge-info" style="position: absolute; top: 1rem; left: 1rem;">
+                        <span class="badge-modern badge-info" style="position: absolute; top: 1rem; right: 1rem;">
                             <?= htmlspecialchars(explode(',', $product['tags'])[0]) ?>
                         </span>
                     <?php endif; ?>
