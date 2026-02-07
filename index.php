@@ -33,7 +33,7 @@ $sort = $_GET['sort'] ?? '';
 
 <!-- Modern Hero Section -->
 <section class="hero-modern animate-fade-in">
-    <div class="container-modern" style="padding: 4rem 2rem;">
+    <div class="container-modern hero-padding">
         <div class="hero-modern-content">
             <div class="animate-slide-up">
                 <span class="badge-modern badge-info d-inline-block " style="font-size: 0.875rem; margin-bottom: 1rem;">
@@ -900,6 +900,18 @@ $sort = $_GET['sort'] ?? '';
 </script>
 
 <style>
+    /* Hero Responsive Padding */
+    .hero-padding {
+        padding: 4rem 2rem !important;
+    }
+
+    @media (max-width: 767px) {
+        .hero-padding {
+            padding-bottom: 0 !important;
+            padding-top: 0 !important;
+        }
+    }
+
     /* Modern Search Panel Styles */
     .search-panel-modern {
         background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);

@@ -330,8 +330,8 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
-			<div class="logo-mobile d-flex align-items-center justify-content-center" style=" font-size: 1.25rem; font-weight: 800; color: var(--primary);">
-				<a href="index.php"> <img src="./assets/images/LOGO.png" alt="FlowerGiftNow" style="height: 50px;">
+			<div class="logo-mobile d-flex align-items-center justify-content-start" style=" font-size: 1.25rem; font-weight: 800; color: var(--primary);">
+				<a href="index.php" class="d-flex align-items-center justify-content-center"> <img src="./assets/images/LOGO.png" alt="FlowerGiftNow" style="height: 50px;">
 				<span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">FlowerGiftNow</span>
 
 				</a>
@@ -351,7 +351,7 @@ session_start();  // <-- Luôn nằm ở dòng đầu tiên
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti hidden-mobile" data-notify="0">
 					<i class="zmdi zmdi-favorite-outline"></i>
 				</a>
 			</div>
